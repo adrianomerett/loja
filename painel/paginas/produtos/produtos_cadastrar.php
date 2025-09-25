@@ -115,7 +115,7 @@
                         <legend>Fotos para o produto</legend>
                         <div class="rows">
                             <div class="col col-sm-2 col-lg-2 ct-buttom-upload">
-
+                                Botao de upload
                             </div>
                             <div class="col col-sm-2 col-lg-2"></div>
                             <div class="col col-sm-2 col-lg-2"></div>
