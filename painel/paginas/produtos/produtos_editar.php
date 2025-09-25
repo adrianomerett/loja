@@ -1,1 +1,3 @@
-<h1>Edição de Produto</h1>
+<div class="container">
+    <div class="row"></div>
+</div>
