@@ -115,38 +115,13 @@
                         <legend>Fotos para o produto</legend>
                         <div class="rows rows-ct-foto">
                             <div class="col col-sm-12 col-lg-2 ct-buttom-upload">
-                                <div class="icon-upload">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                                </div>
-                                <span class="lnk-upload" id="lnk-upload">Selecionar Imagens</span>
                                 <input type="file" name="fotos[]" id="fotos" multiple accept="image/*">
+                                <span class="lnk-upload" id="lnk-upload"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
+                                <span class="lnk-upload" id="lnk-upload"><i class="fa-solid fa-cloud-arrow-up"></i> Enviar Fotos</span>
                             </div>
                             <div class="col col-sm-12 col-lg-10">
-                                <div class="rows rowsfotos">
-                                    <div class="col co-sm-12 col-lg-2">
-                                        <div class="ct-foto-upload">
-                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
-                                        </div>
-                                        <div class="ct-progress"></div>
-                                    </div>
-                                    <div class="col co-sm-12 col-lg-2">
-                                        <div class="ct-foto-upload">
-                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
-                                        </div>
-                                        <div class="ct-progress"></div>
-                                    </div>
-                                    <div class="col co-sm-12 col-lg-2">
-                                        <div class="ct-foto-upload">
-                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
-                                        </div>
-                                        <div class="ct-progress"></div>
-                                    </div>
-                                    <div class="col co-sm-12 col-lg-2">
-                                        <div class="ct-foto-upload">
-                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
-                                        </div>
-                                        <div class="ct-progress"></div>
-                                    </div>
+                                <div class="rows rowsfotos" id="rowsfotos">
+                                    
                                 </div>
                             </div>
                         </div>

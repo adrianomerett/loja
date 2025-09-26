@@ -150,15 +150,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 120px;
-}
-
-.ct-buttom-upload i {
-  color: #5e5c5c;
-  font-size: 28px;
 }
 
 .lnk-upload {
+  width: 80%;
   background-color: #c91f16;
   color: #DDDDDD;
   font-family: "Roboto";
@@ -167,6 +162,8 @@
   padding: 8px 16px;
   border-radius: 4px;
   user-select: none;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .lnk-upload:hover {
@@ -184,6 +181,14 @@
   padding: 0px;
 }
 
+.col-cad-fotos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
 .ct-foto-upload {
   display: flex;
   align-items: center;
@@ -195,12 +200,34 @@
   overflow: hidden;
   border-radius: 2px;
   position: relative;
+  margin-bottom: 4px;
 }
 
 .ct-foto-upload img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.lnk-remove-foto {
+  padding: 6px;
+  top: 0px;
+  right: 0px;
+  color: red;
+  font-size: 12px;
+  font-family: "Roboto";
+  font-weight: 600;
+}
+
+.lnk-remove-foto:hover {
+  cursor: pointer;
+}
+
+.ct-progress {
+  width: 100%;
+  height: 8px;
+  background-color: rgb(243, 252, 246);
+  border: 1px solid rgb(48, 167, 111);
 }
 
 /*# sourceMappingURL=cadastrarprodutos.css.map */
