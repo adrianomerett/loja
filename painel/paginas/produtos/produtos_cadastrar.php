@@ -113,14 +113,42 @@
                 <div class="col col-sm-12 col-fotos">
                     <fieldset>
                         <legend>Fotos para o produto</legend>
-                        <div class="rows">
-                            <div class="col col-sm-2 col-lg-2 ct-buttom-upload">
-                               Teste
+                        <div class="rows rows-ct-foto">
+                            <div class="col col-sm-12 col-lg-2 ct-buttom-upload">
+                                <div class="icon-upload">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <span class="lnk-upload" id="lnk-upload">Selecionar Imagens</span>
+                                <input type="file" name="fotos[]" id="fotos" multiple accept="image/*">
                             </div>
-                            <div class="col col-sm-2 col-lg-2"></div>
-                            <div class="col col-sm-2 col-lg-2"></div>
-                            <div class="col col-sm-2 col-lg-2"></div>
-                            <div class="col col-sm-2 col-lg-2"></div>
+                            <div class="col col-sm-12 col-lg-10">
+                                <div class="rows rowsfotos">
+                                    <div class="col co-sm-12 col-lg-2">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
+                                        </div>
+                                        <div class="ct-progress"></div>
+                                    </div>
+                                    <div class="col co-sm-12 col-lg-2">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
+                                        </div>
+                                        <div class="ct-progress"></div>
+                                    </div>
+                                    <div class="col co-sm-12 col-lg-2">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
+                                        </div>
+                                        <div class="ct-progress"></div>
+                                    </div>
+                                    <div class="col co-sm-12 col-lg-2">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo URL_IMG; ?>/note.webp" alt="Foto">
+                                        </div>
+                                        <div class="ct-progress"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
@@ -157,7 +185,7 @@
                             <option value="0">Selecione uma categoria...</option>
                             <option value="1">Categoria 1</option>
                             <option value="2">Categoria 2</option>
-                            <option value="3">Categoria 3</option>  
+                            <option value="3">Categoria 3</option>
                         </select>
                     </div>
                     <div class="col col-sm-12 forms">

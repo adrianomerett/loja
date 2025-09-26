@@ -2,6 +2,7 @@
 $host = $_SERVER['HTTP_HOST'];
 defined('BASE_URL') || define('BASE_URL', "http://{$host}/loja/painel");
 defined('URL_API') || define('URL_API', "http://{$host}/loja/painel/api");
+defined('URL_IMG') || define('URL_IMG', BASE_URL . "/public/upload/produtos");
 defined('DS') || define('DS', DIRECTORY_SEPARATOR);
 defined('PAINEL') || define('PAINEL', 'painel');
 // Caso mude de o projeto de diretório altere aqui

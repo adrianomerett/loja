@@ -29,4 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
         },
     });
+
+    // Abre o input de fotos
+    document.getElementById('lnk-upload').addEventListener('click', function () {
+        document.getElementById('fotos').click();
+    });
 });
