@@ -8,7 +8,10 @@ defined('PAINEL') || define('PAINEL', 'painel');
 // Caso mude de o projeto de diretório altere aqui
 defined('ROOT_APP') || define('ROOT_APP', $_SERVER['DOCUMENT_ROOT'] . DS . 'loja' . DS . PAINEL . DS);
 defined('ROOT_PAGES') || define('ROOT_PAGES', ROOT_APP . DS . 'paginas' . DS);
+defined('ROOT_UPLOAD') || define('ROOT_UPLOAD', ROOT_APP . 'public' . DS . 'upload' . DS);
 defined('ROOT_CORE') || define('ROOT_CORE', ROOT_APP . 'core'  . DS);
+defined('ROOT_PROCUCTS') || define('ROOT_PROCUCTS', ROOT_UPLOAD . "produtos" . DS);
+defined('ROOT_LIBRARY') || define('ROOT_LIBRARY', ROOT_CORE . 'libraries' . DS);
 defined('MODELS') || define('MODELS', ROOT_CORE . 'models' . DS);
 defined('DATABASE') || define('DATABASE', ROOT_CORE . 'database' . DS . 'database.php');
 

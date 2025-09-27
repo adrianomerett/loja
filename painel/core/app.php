@@ -95,4 +95,20 @@ class App
         header("Location: " . BASE_URL . $url);
         exit;
     }
+
+    // Pega a extensão de arquivo
+    public static function getExtension($file)
+    {
+        return pathinfo($file, PATHINFO_EXTENSION);
+    }
+
+    // Verifica a extensão de arquivo
+    public static function checkExtension($ext): bool
+    {
+        $permitidos = array('gif', 'jpg', 'jpeg', 'png', 'webp');
+        if (!in_array($ext, $permitidos)) {
+            return false;
+        }
+        return true;
+    }
 }

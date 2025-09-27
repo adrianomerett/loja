@@ -1,6 +1,6 @@
 <?php
 try {
-    sleep(1);
+    //sleep(1);
     if (empty($pagina) || empty($acao)) {
         throw new Exception('Não foi possível encontrar a página ou a ação.');
     }

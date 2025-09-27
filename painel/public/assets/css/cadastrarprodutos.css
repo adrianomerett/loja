@@ -209,6 +209,10 @@
   object-fit: cover;
 }
 
+.pre-upload {
+  opacity: 0.5;
+}
+
 .lnk-remove-foto {
   padding: 6px;
   top: 0px;
@@ -228,6 +232,14 @@
   height: 8px;
   background-color: rgb(243, 252, 246);
   border: 1px solid rgb(48, 167, 111);
+  border-radius: 2px;
+}
+
+.progress-img {
+  width: 0%;
+  height: 7px;
+  background-color: rgb(48, 167, 111);
+  border-radius: 2px;
 }
 
 /*# sourceMappingURL=cadastrarprodutos.css.map */

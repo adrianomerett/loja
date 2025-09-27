@@ -123,36 +123,36 @@
     visibility: visible;
 }
 
-.rows-information{
+.rows-information {
     padding-bottom: 0px;
 }
 
 .ct-description {
     padding-left: 0px;
-    color: $color-font-escura!important;
+    color: $color-font-escura !important;
 }
 
 .ct-information {
     padding-right: 0px;
-    color: $color-font-escura!important;
+    color: $color-font-escura !important;
 }
 
 .ql-editor {
-    padding: 6px!important;
-    height: 160px!important;
+    padding: 6px !important;
+    height: 160px !important;
 }
 
-.rows-ct-foto{
+.rows-ct-foto {
     padding: 0px;
 }
 
-.col-fotos{
+.col-fotos {
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 0px;
 }
 
-.ct-buttom-upload{
+.ct-buttom-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,7 +160,7 @@
 }
 
 
-.lnk-upload{
+.lnk-upload {
     width: 80%;
     background-color: $color-media;
     color: $color-font;
@@ -174,22 +174,22 @@
     margin-bottom: 20px;
 }
 
-.lnk-upload:hover{
+.lnk-upload:hover {
     cursor: pointer;
     background-color: $color-app;
     box-shadow: 0px 0px 3px $color-app;
     text-shadow: 0px 0px 1px $color-white;
 }
 
-#fotos{
+#fotos {
     visibility: hidden;
 }
 
-.rowsfotos{
+.rowsfotos {
     padding: 0px;
 }
 
-.col-cad-fotos{
+.col-cad-fotos {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,7 +197,7 @@
     position: relative;
 }
 
-.ct-foto-upload{
+.ct-foto-upload {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,13 +211,17 @@
     margin-bottom: 4px;
 }
 
-.ct-foto-upload img{
+.ct-foto-upload img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.lnk-remove-foto{
+.pre-upload {
+    opacity: 0.5;
+}
+
+.lnk-remove-foto {
     padding: 6px;
     top: 0px;
     right: 0px;
@@ -227,13 +231,21 @@
     font-weight: 600;
 }
 
-.lnk-remove-foto:hover{
+.lnk-remove-foto:hover {
     cursor: pointer;
 }
 
-.ct-progress{
+.ct-progress {
     width: 100%;
     height: 8px;
     background-color: rgb(243, 252, 246);
-    border: 1px solid rgb(48, 167, 111)
+    border: 1px solid rgb(48, 167, 111);
+    border-radius: 2px;
+}
+
+.progress-img {
+    width: 0%;
+    height: 7px;
+    background-color: rgb(48, 167, 111);
+    border-radius: 2px;
 }

@@ -96,13 +96,13 @@
                 </div>
             </fieldset>
             <div class="rows rows-information">
-                <div class="col col-lg-6 ct-description">
+                <div class="col col-sm-12 col-md-6 ct-description">
                     <fieldset>
                         <legend>Descrição do produto</legend>
                         <div class="desciption" id="descricao"></div>
                     </fieldset>
                 </div>
-                <div class="col col-lg-6 ct-information">
+                <div class="col col-sm-12 col-md-6 ct-information">
                     <fieldset>
                         <legend>Informações técnicas</legend>
                         <div class="" id="informacao"></div>
@@ -115,9 +115,9 @@
                         <legend>Fotos para o produto</legend>
                         <div class="rows rows-ct-foto">
                             <div class="col col-sm-12 col-lg-2 ct-buttom-upload">
-                                <input type="file" name="fotos[]" id="fotos" multiple accept="image/*">
-                                <span class="lnk-upload" id="lnk-upload"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
-                                <span class="lnk-upload" id="lnk-upload"><i class="fa-solid fa-cloud-arrow-up"></i> Enviar Fotos</span>
+                                <input type="file" name="fotos[]" id="fotos" multiple>
+                                <span class="lnk-upload" id="lnk-select-fotos"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
+                                <span class="lnk-upload" id="lnk-upload-fotos"><i class="fa-solid fa-cloud-arrow-up"></i> Enviar Fotos</span>
                             </div>
                             <div class="col col-sm-12 col-lg-10">
                                 <div class="rows rowsfotos" id="rowsfotos">

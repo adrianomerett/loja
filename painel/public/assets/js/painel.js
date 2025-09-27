@@ -237,7 +237,6 @@ function hideConfirm() {
 // FULL LOADER
 function showLoader() {
     try {
-        console.log('Teste');
         let elemtnfullloader = document.getElementById("full-loader");
         elemtnfullloader.classList.toggle("show-full-loader");
     } catch (e) {
