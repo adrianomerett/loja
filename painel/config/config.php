@@ -12,6 +12,7 @@ defined('ROOT_UPLOAD') || define('ROOT_UPLOAD', ROOT_APP . 'public' . DS . 'uplo
 defined('ROOT_CORE') || define('ROOT_CORE', ROOT_APP . 'core'  . DS);
 defined('ROOT_PROCUCTS') || define('ROOT_PROCUCTS', ROOT_UPLOAD . "produtos" . DS);
 defined('ROOT_LIBRARY') || define('ROOT_LIBRARY', ROOT_CORE . 'libraries' . DS);
+defined('ROOT_HELPERS') || define('ROOT_HELPERS', ROOT_CORE . 'helpers' . DS);
 defined('MODELS') || define('MODELS', ROOT_CORE . 'models' . DS);
 defined('DATABASE') || define('DATABASE', ROOT_CORE . 'database' . DS . 'database.php');
 

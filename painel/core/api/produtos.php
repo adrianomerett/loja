@@ -33,3 +33,10 @@ if ($acao == 'delete-tmp-foto') {
         $retorno = array("status" => false, "msg" => $e->getMessage());
     }
 }
+
+if ($acao == 'teste') {
+    $retorno = array("status" => true, "msg" => "Foto removida com sucesso!");
+    require_once ROOT_HELPERS . "hloja.php";
+    $retorno['dados'] = selectcategorias(50, 2);
+    App::setJson($retorno);
+}

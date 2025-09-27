@@ -121,7 +121,26 @@
                             </div>
                             <div class="col col-sm-12 col-lg-10">
                                 <div class="rows rowsfotos" id="rowsfotos">
-                                    
+                                    <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo BASE_URL . "/public/imagens/default.png"; ?>" class="pre-upload" alt="Foto">
+                                        </div>
+                                    </div>
+                                    <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo BASE_URL . "/public/imagens/default.png"; ?>" class="pre-upload" alt="Foto">
+                                        </div>
+                                    </div>
+                                    <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo BASE_URL . "/public/imagens/default.png"; ?>" class="pre-upload" alt="Foto">
+                                        </div>
+                                    </div>
+                                    <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
+                                        <div class="ct-foto-upload">
+                                            <img src="<?php echo BASE_URL . "/public/imagens/default.png"; ?>" class="pre-upload" alt="Foto">
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

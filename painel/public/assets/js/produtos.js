@@ -1,8 +1,9 @@
+// Upload de fotos
+var filesfotos = {};
+var statusupload = false;
+
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Upload de fotos
-    var filesfotos = {};
-    var statusupload = false;
     // Descrição
     const quill = new Quill('#descricao', {
         theme: 'snow',
@@ -39,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     // Verifica quando o input de fotos é selecionad
     document.getElementById('fotos').addEventListener('change', async function () {
+        if (Object.keys(filesfotos).length == 0) {
+            document.getElementById('rowsfotos').innerHTML = '';
+        }
         let selectedFiles = Array.from(this.files);
         let htmlfoto = '';
         selectedFiles.forEach((file, index) => {
@@ -58,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
         });
         // Adiciona o html das fotos 
-        document.getElementById('rowsfotos').insertAdjacentHTML('beforeend', htmlfoto);
-
+        document.getElementById('rowsfotos').insertAdjacentHTML('afterbegin', htmlfoto);
     });
 
     // Remove as fotos selecionadas
@@ -129,4 +132,18 @@ async function uploadFotos(filesfotos) {
             console.log(e);
         }
     }
+}
+
+// Popular html default das imagens 
+function popularHtmlFotos() {
+    let htmlfoto = ``;
+    for (let i = 0; i <= 3; i++) {
+        htmlfoto += `
+        <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
+            <div class="ct-foto-upload">
+                <img src="${BASE_URL}/public/imagens/default.png" class="pre-upload" alt="Foto">
+            </div>
+        </div>`
+    }
+    document.getElementById('rowsfotos').innerHTML = htmlfoto
 }
