@@ -37,6 +37,6 @@ if ($acao == 'delete-tmp-foto') {
 if ($acao == 'teste') {
     $retorno = array("status" => true, "msg" => "Foto removida com sucesso!");
     require_once ROOT_HELPERS . "hloja.php";
-    $retorno['dados'] = selectcategorias(50, 2);
+    $retorno['dados'] = selectsubcategorias(2, 4, array(0, "Sem categoria"));
     App::setJson($retorno);
 }

@@ -1,3 +1,6 @@
+<?php
+require ROOT_HELPERS . 'hloja.php';
+?>
 <div class="container-pages">
     <div class="title-pages">
         <a href="<?php echo BASE_URL . "/home/"; ?>">Início</a> &raquo;
@@ -32,10 +35,7 @@
                                 <label for="categoria" class="label-cadastros">Categoria: <span class="required">(*)</span></label>
                                 <select name="categoria" id="categoria">
                                     <option value="0">Selecione uma categoria...</option>
-                                    <option value="1">Categoria 1</option>
-                                    <option value="2">Categoria 2</option>
-                                    <option value="3">Categoria 3</option>
-                                    <option value="4">Categoria 4</option>
+                                    <?php echo selectcategorias(); ?>
                                 </select>
                             </div>
                             <div class="ct-buttons-add-cates">
@@ -69,15 +69,15 @@
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valorcusto" class="label-cadastros">Valor de custo: <span class="required">(*)</span></label>
-                        <input type="text" name="valorcusto" id="valorcusto" placeholder="R$ 0,00">
+                        <input type="text" name="valorcusto" id="valorcusto" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valorovenda" class="label-cadastros">Valor de venda: <span class="required">(*)</span></label>
-                        <input type="text" name="valorovenda" id="valorovenda" placeholder="R$ 0,00">
+                        <input type="text" name="valorovenda" id="valorovenda" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valoroferta" class="label-cadastros">Valor de oferta: <span class="required">(*)</span></label>
-                        <input type="text" name="valoroferta" id="valoroferta" placeholder="R$ 0,00">
+                        <input type="text" name="valoroferta" id="valoroferta" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="exibirpreco" class="label-cadastros">Exibir preço: <span class="required">(*)</span></label>
@@ -140,7 +140,7 @@
                                         <div class="ct-foto-upload">
                                             <img src="<?php echo BASE_URL . "/public/imagens/default.png"; ?>" class="pre-upload" alt="Foto">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>

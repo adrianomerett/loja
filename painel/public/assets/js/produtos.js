@@ -147,3 +147,32 @@ function popularHtmlFotos() {
     }
     document.getElementById('rowsfotos').innerHTML = htmlfoto
 }
+
+// Mascara de moeda 
+function mascaraMoeda(elemento) {
+    let valor = elemento.value.replace(/\D/g, '');
+    if (!valor) {
+        elemento.value = '';
+        return;
+    }
+    valor = (parseInt(valor, 10) / 100).toFixed(2);
+    let [inteiro, decimal] = valor.split('.');
+    inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    elemento.value = `R$ ${inteiro},${decimal}`;
+}
+
+// Buscar Subcategorias
+async function pupulateSubcategorias(elementfather, elementchild) {
+    try {
+        let pai = document.getElementById(elementfather);
+        let filho = document.getElementById(elementchild);
+        let valorpai = pai.value;
+        if (valorpai == 0) {
+            return false;
+        }
+        let req = await api.post('categorias/subcategorias', { idcategoria: valorpai });
+        console.log(req.data);
+    } catch (e) {
+        console.log(e);
+    }
+}
