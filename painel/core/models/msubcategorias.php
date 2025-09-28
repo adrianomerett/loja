@@ -23,4 +23,20 @@ class Msubcategorias
             return $e->getMessage();
         }
     }
+
+    // Pega as sub categorias por nome
+    public function getSubCategoriesByName($name)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE namesubcategoria = :namesubcategoria";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':namesubcategoria', $name);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

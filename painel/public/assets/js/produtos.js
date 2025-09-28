@@ -105,6 +105,16 @@ document.addEventListener('DOMContentLoaded', function () {
         await saveCategoria();
     });
 
+    // Buscar sub categorias pela categoria pai
+    document.getElementById('categoria').addEventListener('change', async function () {
+        await pupulateSubcategorias('categoria', 'subcategoria');
+    });
+
+    // Salvar sub categria 
+    document.getElementById('save-subcategoria').addEventListener('click', async function () {
+        await saveSubcategoria();
+    });
+
 });
 
 // Salva uma nova subcategoria
@@ -134,15 +144,48 @@ async function saveCategoria() {
             <option value="0">Selecione uma categoria...</option>
             ${categorias}
             `;
+            document.getElementById(`nscategoria`).innerHTML = `
+                <option value="0">Selecione uma categoria...</option>
+            ${categorias}
+            `;
             setTimeout(function () {
                 showAlert(msg, 'success');
             }, 100);
         }
         elemntncategoria.value = '';
-        
+
 
     } catch (e) {
         showLoader();
+        console.log(e);
+    }
+}
+
+// Salva uma nova subcategoria
+async function saveSubcategoria() {
+    try {
+        // Validação
+        let elementcate = document.getElementById('nscategoria');
+        let elementsbcate = document.getElementById('ncsubcategoria');
+        let categoria = elementcate.value;
+        let subcategoria = elementsbcate.value;
+        if (categoria == 0) {
+            setValidation('nscategoria', 'is-invalid');
+            showAlert('Informe a categoria!', 'error');
+            return false;
+        } else {
+            setValidation('nscategoria', 'is-valid');
+        }
+        if (subcategoria == '') {
+            setValidation('ncsubcategoria', 'is-invalid');
+            showAlert('Informe o nomde da subcategoria!', 'error');
+        } else {
+            setValidation('ncsubcategoria', 'is-valid');
+        }
+        // Salvar
+        let req = await api.post('subcategorias/save-subcategoria', { idcategoria: categoria, ncsubcategoria: subcategoria });
+        console.log(req.data);
+    } catch (e) {
         console.log(e);
     }
 }
@@ -217,16 +260,27 @@ function mascaraMoeda(elemento) {
 }
 
 // Buscar Subcategorias
-async function pupulateSubcategorias(elementfather, elementchild) {
+async function pupulateSubcategorias(idfather, idchild) {
     try {
-        let pai = document.getElementById(elementfather);
-        let filho = document.getElementById(elementchild);
+        let pai = document.getElementById(idfather);
+        let filho = document.getElementById(idchild);
         let valorpai = pai.value;
         if (valorpai == 0) {
             return false;
         }
-        let req = await api.post('categorias/subcategorias', { idcategoria: valorpai });
-        console.log(req.data);
+        filho.innerHTML = '<option value="0">Buscando subcategorias...</option>';
+        let req = await api.post('subcategorias/get-subcategorias', { idcategoria: valorpai });
+        let { status, msg, subcategorias } = req.data;
+        if (status == false) {
+            showAlert(msg, 'error');
+            return false;
+        }
+        if (status == true) {
+            filho.innerHTML = `
+            <option value="0">Selecione uma subcategoria...</option>
+            ${subcategorias}
+            `;
+        }
     } catch (e) {
         console.log(e);
     }
