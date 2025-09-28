@@ -23,4 +23,36 @@ class Mcategorias
             return $e->getMessage();
         }
     }
+
+    // Cadastra uma categoria
+    public function insertCategory($dados)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "INSERT INTO {$this->table} (namecategoria) VALUES (:namecategoria)";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':namecategoria', $dados['namecategoria']);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Get categoria por nome
+    public function getCategoryByName($name)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE namecategoria = :namecategoria";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':namecategoria', $name);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

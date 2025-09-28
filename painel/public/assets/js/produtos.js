@@ -90,7 +90,62 @@ document.addEventListener('DOMContentLoaded', function () {
         await uploadFotos(filesfotos);
     });
 
+    // Mostra o modal de adicionar categoria
+    document.getElementById('lnk-add-cate').addEventListener('click', function () {
+        showAddCates('modal-cates');
+    });
+
+    // Mostra o modal de adicionar subcategoria
+    document.getElementById('lnk-add-subcate').addEventListener('click', function () {
+        showAddCates('modal-subcategorias');
+    });
+
+    // Salva uma nova categoria 
+    document.getElementById('save-cates').addEventListener('click', async function () {
+        await saveCategoria();
+    });
+
 });
+
+// Salva uma nova subcategoria
+async function saveCategoria() {
+    try {
+        let elemntncategoria = document.getElementById('ncategoria');
+        let ncategoria = elemntncategoria.value;
+        if (ncategoria == 0) {
+            setValidation('ncategoria', 'is-invalid');
+            showAlert('Informe o nome da categoria!', 'error');
+            return false;
+        } else {
+            setValidation('ncategoria', 'is-valid');
+        }
+        showLoader();
+        let req = await api.post('categorias/save-categoria', { namecategoria: ncategoria });
+        showLoader();
+        let { status, msg, categorias } = req.data;
+        if (status == false) {
+            showAlert(msg, 'error');
+            return false;
+        }
+        if (status == true) {
+            elemntncategoria.classList.remove('is-invalid', 'is-valid');
+            showAddCates('modal-cates');
+            document.getElementById('categoria').innerHTML = `
+            <option value="0">Selecione uma categoria...</option>
+            ${categorias}
+            `;
+            setTimeout(function () {
+                showAlert(msg, 'success');
+            }, 100);
+        }
+        elemntncategoria.value = '';
+        
+
+    } catch (e) {
+        showLoader();
+        console.log(e);
+    }
+}
 
 // Função para gerar id de foto
 function gerarId() {
@@ -175,4 +230,9 @@ async function pupulateSubcategorias(elementfather, elementchild) {
     } catch (e) {
         console.log(e);
     }
+}
+
+// Mostar o modal de adicionar categoria
+function showAddCates(idmodal) {
+    document.getElementById(`${idmodal}`).classList.toggle('show-cates');
 }

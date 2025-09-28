@@ -39,7 +39,7 @@ require ROOT_HELPERS . 'hloja.php';
                                 </select>
                             </div>
                             <div class="ct-buttons-add-cates">
-                                <span class="lnk-add-cates"><i class="fa-solid fa-plus"></i> Adicionar</span>
+                                <span class="lnk-add-cates" id="lnk-add-cate"><i class="fa-solid fa-plus"></i> Adicionar</span>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ require ROOT_HELPERS . 'hloja.php';
                                 </select>
                             </div>
                             <div class="ct-buttons-add-cates">
-                                <span class="lnk-add-cates"><i class="fa-solid fa-plus"></i> Adicionar</span>
+                                <span class="lnk-add-cates" id="lnk-add-subcate"><i class="fa-solid fa-plus"></i> Adicionar</span>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ require ROOT_HELPERS . 'hloja.php';
             </div>
         </div>
         <div class="footer-cates">
-            <span class="btn-save-cates" id="close-cate"><i class="fa-solid fa-xmark"></i> Fechar</span>
+            <span class="btn-save-cates" id="close-cate" onclick="showAddCates('modal-cates')"><i class="fa-solid fa-xmark"></i> Fechar</span>
             <span class="btn-save-cates" id="save-cates"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</span>
         </div>
     </div>
@@ -177,9 +177,7 @@ require ROOT_HELPERS . 'hloja.php';
                         <label for="nscategoria" class="label-cadastros">Categoria: <span class="required">(*)</span></label>
                         <select name="nscategoria" id="nscategoria">
                             <option value="0">Selecione uma categoria...</option>
-                            <option value="1">Categoria 1</option>
-                            <option value="2">Categoria 2</option>
-                            <option value="3">Categoria 3</option>
+                            <?php echo selectcategorias(); ?>
                         </select>
                     </div>
                     <div class="col col-sm-12 forms">
@@ -189,7 +187,7 @@ require ROOT_HELPERS . 'hloja.php';
                 </div>
             </div>
             <div class="footer-cates">
-                <span class="btn-save-cates" id="close-subcategoria"><i class="fa-solid fa-xmark"></i> Fechar</span>
+                <span class="btn-save-cates" id="close-subcategoria" onclick="showAddCates('modal-subcategorias')"><i class="fa-solid fa-xmark"></i> Fechar</span>
                 <span class="btn-save-cates" id="save-subcategoria"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</span>
             </div>
         </div>
