@@ -49,10 +49,6 @@ require ROOT_HELPERS . 'hloja.php';
                                 <label for="subcategoria" class="label-cadastros">Subcategoria: <span class="required">(*)</span></label>
                                 <select name="subcategoria" id="subcategoria">
                                     <option value="0">Selecione uma subcategoria...</option>
-                                    <option value="1">Categoria 1</option>
-                                    <option value="2">Categoria 2</option>
-                                    <option value="3">Categoria 3</option>
-                                    <option value="4">Categoria 4</option>
                                 </select>
                             </div>
                             <div class="ct-buttons-add-cates">

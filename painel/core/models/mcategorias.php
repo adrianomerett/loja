@@ -12,7 +12,7 @@ class Mcategorias
             $where = $id !== null ? " WHERE categoriaid = :categoriaid" : "";
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "SELECT * FROM {$this->table}{$where}";
+            $query = "SELECT * FROM {$this->table}{$where} ORDER BY namecategoria ASC";
             $stmt = $conn->prepare($query);
             if ($id !== null) {
                 $stmt->bindParam(':categoriaid', $id);

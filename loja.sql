@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 25/09/2025 às 01:30
+-- Tempo de geração: 29/09/2025 às 16:54
 -- Versão do servidor: 8.4.0
 -- Versão do PHP: 8.3.6
 
@@ -32,6 +32,25 @@ CREATE TABLE `categorias` (
   `namecategoria` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Despejando dados para a tabela `categorias`
+--
+
+INSERT INTO `categorias` (`categoriaid`, `namecategoria`) VALUES
+(1, 'teste'),
+(2, 'ssss'),
+(3, 'Adriano'),
+(4, 'Adrianos'),
+(5, 'aaa'),
+(6, 'aSADFDF'),
+(7, 'Paula Mayara'),
+(8, 'Manuela'),
+(9, 'JOel'),
+(10, 'Paula'),
+(11, 'Matilde'),
+(12, 'ssssssss'),
+(13, 'csdd');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +66,9 @@ CREATE TABLE `config` (
   `bairro` varchar(50) DEFAULT NULL,
   `rua` varchar(100) DEFAULT NULL,
   `numero` varchar(10) DEFAULT NULL,
+  `instagran` varchar(100) DEFAULT NULL,
+  `facebook` varchar(100) DEFAULT NULL,
+  `x` varchar(100) DEFAULT NULL,
   `version` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -54,8 +76,8 @@ CREATE TABLE `config` (
 -- Despejando dados para a tabela `config`
 --
 
-INSERT INTO `config` (`id`, `nameloja`, `fone`, `celular`, `email`, `bairro`, `rua`, `numero`, `version`) VALUES
-(1, 'Tecno Mix', NULL, NULL, NULL, NULL, NULL, NULL, '1.0.0');
+INSERT INTO `config` (`id`, `nameloja`, `fone`, `celular`, `email`, `bairro`, `rua`, `numero`, `instagran`, `facebook`, `x`, `version`) VALUES
+(1, 'Tecno Mix', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1.0.0');
 
 -- --------------------------------------------------------
 
@@ -200,7 +222,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `categoriaid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `categoriaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `config`

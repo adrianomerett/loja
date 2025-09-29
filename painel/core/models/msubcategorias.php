@@ -5,6 +5,23 @@ class Msubcategorias
 {
     private $table = 'subcategorias';
 
+    // Cadastra uma categoria
+    public function insertSubCategory($dados)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "INSERT INTO {$this->table} (idcategoria, namesubcategoria) VALUES (:idcategoria, :namesubcategoria)";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':idcategoria', $dados['idcategoria']);
+            $stmt->bindParam(':namesubcategoria', $dados['namesubcategoria']);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     // Busca as categorias
     public function getAllSubCategories($id)
     {
@@ -12,7 +29,7 @@ class Msubcategorias
             $where = $id !== null ? " WHERE idcategoria = :idcategoria" : "";
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "SELECT * FROM {$this->table}{$where}";
+            $query = "SELECT * FROM {$this->table}{$where} ORDER BY namesubcategoria ASC";
             $stmt = $conn->prepare($query);
             if ($id !== null) {
                 $stmt->bindParam(':idcategoria', $id);

@@ -179,13 +179,34 @@ async function saveSubcategoria() {
         if (subcategoria == '') {
             setValidation('ncsubcategoria', 'is-invalid');
             showAlert('Informe o nomde da subcategoria!', 'error');
+            return false;
         } else {
             setValidation('ncsubcategoria', 'is-valid');
         }
         // Salvar
+        showLoader();
         let req = await api.post('subcategorias/save-subcategoria', { idcategoria: categoria, ncsubcategoria: subcategoria });
-        console.log(req.data);
+        showLoader();
+        let { status, msg, campo, subactegorias } = req.data;
+        if (status == false) {
+            showAlert(msg, 'error');
+            setValidation(campo, 'is-invalid');
+        }
+        if (status == true) {
+            showAlert(msg, 'success');
+            document.getElementById('subcategoria').innerHTML = `
+                <option value="0">Selecione uma subcategoria...</option>
+            ${subactegorias}
+            `;
+            elementcate.value = '';
+            elementsbcate.value = '';
+            elementcate.classList.remove('is-invalid', 'is-valid');
+            elementsbcate.classList.remove('is-invalid', 'is-valid');
+            showAddCates('modal-subcategorias');
+
+        }
     } catch (e) {
+        showLoader();
         console.log(e);
     }
 }
