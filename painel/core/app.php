@@ -105,7 +105,7 @@ class App
     // Verifica a extensão de arquivo
     public static function checkExtension($ext): bool
     {
-        $permitidos = array('gif', 'jpg', 'jpeg', 'png', 'webp');
+        $permitidos = array('jpg', 'jpeg', 'png', 'webp');
         if (!in_array($ext, $permitidos)) {
             return false;
         }

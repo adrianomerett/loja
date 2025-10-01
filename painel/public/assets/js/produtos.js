@@ -44,9 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('rowsfotos').innerHTML = '';
         }
         let selectedFiles = Array.from(this.files);
+        if ((Object.keys(filesfotos).length + selectedFiles.length) > 4) {
+            showAlert('Serão permitidos apenas 4 fotos para cada produto!', 'error');
+            return false;
+        }
         let htmlfoto = '';
-        selectedFiles.forEach((file, index) => {
+        let extpermitidos = ['jpg', 'jpeg', 'png', 'webp'];
+
+        for (let i = 0; i < selectedFiles.length; i++) {
+            let file = selectedFiles[i];
             let ext = file.name.split('.').pop();
+            if (!extpermitidos.includes(ext)) {
+                showAlert(`A extensão do arquivo .${ext} não é permitida!`, 'error');
+                return false;
+            }
             let id = gerarId();
             filesfotos[`${id}`] = { 'file': file, 'id': id, 'ext': ext, 'status': false };
             htmlfoto += `
@@ -60,9 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 `;
-        });
+        }
         // Adiciona o html das fotos 
         document.getElementById('rowsfotos').insertAdjacentHTML('afterbegin', htmlfoto);
+        setTimeout(function () {
+            uploadFotos(filesfotos);
+        }, 200);
     });
 
     // Remove as fotos selecionadas
@@ -83,11 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             delete filesfotos[`${id}`];
             document.getElementById(`col-${id}`).remove();
         }
-    });
-
-    // Chama a função de upload de fotos
-    document.getElementById('lnk-upload-fotos').addEventListener('click', async function () {
-        await uploadFotos(filesfotos);
     });
 
     // Mostra o modal de adicionar categoria
@@ -115,7 +124,134 @@ document.addEventListener('DOMContentLoaded', function () {
         await saveSubcategoria();
     });
 
+    // Salvar produto
+    document.getElementById('save-product').addEventListener('click', async function () {
+        await saveProduct();
+    });
+
 });
+
+// Salvar produto
+async function saveProduct() {
+    try {
+        let title = document.getElementById('titulo');
+        let categoria = document.getElementById('categoria');
+        let subcategoria = document.getElementById('subcategoria');
+        let estoque = document.getElementById('estoque');
+        let valorcusto = document.getElementById('valorcusto');
+        let valorovenda = document.getElementById('valorvenda');
+        let valoroferta = document.getElementById('valoroferta');
+        let exibirpreco = document.getElementById('exibirpreco');
+        let gstatus = document.getElementById('status');
+        let descricao = document.getElementsByClassName('ql-editor')[0];
+        let infotec = document.getElementsByClassName('ql-editor')[1];
+        let vtitle = title.value;
+        let vcategoria = categoria.value;
+        let vsubcategoria = subcategoria.value;
+        let vestoque = estoque.value;
+        let vvalorcousto = valorcusto.value.replace('R$', '').replace(',', '.');
+        let vvalorovenda = valorovenda.value.replace('R$', '').replace(',', '.');
+        let vvaloroferta = valoroferta.value.replace('R$', '').replace(',', '.');
+        let vexibirpreco = exibirpreco.value;
+        let vstatus = gstatus.value;
+
+        // Validação
+        // if (vtitle == '') {
+        //     setValidation('titulo', 'is-invalid');
+        //     showAlert('Informe o título do produto!', 'error');
+        //     return false;
+        // } else {
+        //     setValidation('titulo', 'is-valid');
+        // }
+        // if (vcategoria == '0') {
+        //     setValidation('categoria', 'is-invalid');
+        //     showAlert('Informe a categoria!', 'error');
+        //     return false;
+        // } else {
+        //     setValidation('categoria', 'is-valid');
+        // }
+        // if (vsubcategoria == '0') {
+        //     setValidation('subcategoria', 'is-invalid');
+        //     showAlert('Informe a subcategoria!', 'error');
+        //     return false;
+        // } else {
+        //     setValidation('subcategoria', 'is-valid');
+        // }
+        // if (vestoque == '') {
+        //     setValidation('estoque', 'is-invalid');
+        //     showAlert('Informe a quantidade em estoque!', 'error');
+        //     return false;
+        // } else {
+        //     setValidation('estoque', 'is-valid');
+        // }
+        // if (vvalorcousto == '') {
+        //     setValidation('valorcusto', 'is-invalid');
+        //     showAlert('Informe o valor do custo do produto!', 'error');
+        //     return false;
+        // }else{
+        //     setValidation('valorcusto', 'is-valid');
+        // }
+        // if (vvalorovenda == '') {
+        //     setValidation('valorovenda', 'is-invalid');
+        //     showAlert('Informe o valor do venda do produto!', 'error');
+        //     return false;
+        // }else{
+        //     setValidation('valorovenda', 'is-valid');
+        // }
+        // if (vvaloroferta == '') {
+        //     setValidation('valoroferta', 'is-invalid');
+        //     showAlert('Informe o valor de oferta do produto!', 'error');
+        //     return false;
+        // }else{
+        //     setValidation('valoroferta', 'is-valid');
+        // }
+        // if(descricao.textContent == ''){
+        //     setValidation('descricao', 'is-invalid');
+        //     showAlert('Informe o descrição do produto!', 'error');
+        //     return false;
+        // }else{
+        //     setValidation('descricao', 'is-valid');
+        // }
+        // if(infotec.textContent == ''){
+        //     setValidation('informacao', 'is-invalid');
+        //     showAlert('Informe as informações técnicas do produto!', 'error');
+        //     return false;
+        // }else{
+        //     setValidation('informacao', 'is-valid');
+        // }
+        // if (Object.keys(filesfotos).length == 0) {
+        //     showAlert('Informe pelo menos uma foto!', 'error');
+        //     return false;
+        // }
+
+        let dados = {
+            nome: vtitle,
+            descricao: descricao.getHTML(),
+            informacoes: infotec.getHTML(),
+            idcategoria: vcategoria,
+            idsubcategoria: vsubcategoria,
+            estoque: vestoque,
+            valorcusto: vvalorcousto,
+            valoroferta: vvaloroferta,
+            valorvenda: vvalorovenda,
+            exibirpreco: vexibirpreco,
+            status: vstatus,
+            fotos: JSON.stringify(filesfotos)
+        }
+        let req = await api.post('produtos/save-products', { dados: dados });
+        let { status, msg, campo } = req.data;
+        console.log(req.data);
+        if (status == false) {
+            showAlert(msg, 'error');
+            if (campo != '') {
+                setValidation(campo, 'is-invalid');
+            }
+            return false;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
 
 // Salva uma nova subcategoria
 async function saveCategoria() {
@@ -278,6 +414,16 @@ function mascaraMoeda(elemento) {
     let [inteiro, decimal] = valor.split('.');
     inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     elemento.value = `R$ ${inteiro},${decimal}`;
+}
+
+// Permitir somente numeros 
+function onlyNumbers(element) {
+    let valor = element.value.replace(/\D/g, '');
+    if (!valor) {
+        element.value = '';
+        return;
+    }
+    element.value = valor;
 }
 
 // Buscar Subcategorias

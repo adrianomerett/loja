@@ -10,7 +10,7 @@ require ROOT_HELPERS . 'hloja.php';
     <div class="ct-box-btns">
         <ul>
             <li>
-                <a href="#salvar" class="lnk-btns"><i class="fa-solid fa-floppy-disk"></i> Salvar</a>
+                <a href="#salvar" class="lnk-btns" id="save-product"><i class="fa-solid fa-floppy-disk"></i> Salvar</a>
             </li>
             <li>
                 <a href="<?php echo BASE_URL . "/produtos/listar"; ?>" class="lnk-btns">
@@ -61,7 +61,7 @@ require ROOT_HELPERS . 'hloja.php';
                 <div class="rows">
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="estoque" class="label-cadastros">Estoque: <span class="required">(*)</span></label>
-                        <input type="text" name="estoque" id="estoque" placeholder="Quantidade disponível">
+                        <input type="text" name="estoque" id="estoque" oninput="onlyNumbers(this)" placeholder="Quantidade disponível">
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valorcusto" class="label-cadastros">Valor de custo: <span class="required">(*)</span></label>
@@ -69,7 +69,7 @@ require ROOT_HELPERS . 'hloja.php';
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valorovenda" class="label-cadastros">Valor de venda: <span class="required">(*)</span></label>
-                        <input type="text" name="valorovenda" id="valorovenda" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
+                        <input type="text" name="valorovenda" id="valorvenda" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
                     </div>
                     <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
                         <label for="valoroferta" class="label-cadastros">Valor de oferta: <span class="required">(*)</span></label>
@@ -113,7 +113,6 @@ require ROOT_HELPERS . 'hloja.php';
                             <div class="col col-sm-12 col-lg-2 ct-buttom-upload">
                                 <input type="file" name="fotos[]" id="fotos" multiple>
                                 <span class="lnk-upload" id="lnk-select-fotos"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
-                                <span class="lnk-upload" id="lnk-upload-fotos"><i class="fa-solid fa-cloud-arrow-up"></i> Enviar Fotos</span>
                             </div>
                             <div class="col col-sm-12 col-lg-10">
                                 <div class="rows rowsfotos" id="rowsfotos">
