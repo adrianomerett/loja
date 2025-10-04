@@ -47,7 +47,7 @@
             <div class="loader"></div>
         </div>
     </div>
-    <div class="ct-pagination">
+    <div class="ct-pagination" id="pagination">
 
     </div>
 </div>

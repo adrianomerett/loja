@@ -169,6 +169,7 @@ if ($acao == 'listar-products') {
         $total_paginas = ceil($total / $por_pagina);
         // Busca os dados
         $dados = $mp->getProducts($busca, $por_pagina, $offset);
+        $retorno['paginacao'] = array('pagina_atual' => $pagina_atal, 'total_paginas' => $total_paginas);
         $retorno['dados'] = $dados;
         $retorno['status'] = true;
         return App::setJson($retorno);

@@ -1,5 +1,5 @@
 // paginação
-var PAGINA_ATUAL = 3;
+var PAGINA_ATUAL = 1;
 var POR_PAGINA = 1;
 var TOTAL_PAGINA = 0;
 
@@ -12,14 +12,21 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Pesquisar
     document.getElementById('go-pesquisa').addEventListener('click', async function () {
-        let pesquisa = document.getElementById('pesquisa').value;
-        if (pesquisa == '') {
-            showAlert('Informe o título do produto!', 'error');
-            setValidation('pesquisa', 'is-invalid');
-            return false;
-        }
+        PAGINA_ATUAL = 1;
         document.getElementById('pesquisa').classList.remove('is-invalid', 'is-valid');
         showPesquisa();
+        await listarProdutos();
+    });
+
+    // Paginação
+    document.getElementById('pagination').addEventListener('click', async function (e) {
+        var a = e.target.closest('a[data-pagina]');
+        if (!a) return;
+        e.preventDefault();
+        var page = parseInt(a.dataset.pagina, 10);
+        if (isNaN(page)) return;
+        if (page === PAGINA_ATUAL) return;
+        PAGINA_ATUAL = page;
         await listarProdutos();
     });
 });
@@ -35,11 +42,19 @@ async function listarProdutos() {
                 por_pagina: POR_PAGINA
             }
         });
-        console.log(req.data);
+        //console.log(req.data);
         showLoaderList();
-        let { status, msg, dados } = req.data;
+        let { status, msg, dados, paginacao } = req.data;
         if (!status) {
             showAlert(msg, 'error');
+        }
+        // se não tem dados
+        if (Object.keys(dados).length <= 0) {
+            let pesquisa = document.getElementById('pesquisa').value;
+            let msg = pesquisa != '' ? `Não foram encontrados resultados para a pesquisa "<b>${pesquisa}</b>..."` : `Não ha produtos cadastrados..."`;
+            htmlNotResul(msg, 11);
+            document.getElementById('pagination').innerHTML = '';
+            return false;
         }
         let htmlproducts = '';
         for (let i of dados) {
@@ -68,7 +83,13 @@ async function listarProdutos() {
                     <td class="tdcenter">${status[i.status]}</td>
                 </tr>`
         }
+        PAGINA_ATUAL = paginacao.pagina_atual;
+        TOTAL_PAGINA = paginacao.total_paginas;
+        // HTML DOS PRODUTOS
         document.getElementById('tbody-list').innerHTML = htmlproducts;
+        // HTML DA PAGINAÇÃO
+        let htmlpagination = createPagination(PAGINA_ATUAL, TOTAL_PAGINA);
+        document.getElementById('pagination').innerHTML = htmlpagination;
     } catch (e) {
         showLoaderList();
         console.log(e);
@@ -78,4 +99,47 @@ async function listarProdutos() {
 // Show modal de pesquisa
 function showPesquisa() {
     document.getElementById(`modal-pesquisa`).classList.toggle('show-pesquisa');
+}
+
+// cria o html da paginação
+function createPagination(pagina_atual, total_pagina) {
+    try {
+        let html = '<ul class="paginacao">';
+        if (pagina_atual > 1) {
+            html += `<li><a href="#" data-pagina="${pagina_atual - 1}">&laquo;</a></li>`;
+        } else {
+            html += `<li class="disabled" id="before"><span>&laquo;</span></li>`;
+        }
+        if (pagina_atual > 3) {
+            html += `<li><a href="#" data-pagina="1">1</a></li>`;
+            if (pagina_atual > 2) {
+                html += `<li class="disabled"><span>...</span></li>`;
+            }
+        }
+        let inicio = Math.max(1, pagina_atual - 2);
+        let fim = Math.min(total_pagina, pagina_atual + 2);
+
+        for (let i = inicio; i <= fim; i++) {
+            if (i === pagina_atual) {
+                html += `<li class="ativo"><span>${i}</span></li>`;
+            } else {
+                html += `<li><a href="#" data-pagina="${i}">${i}</a></li>`;
+            }
+        }
+        if (pagina_atual < total_pagina - 2) {
+            if (pagina_atual < total_pagina - 3) {
+                html += `<li class="disabled"><span>...</span></li>`;
+            }
+            html += `<li><a href="#" data-pagina="${total_pagina}">${total_pagina}</a></li>`;
+        }
+        if (pagina_atual < total_pagina) {
+            html += `<li><a href="#" data-pagina="${pagina_atual + 1}" id="proximo">&raquo;</a></li>`;
+        } else {
+            html += `<li class="disabled"><span>&raquo;</span></li>`;
+        }
+        html += '</ul>';
+        return html;
+    } catch (e) {
+        console.log(e);
+    }
 }

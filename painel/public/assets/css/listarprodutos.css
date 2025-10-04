@@ -68,4 +68,62 @@
   visibility: visible;
 }
 
+.paginacao {
+  display: flex;
+  padding: 0px 4px;
+  list-style: none;
+  gap: 4px;
+}
+
+.paginacao li a {
+  padding: 6px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c91f16;
+  border-radius: 2px;
+  font-family: "Roboto";
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  color: #DDDDDD;
+}
+
+.paginacao li a:hover {
+  color: #FFFFFF;
+  background-color: #b20a01;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px #b20a01;
+  text-shadow: 0px 0px 1px #FFFFFF;
+}
+
+.paginacao .disabled {
+  color: #1f1e1e;
+  background-color: #e6e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 2px;
+  border: 1px solid #d1cfcf;
+  font-family: "Roboto";
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.paginacao .ativo {
+  color: #1f1e1e;
+  background-color: #e6e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid #d1cfcf;
+  border-radius: 2px;
+  text-decoration: underline;
+  font-family: "Roboto";
+  font-weight: 600;
+  font-size: 13px;
+}
+
 /*# sourceMappingURL=listarprodutos.css.map */

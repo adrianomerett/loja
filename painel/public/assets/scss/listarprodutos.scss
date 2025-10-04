@@ -2,7 +2,7 @@
 @use "size.scss";
 
 
-.modal-pesquisa{
+.modal-pesquisa {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,14 +16,14 @@
     visibility: hidden;
 }
 
-.container-pesquisa{
+.container-pesquisa {
     background-color: color.$color-white;
     margin-top: 8%;
     border-radius: 4px;
     min-width: 360px;
 }
 
-.title-pesquisa{
+.title-pesquisa {
     font-size: 14px;
     font-weight: bold;
     font-family: "Roboto";
@@ -34,10 +34,11 @@
     border-top-right-radius: 4px;
 }
 
-.bory-pesquisa{
+.bory-pesquisa {
     padding: 4px;
 }
-.footer-pesquisa{
+
+.footer-pesquisa {
     padding: 6px 8px;
     display: flex;
     justify-content: flex-end;
@@ -46,7 +47,7 @@
     margin-bottom: 2px;
 }
 
-.btn-save-pesquisa{
+.btn-save-pesquisa {
     padding: 6px 8px;
     color: color.$color-font;
     text-decoration: none;
@@ -59,7 +60,7 @@
     user-select: none;
 }
 
-.btn-save-pesquisa:hover{
+.btn-save-pesquisa:hover {
     background-color: color.$color-app;
     color: color.$color-white;
     cursor: pointer;
@@ -67,6 +68,68 @@
     text-shadow: 0px 0px 1px color.$color-white;
 }
 
-.show-pesquisa{
+.show-pesquisa {
     visibility: visible;
+}
+
+// Paginação
+
+.paginacao {
+    display: flex;
+    padding: 0px 4px;
+    list-style: none;
+    gap: 4px;
+}
+
+.paginacao li {}
+
+.paginacao li a {
+    padding: 6px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color.$color-media;
+    border-radius: 2px;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    color: color.$color-font;
+}
+
+.paginacao li a:hover {
+    color: color.$color-white;
+    background-color: color.$color-app;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
+}
+
+.paginacao .disabled{
+    color: color.$color-font-escura;
+    background-color: color.$color-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 2px;
+    border: 1px solid color.$border-gray;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.paginacao .ativo{
+    color: color.$color-font-escura;
+    background-color: color.$color-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px;
+    border: 1px solid color.$border-gray;
+    border-radius: 2px;
+    text-decoration: underline;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
 }
