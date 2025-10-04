@@ -1,0 +1,74 @@
+<?php
+require_once DATABASE;
+
+class Mprodutos
+{
+    private $table = 'produtos';
+
+    // Cadastra um produto
+    public function insertProduct($dados)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "INSERT INTO {$this->table} (nome, descricao, informacoes, idcategoria, idsubcategoria, estoque, valorcusto, valoroferta, valorvenda, exibirpreco, status) 
+            VALUES (:nome, :descricao, :informacoes, :idcategoria, :idsubcategoria, :estoque, :valorcusto, :valoroferta, :valorvenda, :exibirpreco, :status)";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':nome', $dados['nome']);
+            $stmt->bindParam(':descricao', $dados['descricao']);
+            $stmt->bindParam(':informacoes', $dados['informacoes']);
+            $stmt->bindParam(':idcategoria', $dados['idcategoria']);
+            $stmt->bindParam(':idsubcategoria', $dados['idsubcategoria']);
+            $stmt->bindParam(':estoque', $dados['estoque']);
+            $stmt->bindParam(':valorcusto', $dados['valorcusto']);
+            $stmt->bindParam(':valoroferta', $dados['valoroferta']);
+            $stmt->bindParam(':valorvenda', $dados['valorvenda']);
+            $stmt->bindParam(':exibirpreco', $dados['exibirpreco']);
+            $stmt->bindParam(':status', $dados['status']);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar o último id do produto
+    public function getLastId()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT MAX(produtoid) AS id FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            return $row->id;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar todos os produtos
+    public function getProducts()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT p.produtoid, p.idcategoria, p.idsubcategoria, p.nome, p.estoque, p.valorcusto, p.valorvenda, p.valoroferta, p.status, 
+            c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, 
+            i.imgid, i.idproduto, i.img FROM produtos AS p 
+            LEFT JOIN categorias AS c ON(C.categoriaid = p.idcategoria) 
+            LEFT JOIN subcategorias AS s ON(S.subcategoriaid = p.idsubcategoria)
+            JOIN img AS i ON (i.idproduto = p.produtoid) 
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) LIMIT 0, 1";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $rows;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    
+}

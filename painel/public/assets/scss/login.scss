@@ -1,4 +1,4 @@
-@import "./color.scss";
+@use "color.scss";
 
 * {
     margin: 0;
@@ -22,7 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 500px;
-    background-color: $color-white;
+    background-color: color.$color-white;
     border-radius: 4px;
     box-shadow: inset 0 0 10px #D8D8D8;
 }
@@ -36,10 +36,10 @@ body {
     font-family: "Roboto";
     font-weight: bold;
     padding: 12px 8px;
-    background-color: $color-app;
+    background-color: color.$color-app;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    color: $color-font;
+    color: color.$color-font;
     box-shadow: 0px 0px 10px #D8D8D8;
 }
 
@@ -89,7 +89,7 @@ body {
 .ct-label {
     font-size: 16px;
     font-family: "Roboto";
-    color: $color-font-escura;
+    color: color.$color-font-escura;
 }
 
 .ct-input {
@@ -114,7 +114,7 @@ body {
     padding: 4px;
     outline: none;
     transition: box-shadow 0.2s ease-in-out;
-    color: $color-font-escura;
+    color: color.$color-font-escura;
     font-size: 16px;
     font-family: "Roboto";
     font-weight: bold;
@@ -158,13 +158,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $btn-green;
-    border: 1px solid $border-btn-green;
-    color: $color-font;
+    background-color: color.$btn-green;
+    border: 1px solid color.$border-btn-green;
+    color: color.$color-font;
     font-family: "Roboto";
     font-weight: bold;
     font-size: 16px;
-    box-shadow: 0px 0px 5px $btn-green;
+    box-shadow: 0px 0px 5px color.$btn-green;
     user-select: none;
 }
 
@@ -175,24 +175,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $btn-yellow;
-    border: 1px solid $border-btn-yellow;
-    color: $color-font-escura;
+    background-color: color.$btn-yellow;
+    border: 1px solid color.$border-btn-yellow;
+    color: color.$color-font-escura;
     font-family: "Roboto";
     font-weight: bold;
     font-size: 16px;
-    box-shadow: 0px 0px 5px $btn-yellow;
+    box-shadow: 0px 0px 5px color.$btn-yellow;
     user-select: none;
 }
 
 .buttom-login:hover {
     cursor: pointer;
-    background-color: $btn-green-hover;
+    background-color: color.$btn-green-hover;
 }
 
 .buttom-clear:hover {
     cursor: pointer;
-    background-color: $btn-yellow-hover;
+    background-color: color.$btn-yellow-hover;
 }
 
 .remember-login {
@@ -212,7 +212,7 @@ body {
     align-items: center;
     width: 100%;
     padding: 16px 8px;
-    background-color: $color-app;
+    background-color: color.$color-app;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
@@ -220,7 +220,7 @@ body {
 .footer-login-text {
     font-size: 12px;
     font-family: "Roboto";
-    color: $color-font;
+    color: color.$color-font;
     font-style: italic;
     font-weight: 600;
 }
@@ -254,13 +254,13 @@ body {
 .loader {
     width: 54px;
     height: 54px;
-    border: 3px solid $color-black;
+    border: 3px solid color.$color-black;
     border-radius: 50%;
     display: inline-block;
     position: relative;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    background-color: $color-white;
+    background-color: color.$color-white;
 }
 
 .loader::after {
@@ -274,8 +274,8 @@ body {
     height: 40px;
     border-radius: 50%;
     border: 3px solid;
-    border-color: $color-app transparent;
-    background-color: $color-white;
+    border-color: color.$color-app transparent;
+    background-color: color.$color-white;
 }
 
 @keyframes rotation {

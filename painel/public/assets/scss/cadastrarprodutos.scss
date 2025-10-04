@@ -1,5 +1,5 @@
-@import "./color.scss";
-@import "./size.scss";
+@use "color.scss";
+@use "size.scss";
 
 
 .ct-select-cate {
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: $color-media;
+    background-color: color.$color-media;
     height: 32px;
     font-family: "Roboto";
     font-weight: 600;
@@ -44,11 +44,11 @@
 }
 
 .lnk-add-cates:hover {
-    background-color: $color-app;
-    color: $color-white;
+    background-color: color.$color-app;
+    color: color.$color-white;
     cursor: pointer;
-    box-shadow: 0px 0px 3px $color-app;
-    text-shadow: 0px 0px 1px $color-white;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
 }
 
 // Modal categorias
@@ -67,7 +67,7 @@
 }
 
 .container-cates {
-    background-color: $color-white;
+    background-color: color.$color-white;
     margin-top: 8%;
     border-radius: 4px;
     min-width: 360px;
@@ -77,9 +77,9 @@
     font-size: 14px;
     font-weight: bold;
     font-family: "Roboto";
-    color: $color-font;
+    color: color.$color-font;
     padding: 8px;
-    background-color: $color-app;
+    background-color: color.$color-app;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -92,30 +92,30 @@
     padding: 6px 8px;
     display: flex;
     justify-content: flex-end;
-    border-top: 1px solid $border-gray;
+    border-top: 1px solid color.$border-gray;
     gap: 0px 8px;
     margin-bottom: 2px;
 }
 
 .btn-save-cates {
     padding: 6px 8px;
-    color: $color-font;
+    color: color.$color-font;
     text-decoration: none;
     font-family: "Roboto";
     font-weight: 600;
     font-size: 13px;
     border-radius: 2px;
-    background-color: $color-media;
-    border: 1px solid $color-app;
+    background-color: color.$color-media;
+    border: 1px solid color.$color-app;
     user-select: none;
 }
 
 .btn-save-cates:hover {
-    background-color: $color-app;
-    color: $color-white;
+    background-color: color.$color-app;
+    color: color.$color-white;
     cursor: pointer;
-    box-shadow: 0px 0px 3px $color-app;
-    text-shadow: 0px 0px 1px $color-white;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
 }
 
 
@@ -129,12 +129,12 @@
 
 .ct-description {
     padding-left: 0px;
-    color: $color-font-escura !important;
+    color: color.$color-font-escura !important;
 }
 
 .ct-information {
     padding-right: 0px;
-    color: $color-font-escura !important;
+    color: color.$color-font-escura !important;
 }
 
 .ql-editor {
@@ -162,8 +162,8 @@
 
 .lnk-upload {
     width: 80%;
-    background-color: $color-media;
-    color: $color-font;
+    background-color: color.$color-media;
+    color: color.$color-font;
     font-family: "Roboto";
     font-weight: 600;
     font-size: 13px;
@@ -176,9 +176,9 @@
 
 .lnk-upload:hover {
     cursor: pointer;
-    background-color: $color-app;
-    box-shadow: 0px 0px 3px $color-app;
-    text-shadow: 0px 0px 1px $color-white;
+    background-color: color.$color-app;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
 }
 
 #fotos {
@@ -187,6 +187,9 @@
 
 .rowsfotos {
     padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .col-cad-fotos {
@@ -204,7 +207,7 @@
     width: 100px;
     height: 100px;
     padding: 4px;
-    border: 5px solid $color-gray;
+    border: 5px solid color.$color-gray;
     overflow: hidden;
     border-radius: 2px;
     position: relative;

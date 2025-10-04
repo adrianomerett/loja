@@ -134,6 +134,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // Salvar produto
 async function saveProduct() {
     try {
+        if (statusupload) {
+            showAlert('Você precisa esperar que as imagens sejam carregadas antes de salvar o produto!', 'error');
+            return false;
+        }
         let title = document.getElementById('titulo');
         let categoria = document.getElementById('categoria');
         let subcategoria = document.getElementById('subcategoria');
@@ -154,76 +158,77 @@ async function saveProduct() {
         let vvaloroferta = valoroferta.value.replace('R$', '').replace(',', '.');
         let vexibirpreco = exibirpreco.value;
         let vstatus = gstatus.value;
-
+        vvalorcousto = vvalorcousto.replace(/\.(?=.*\.)/g, "");
+        vvalorovenda = vvalorovenda.replace(/\.(?=.*\.)/g, "");
+        vvaloroferta = vvaloroferta.replace(/\.(?=.*\.)/g, "");
         // Validação
-        // if (vtitle == '') {
-        //     setValidation('titulo', 'is-invalid');
-        //     showAlert('Informe o título do produto!', 'error');
-        //     return false;
-        // } else {
-        //     setValidation('titulo', 'is-valid');
-        // }
-        // if (vcategoria == '0') {
-        //     setValidation('categoria', 'is-invalid');
-        //     showAlert('Informe a categoria!', 'error');
-        //     return false;
-        // } else {
-        //     setValidation('categoria', 'is-valid');
-        // }
-        // if (vsubcategoria == '0') {
-        //     setValidation('subcategoria', 'is-invalid');
-        //     showAlert('Informe a subcategoria!', 'error');
-        //     return false;
-        // } else {
-        //     setValidation('subcategoria', 'is-valid');
-        // }
-        // if (vestoque == '') {
-        //     setValidation('estoque', 'is-invalid');
-        //     showAlert('Informe a quantidade em estoque!', 'error');
-        //     return false;
-        // } else {
-        //     setValidation('estoque', 'is-valid');
-        // }
-        // if (vvalorcousto == '') {
-        //     setValidation('valorcusto', 'is-invalid');
-        //     showAlert('Informe o valor do custo do produto!', 'error');
-        //     return false;
-        // }else{
-        //     setValidation('valorcusto', 'is-valid');
-        // }
-        // if (vvalorovenda == '') {
-        //     setValidation('valorovenda', 'is-invalid');
-        //     showAlert('Informe o valor do venda do produto!', 'error');
-        //     return false;
-        // }else{
-        //     setValidation('valorovenda', 'is-valid');
-        // }
-        // if (vvaloroferta == '') {
-        //     setValidation('valoroferta', 'is-invalid');
-        //     showAlert('Informe o valor de oferta do produto!', 'error');
-        //     return false;
-        // }else{
-        //     setValidation('valoroferta', 'is-valid');
-        // }
-        // if(descricao.textContent == ''){
-        //     setValidation('descricao', 'is-invalid');
-        //     showAlert('Informe o descrição do produto!', 'error');
-        //     return false;
-        // }else{
-        //     setValidation('descricao', 'is-valid');
-        // }
-        // if(infotec.textContent == ''){
-        //     setValidation('informacao', 'is-invalid');
-        //     showAlert('Informe as informações técnicas do produto!', 'error');
-        //     return false;
-        // }else{
-        //     setValidation('informacao', 'is-valid');
-        // }
-        // if (Object.keys(filesfotos).length == 0) {
-        //     showAlert('Informe pelo menos uma foto!', 'error');
-        //     return false;
-        // }
-
+        if (vtitle == '') {
+            setValidation('titulo', 'is-invalid');
+            showAlert('Informe o título do produto!', 'error');
+            return false;
+        } else {
+            setValidation('titulo', 'is-valid');
+        }
+        if (vcategoria == '0') {
+            setValidation('categoria', 'is-invalid');
+            showAlert('Informe a categoria!', 'error');
+            return false;
+        } else {
+            setValidation('categoria', 'is-valid');
+        }
+        if (vsubcategoria == '0') {
+            setValidation('subcategoria', 'is-invalid');
+            showAlert('Informe a subcategoria!', 'error');
+            return false;
+        } else {
+            setValidation('subcategoria', 'is-valid');
+        }
+        if (vestoque == '') {
+            setValidation('estoque', 'is-invalid');
+            showAlert('Informe a quantidade em estoque!', 'error');
+            return false;
+        } else {
+            setValidation('estoque', 'is-valid');
+        }
+        if (vvalorcousto == '') {
+            setValidation('valorcusto', 'is-invalid');
+            showAlert('Informe o valor do custo do produto!', 'error');
+            return false;
+        } else {
+            setValidation('valorcusto', 'is-valid');
+        }
+        if (vvalorovenda == '') {
+            setValidation('valorvenda', 'is-invalid');
+            showAlert('Informe o valor do venda do produto!', 'error');
+            return false;
+        } else {
+            setValidation('valorvenda', 'is-valid');
+        }
+        if (vvaloroferta == '') {
+            setValidation('valoroferta', 'is-invalid');
+            showAlert('Informe o valor de oferta do produto!', 'error');
+            return false;
+        } else {
+            setValidation('valoroferta', 'is-valid');
+        }
+        if (descricao.textContent == '') {
+            setValidation('descricao', 'is-invalid');
+            showAlert('Informe o descrição do produto!', 'error');
+            return false;
+        } else {
+            setValidation('descricao', 'is-valid');
+        }
+        if (infotec.textContent == '') {
+            setValidation('informacao', 'is-invalid');
+            showAlert('Informe as informações técnicas do produto!', 'error');
+            return false;
+        } else {
+            setValidation('informacao', 'is-valid');
+        }
+        if (Object.keys(filesfotos).length == 0) {
+            showAlert('Informe pelo menos uma foto!', 'error');
+            return false;
+        }
         let dados = {
             nome: vtitle,
             descricao: descricao.getHTML(),
@@ -238,7 +243,9 @@ async function saveProduct() {
             status: vstatus,
             fotos: JSON.stringify(filesfotos)
         }
+        showLoader();
         let req = await api.post('produtos/save-products', { dados: dados });
+        showLoader();
         let { status, msg, campo } = req.data;
         console.log(req.data);
         if (status == false) {
@@ -248,7 +255,33 @@ async function saveProduct() {
             }
             return false;
         }
+        if (status == true) {
+            showAlert(msg, 'success');
+            // Limpara os campos 
+            title.value = '';
+            title.classList.remove('is-invalid', 'is-valid');
+            categoria.value = '0';
+            categoria.classList.remove('is-invalid', 'is-valid');
+            subcategoria.innerHTML = '<option value="0">Selecione uma subcategoria...</option>';
+            subcategoria.classList.remove('is-invalid', 'is-valid');
+            estoque.value = '';
+            estoque.classList.remove('is-invalid', 'is-valid');
+            valorcusto.value = '';
+            valorcusto.classList.remove('is-invalid', 'is-valid');
+            valorovenda.value = '';
+            valorovenda.classList.remove('is-invalid', 'is-valid');
+            valoroferta.value = '';
+            valoroferta.classList.remove('is-invalid', 'is-valid');
+            exibirpreco.value = 'S';
+            gstatus.value = 'A';
+            descricao.innerHTML = '<p><br></p>';
+            document.getElementById('descricao').classList.remove('is-valid');
+            infotec.innerHTML = '<p><br></p>';
+            document.getElementById('informacao').classList.remove('is-valid');
+            popularHtmlFotos();
+        }
     } catch (e) {
+        showLoader();
         console.log(e);
     }
 };
@@ -355,10 +388,7 @@ function gerarId() {
 
 // Função de upload de fotos
 async function uploadFotos(filesfotos) {
-    if (Object.keys(filesfotos).length <= 0) {
-        showAlert('Você precisa selecionar pelo menos uma foto para enviar!');
-        return false;
-    }
+    statusupload = true;
     for (let i of Object.keys(filesfotos)) {
         let file = filesfotos[i];
         var formData = new FormData();
@@ -387,6 +417,8 @@ async function uploadFotos(filesfotos) {
             console.log(e);
         }
     }
+    statusupload = false;
+    document.getElementById('fotos').value = "";
 }
 
 // Popular html default das imagens 

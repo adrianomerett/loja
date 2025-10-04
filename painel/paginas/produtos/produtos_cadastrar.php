@@ -110,11 +110,11 @@ require ROOT_HELPERS . 'hloja.php';
                     <fieldset>
                         <legend>Fotos para o produto</legend>
                         <div class="rows rows-ct-foto">
-                            <div class="col col-sm-12 col-lg-2 ct-buttom-upload">
+                            <div class="col col-sm-12 col-md-4 col-lg-2 ct-buttom-upload">
                                 <input type="file" name="fotos[]" id="fotos" multiple>
                                 <span class="lnk-upload" id="lnk-select-fotos"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
                             </div>
-                            <div class="col col-sm-12 col-lg-10">
+                            <div class="col col-sm-12 col-md-8 col-lg-10">
                                 <div class="rows rowsfotos" id="rowsfotos">
                                     <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos">
                                         <div class="ct-foto-upload">

@@ -424,6 +424,18 @@ body {
   text-align: left;
 }
 
+.tdimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tdimg img {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+}
+
 .tr-list:hover {
   background-color: #ffe5e5;
   cursor: pointer;
@@ -446,6 +458,27 @@ body {
 .code-selected {
   font-weight: 600;
   color: #b20a01 !important;
+}
+
+.tdmoney {
+  white-space: nowrap;
+  font-weight: bold !important;
+}
+
+.priceoferta {
+  color: #1eb368 !important;
+}
+
+.estoque {
+  font-weight: bold !important;
+}
+
+.emptyestaque {
+  color: #ff0000 !important;
+}
+
+.tdcode {
+  font-weight: bold !important;
 }
 
 .container-rodape {

@@ -6,6 +6,9 @@ $assets = array(
                 'cadastrarprodutos',
                 'quill'
             ),
+            'listar' => array(
+                'listarprodutos'
+            )
         )
     ),
     'js' => array(
@@ -21,6 +24,9 @@ $assets = array(
             'cadastrar' => array(
                 'quill',
                 'produtos'
+            ),
+            'listar' => array(
+                'listarprodutos'
             )
         )
     ),
