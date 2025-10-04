@@ -1,3 +1,8 @@
+// paginação
+var PAGINA_ATUAL = 3;
+var POR_PAGINA = 1;
+var TOTAL_PAGINA = 0;
+
 document.addEventListener('DOMContentLoaded', async function () {
     await listarProdutos();
     // Mostrar modal de pesquisa
@@ -23,7 +28,14 @@ async function listarProdutos() {
     try {
         showLoaderList();
         let pesquisa = document.getElementById('pesquisa').value;
-        let req = await api.get('/produtos/listar-products', { pesquisa: pesquisa });
+        let req = await api.get('/produtos/listar-products/', {
+            params: {
+                pesquisa: pesquisa,
+                pagina_atual: PAGINA_ATUAL,
+                por_pagina: POR_PAGINA
+            }
+        });
+        console.log(req.data);
         showLoaderList();
         let { status, msg, dados } = req.data;
         if (!status) {

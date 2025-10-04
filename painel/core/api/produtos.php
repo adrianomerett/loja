@@ -47,12 +47,9 @@ if ($acao == 'save-products') {
         $idcategoria = $dados['idcategoria'];
         $idsubcategoria = $dados['idsubcategoria'];
         $estoque = $dados['estoque'];
-
         $valorcusto = $dados['valorcusto'];
         $valoroferta = $dados['valoroferta'];
         $valorvenda = $dados['valorvenda'];
-
-
         $exibirpreco = $dados['exibirpreco'];
         $status = $dados['status'];
         $fotos = json_decode($dados['fotos'], true);
@@ -162,11 +159,16 @@ if ($acao == 'listar-products') {
     $retorno = array("status" => false, "msg" => "", "dados" => array());
     try {
         $mp = new Mprodutos();
-
-        // 
-
-
-        $dados = $mp->getProducts();
+        $busca = App::getGet('pesquisa');
+        // Paginação
+        $pagina_atal = intval(App::getGet('pagina_atual'));
+        $pagina_atal = $pagina_atal < 1 ? 1 : $pagina_atal;
+        $por_pagina = intval(App::getGet('por_pagina'));
+        $total = $mp->countProducts($busca);
+        $offset = ($pagina_atal - 1) * $por_pagina;
+        $total_paginas = ceil($total / $por_pagina);
+        // Busca os dados
+        $dados = $mp->getProducts($busca, $por_pagina, $offset);
         $retorno['dados'] = $dados;
         $retorno['status'] = true;
         return App::setJson($retorno);

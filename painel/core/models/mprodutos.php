@@ -49,9 +49,10 @@ class Mprodutos
     }
 
     // Pegar todos os produtos
-    public function getProducts()
+    public function getProducts($search, $por_pagina, $offset)
     {
         try {
+            $where = !empty($search) ? " AND p.nome LIKE :nome" : "";
             $db = new Database();
             $conn = $db->getConnection();
             $query = "SELECT p.produtoid, p.idcategoria, p.idsubcategoria, p.nome, p.estoque, p.valorcusto, p.valorvenda, p.valoroferta, p.status, 
@@ -60,8 +61,11 @@ class Mprodutos
             LEFT JOIN categorias AS c ON(C.categoriaid = p.idcategoria) 
             LEFT JOIN subcategorias AS s ON(S.subcategoriaid = p.idsubcategoria)
             JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) LIMIT 0, 1";
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid){$where} LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($query);
+            if (!empty($search)) {
+                $stmt->bindValue(':nome', "%{$search}%", PDO::PARAM_STR);
+            }
             $stmt->execute();
             $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $rows;
@@ -70,5 +74,22 @@ class Mprodutos
         }
     }
 
-    
+    // Contar produtos
+    public function countProducts($search)
+    {
+        try {
+            $where = !empty($search) ? " WHERE nome LIKE :nome" : "";
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table}{$where}";
+            $stmt = $conn->prepare($query);
+            if (!empty($search)) {
+                $stmt->bindValue(':nome', "%{$search}%", PDO::PARAM_STR);
+            }
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
