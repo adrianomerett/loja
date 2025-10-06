@@ -1,3 +1,207 @@
-<div class="container">
-    <div class="row"></div>
+<?php
+require ROOT_HELPERS . 'hloja.php';
+require MODELS . 'mprodutos.php';
+require MODELS . 'mimg.php';
+require ROOT_HELPERS . 'hloja.php';
+?>
+<div class="container-pages">
+    <?php
+    $codeid = intval($ideditar);
+    // Dados do produto
+    $mp = new Mprodutos();
+    $da = $mp->getProductById($codeid);
+    // Imagens do produto
+    $mimg = new Mimg();
+    $imgs = $mimg->getImages($codeid);
+    ?>
+    <div class="title-pages">
+        <a href="<?php echo BASE_URL . "/home/"; ?>">Início</a> &raquo;
+        <a href="<?php echo BASE_URL . "/produtos/listar/"; ?>">Produtos</a> &raquo;
+        <span class="title-pages-current">Editar Produto</span>
+    </div>
+    <div class="ct-box-btns">
+        <ul>
+            <li>
+                <a href="#salvar" class="lnk-btns" id="update-product"><i class="fa-solid fa-floppy-disk"></i> Salvar</a>
+            </li>
+            <li>
+                <a href="<?php echo BASE_URL . "/produtos/listar"; ?>" class="lnk-btns">
+                    <i class="fa-solid fa-list"></i> Listar
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="ct-box-cadastros">
+        <form id="form-save-products" class="myforms">
+            <fieldset>
+                <legend>Informações principais do produto</legend>
+                <div class="col col-12 titlecadastros">Título / Categorias</div>
+                <div class="rows">
+                    <div class="col col-sm-12 col-md-12 col-lg-6 forms">
+                        <input type="hidden" name="id" id="id" value="<?php echo $da->produtoid; ?>">
+                        <label for="titulo" class="label-cadastros">Título: <span class="required">(*)</span></label>
+                        <input type="text" name="titulo" id="titulo" value="<?php echo $da->nome; ?>" placeholder="Informe o título do produto">
+                    </div>
+                    <div class="col col-sm-6 col-md-6 col-lg-3 forms">
+                        <div class="ct-select-cate">
+                            <div class="content-select">
+                                <label for="categoria" class="label-cadastros">Categoria: <span class="required">(*)</span></label>
+                                <select name="categoria" id="categoria">
+                                    <?php echo selectcategorias(null, $da->idcategoria); ?>
+                                </select>
+                            </div>
+                            <div class="ct-buttons-add-cates">
+                                <span class="lnk-add-cates" id="lnk-add-cate"><i class="fa-solid fa-plus"></i> Adicionar</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 col-md-6 col-lg-3 forms">
+                        <div class="ct-select-cate">
+                            <div class="content-select">
+                                <label for="subcategoria" class="label-cadastros">Subcategoria: <span class="required">(*)</span></label>
+                                <select name="subcategoria" id="subcategoria">
+                                    <?php echo selectsubcategorias($da->idcategoria, $da->idsubcategoria); ?>
+                                </select>
+                            </div>
+                            <div class="ct-buttons-add-cates">
+                                <span class="lnk-add-cates" id="lnk-add-subcate"><i class="fa-solid fa-plus"></i> Adicionar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 titlecadastros">Estoque / Preço / Status</div>
+                <div class="rows">
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="estoque" class="label-cadastros">Estoque: <span class="required">(*)</span></label>
+                        <input type="text" name="estoque" id="estoque" value="<?php echo $da->estoque; ?>" oninput="onlyNumbers(this)" placeholder="Quantidade disponível">
+                    </div>
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="valorcusto" class="label-cadastros">Valor de custo: <span class="required">(*)</span></label>
+                        <input type="text" name="valorcusto" id="valorcusto" value="<?php echo formatReal($da->valorcusto); ?>" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
+                    </div>
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="valorvenda" class="label-cadastros">Valor de venda: <span class="required">(*)</span></label>
+                        <input type="text" name="valorvenda" id="valorvenda" value="<?php echo formatReal($da->valorvenda); ?>" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
+                    </div>
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="valoroferta" class="label-cadastros">Valor de oferta: <span class="required">(*)</span></label>
+                        <input type="text" name="valoroferta" id="valoroferta" value="<?php echo formatReal($da->valoroferta); ?>" oninput="mascaraMoeda(this)" placeholder="R$ 0,00">
+                    </div>
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="exibirpreco" class="label-cadastros">Exibir preço: <span class="required">(*)</span></label>
+                        <select name="exibirpreco" id="exibirpreco">
+                            <?php if ($da->exibirpreco == 'S') { ?>
+                                <option value="S" selected="selected">Sim</option>
+                                <option value="N">Não</option>
+                            <?php } else { ?>
+                                <option value="S">Sim</option>
+                                <option value="N" selected="selected">Não</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class=" col col-sm-6 col-md-4 col-lg-2 forms">
+                        <label for="status" class="label-cadastros">Status: <span class="required">(*)</span></label>
+                        <select name="status" id="status">
+                            <?php if ($da->status == 'A') { ?>
+                                <option value="A" selected="selected">Ativo</option>
+                                <option value="I">Inativo</option>
+                            <?php } else { ?>
+                                <option value="A">Ativo</option>
+                                <option value="I" selected="selected">Inativo</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="rows rows-information">
+                <div class="col col-sm-12 col-md-6 ct-description">
+                    <fieldset>
+                        <legend>Descrição do produto</legend>
+                        <div class="desciption" id="descricao"></div>
+                    </fieldset>
+                </div>
+                <div class="col col-sm-12 col-md-6 ct-information">
+                    <fieldset>
+                        <legend>Informações técnicas</legend>
+                        <div class="" id="informacao"></div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="rows">
+                <div class="col col-sm-12 col-fotos">
+                    <fieldset>
+                        <legend>Fotos para o produto</legend>
+                        <div class="rows rows-ct-foto">
+                            <div class="col col-sm-12 col-md-4 col-lg-2 ct-buttom-upload">
+                                <input type="file" name="fotos[]" id="fotos" multiple>
+                                <span class="lnk-upload" id="lnk-select-fotos"><i class="fa-regular fa-folder-closed"></i> Selecionar Fotos</span>
+                            </div>
+                            <div class="col col-sm-12 col-md-8 col-lg-10">
+                                <div class="rows rowsfotos" id="rowsfotos">
+                                    <?php foreach ($imgs as $val) {
+                                        echo '
+                                        <div class="col co-sm-12 col-md-2 col-lg-2 col-cad-fotos" id="col-' . $val->imgid . '">
+                                            <span class="remove-foto-db" id="span-' . $val->imgid . '"><i class="fa-solid fa-trash-can"></i> Remover</span>
+                                            <div class="ct-foto-upload">
+                                                <img src="' . BASE_URL . '/public/upload/produtos/thamb/' . $val->img . '" alt="Foto" id="foto-' . $val->imgid . '">
+                                            </div>
+                                        </div>
+                                        ';
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+<!-- Modal para cadastrar categorias -->
+<div class="modal-cates" id="modal-cates">
+    <div class="container-cates">
+        <div class="title-cates"><?php echo $cfg->nameloja; ?> - Cadastrar Categoria</div>
+        <div class="body-cates">
+            <div class="rows">
+                <div class="col col-sm-12 forms">
+                    <label for="ncategoria" class="label-cadastros">Nome da categoria: <span class="required">(*)</span></label>
+                    <input type="text" name="ncategoria" id="ncategoria" placeholder="Informe o nome da categoria">
+                </div>
+            </div>
+        </div>
+        <div class="footer-cates">
+            <span class="btn-save-cates" id="close-cate" onclick="showAddCates('modal-cates')"><i class="fa-solid fa-xmark"></i> Fechar</span>
+            <span class="btn-save-cates" id="save-cates"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</span>
+        </div>
+    </div>
+    <!-- Modal para cadastrar subcategorias -->
+    <div class="modal-cates" id="modal-subcategorias">
+        <div class="container-cates">
+            <div class="title-cates"><?php echo $cfg->nameloja; ?> - Cadastrar Subcategoria</div>
+            <div class="body-cates">
+                <div class="rows">
+                    <div class="col col-sm-12 forms">
+                        <label for="nscategoria" class="label-cadastros">Categoria: <span class="required">(*)</span></label>
+                        <select name="nscategoria" id="nscategoria">
+                            <option value="0">Selecione uma categoria...</option>
+                            <?php echo selectcategorias(); ?>
+                        </select>
+                    </div>
+                    <div class="col col-sm-12 forms">
+                        <label for="ncsubcategoria" class="label-cadastros">Subcategoria: <span class="required">(*)</span></label>
+                        <input type="text" name="ncsubcategoria" id="ncsubcategoria" placeholder="Informe o nome da subcategoria">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-cates">
+                <span class="btn-save-cates" id="close-subcategoria" onclick="showAddCates('modal-subcategorias')"><i class="fa-solid fa-xmark"></i> Fechar</span>
+                <span class="btn-save-cates" id="save-subcategoria"><i class="fa-solid fa-floppy-disk"></i> Cadastrar</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Script -->
+<script type="text/javascript">
+    const valor_info = '<?php echo $da->descricao; ?>';
+    const valor_info_tec = '<?php echo $da->informacoes; ?>';
+</script>

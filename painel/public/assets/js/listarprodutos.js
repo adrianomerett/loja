@@ -1,6 +1,6 @@
 // paginação
 var PAGINA_ATUAL = 1;
-var POR_PAGINA = 1;
+var POR_PAGINA = 2;
 var TOTAL_PAGINA = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (page === PAGINA_ATUAL) return;
         PAGINA_ATUAL = page;
         await listarProdutos();
+    });
+
+    // Editar
+    document.getElementById('editi-product').addEventListener('click', function () {
+        let id = getId();
+        if(id == false || id == undefined){
+            showAlert('Selecione um produto para editar...', 'error');
+            return false;
+        }
+        window.location.href = `${BASE_URL}/produtos/editar/id/${id}`;
     });
 });
 

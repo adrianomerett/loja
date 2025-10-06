@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/10/2025 às 17:44
+-- Tempo de geração: 06/10/2025 às 05:40
 -- Versão do servidor: 8.4.0
 -- Versão do PHP: 8.3.6
 
@@ -38,7 +38,8 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` (`categoriaid`, `namecategoria`) VALUES
 (14, 'Eletrônicos'),
-(15, 'Smartphones');
+(15, 'Smartphones'),
+(16, 'Cozinha');
 
 -- --------------------------------------------------------
 
@@ -108,11 +109,7 @@ INSERT INTO `img` (`imgid`, `idproduto`, `img`) VALUES
 (36, 19, 'x8t6gc.webp'),
 (37, 19, 'y78gho.webp'),
 (38, 19, 'z1j370.webp'),
-(39, 19, '3clkb0.webp'),
 (40, 20, 'ovk1f0.webp'),
-(41, 20, 'theexm.webp'),
-(42, 20, 'rgzvkk.webp'),
-(43, 20, '0uyeny.webp'),
 (44, 21, '147noa.webp'),
 (45, 21, '18srep.webp'),
 (46, 21, 'g4ky5f.webp'),
@@ -124,7 +121,10 @@ INSERT INTO `img` (`imgid`, `idproduto`, `img`) VALUES
 (52, 23, '4y8emt.webp'),
 (53, 23, '2dw3k2.webp'),
 (54, 23, 'pqkhan.webp'),
-(55, 23, 'z1wg8b.webp');
+(55, 23, 'z1wg8b.webp'),
+(62, 20, 'ygsvsw.jpg'),
+(64, 20, 'rwxp1m.jpg'),
+(65, 20, 'vaqwiw.jpg');
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,7 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`produtoid`, `nome`, `descricao`, `informacoes`, `idcategoria`, `idsubcategoria`, `estoque`, `valorcusto`, `valoroferta`, `valorvenda`, `exibirpreco`, `status`) VALUES
-(18, 'Notebbok Dell 14 Polegadas', '<p>DECRIÇÃO	</p>', '<p>iNFO TEC</p>', 14, 2, 2, 1500.00, 1789.23, 1850.32, 'S', 'A'),
+(18, 'Notebbok Dell 14 Polegadas', '<p>DECRIÇÃO	</p>', '<p>iNFO TEC</p>', 14, 2, 2, 1500.00, 1789.23, 1850.32, 'N', 'I'),
 (19, 'TV 32 polegadas Samsung ', '<p>Tvs 32 polegadas	</p>', '<p>TVs 32 poelgadas </p>', 14, 1, 0, 250.00, 1999.90, 2300.00, 'S', 'A'),
 (20, 'iPhone 16e Apple (128GB) Preto, Tela de 6,1\", 5G e Câmera de 48 MP', '<p>Descrição de iphne 16	</p>', '<p>Informações de Iphone 16</p>', 15, 3, 16, 4500.00, 7812.45, 8901.24, 'S', 'A'),
 (21, 'Monitor Gamer Curvo Samsung Odyssey Ark 2ª Geração 55\", com Mini-LED, UHD, 165 Hz, 1ms(GtG), Preto', '<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Tipo da Tela: LCD</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Resolução Máxima: 3,840 x 2,160</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Tamanho da Tela: 55\"</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Brilho: 600 cd</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Contraste: 1,000,000:1 (Static)</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Ângulo de Visão: 178°(H)/178°(V)</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Tempo de Resposta: 1ms(MPRT)</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(48, 48, 48);\">Formato: Curvo</span></p>', '<p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Tela curva</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">1000R</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Proporção de Tela</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">16:9</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Brilho (Típico)</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">600 cd/㎡</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Contraste Estático</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">1,000,000:1 (Static)</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Resolução</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">4K (3,840 x 2,160)</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Tempo de Resposta</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">1ms(GTG)</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Ângulo de Visão (Horizontal / Vertical)</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">178°(H)/178°(V)</span></p><p><strong style=\"color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);\">Taxa de Atualização</strong></p><p><span style=\"color: rgb(77, 77, 77); background-color: rgba(0, 0, 0, 0);\">Max 165Hz</span></p><p><br></p>', 14, 4, 10, 1500.00, 2395.11, 2545.74, 'S', 'A'),
@@ -181,7 +181,8 @@ INSERT INTO `subcategorias` (`subcategoriaid`, `idcategoria`, `namesubcategoria`
 (3, 15, 'Iphones'),
 (4, 14, 'Monitores'),
 (5, 14, 'Impressoras'),
-(6, 14, 'Tablets');
+(6, 14, 'Tablets'),
+(7, 16, 'Talheres');
 
 -- --------------------------------------------------------
 
@@ -265,7 +266,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `categoriaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `categoriaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `config`
@@ -283,7 +284,7 @@ ALTER TABLE `contatos`
 -- AUTO_INCREMENT de tabela `img`
 --
 ALTER TABLE `img`
-  MODIFY `imgid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `imgid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -295,7 +296,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `subcategoriaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `subcategoriaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `users`

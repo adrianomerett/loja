@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a href="#salvar" class="lnk-btns"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                <a href="#salvar" class="lnk-btns" id="editi-product"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
             </li>
             <li>
                 <a href="#salvar" class="lnk-btns"><i class="fa-solid fa-trash"></i> Excluir</a>

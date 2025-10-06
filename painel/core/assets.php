@@ -8,6 +8,10 @@ $assets = array(
             ),
             'listar' => array(
                 'listarprodutos'
+            ),
+            'editar' => array(
+                'quill',
+                'cadastrarprodutos'
             )
         )
     ),
@@ -27,6 +31,10 @@ $assets = array(
             ),
             'listar' => array(
                 'listarprodutos'
+            ),
+            'editar' => array(
+                'quill',
+                'editarprodutos'
             )
         )
     ),

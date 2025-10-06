@@ -92,4 +92,21 @@ class Mprodutos
             return $e->getMessage();
         }
     }
+
+    // Pegar todos os dados do produto pelo id
+    public function getProductById($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE produtoid = :produtoid";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':produtoid', $id);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            return $row;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

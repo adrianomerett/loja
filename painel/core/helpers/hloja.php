@@ -71,3 +71,11 @@ if (!function_exists('selectsubcategorias')) {
         return $html;
     }
 }
+
+// Format Rela 
+if (!function_exists('formatReal')) {
+    function formatReal($valor)
+    {
+        return 'R$ ' . number_format($valor, 2, ',', '.');
+    }
+}
