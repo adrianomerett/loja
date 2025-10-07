@@ -6,6 +6,7 @@
   border: 1px solid #d1cfcf;
   padding: 4px;
   margin-top: 4px;
+  overflow-y: auto;
 }
 
 .title-resumo-cadastros {
@@ -20,6 +21,11 @@
   color: #1f1e1e;
 }
 
+.rows {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
 .ct-cards {
   width: 100%;
   display: flex;
@@ -32,6 +38,7 @@
 .title-card {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: "Roboto";
@@ -45,7 +52,8 @@
 
 .title-card i {
   margin-right: 4px;
-  font-size: 18px;
+  font-size: 22px;
+  margin-bottom: 4px;
 }
 
 .bory-card {
@@ -56,14 +64,14 @@
   font-family: "Roboto";
   font-weight: 900;
   font-size: 18px;
-  padding: 20px 4px;
+  padding: 24px 4px;
   background: #EDEAEA;
   background: linear-gradient(90deg, rgb(237, 234, 234) 0%, rgb(252, 252, 252) 50%, rgb(237, 234, 234) 100%);
 }
 
 .bg-card-green {
   background: #25b06d;
-  background: linear-gradient(90deg, rgb(37, 176, 109) 0%, rgb(6, 196, 120) 50%, rgb(0, 230, 138) 100%);
+  background: linear-gradient(90deg, rgb(37, 176, 109) 0%, rgb(6, 196, 120) 50%, rgb(116, 230, 184) 100%);
   box-shadow: 0px 0px 5px #25b06d;
 }
 
@@ -73,13 +81,46 @@
 }
 
 .bg-card-goia {
-  background: #b01717;
-  background: linear-gradient(90deg, rgb(176, 23, 23) 0%, rgb(199, 56, 56) 50%, rgb(235, 66, 66) 100%);
+  background: #b91f1f;
+  background: linear-gradient(90deg, rgb(176, 23, 23) 0%, rgb(199, 56, 56) 50%, rgb(245, 106, 106) 100%);
 }
 
 .bg-color-goia {
-  color: #b01717;
+  color: #b91f1f;
   text-shadow: 0px 0px 1px #b01717;
+}
+
+.bg-card-purple {
+  background: #8a0872;
+  background: linear-gradient(90deg, rgb(138, 8, 114) 0%, rgb(181, 11, 150) 50%, rgb(237, 40, 201) 100%);
+  box-shadow: 0px 0px 5px #8a0872;
+}
+
+.bg-color-purple {
+  color: #8a0872;
+  text-shadow: 0px 0px 1px #8a0872;
+}
+
+.bg-card-blue {
+  background: #0b74b5;
+  background: linear-gradient(90deg, rgb(11, 116, 181) 0%, rgb(25, 140, 212) 50%, rgb(72, 201, 240) 100%);
+  box-shadow: 0px 0px 5px #0b74b5;
+}
+
+.bg-color-blue {
+  color: #0b74b5;
+  text-shadow: 0px 0px 1px #0b74b5;
+}
+
+.bg-card-orange {
+  background: #f2a500;
+  background: linear-gradient(90deg, rgb(242, 165, 0) 0%, rgb(247, 186, 54) 50%, rgb(255, 211, 115) 100%);
+  box-shadow: 0px 0px 5px #f2a500;
+}
+
+.bg-color-orange {
+  color: #f2a500;
+  text-shadow: 0px 0px 1px #f2a500;
 }
 
 /*# sourceMappingURL=home.css.map */

@@ -115,10 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let idproduct = document.getElementById('id').value;
         if (filesfotos.hasOwnProperty(`${id}`)) {
             if (filesfotos[`${id}`].db == 'yes') {
-                if (Object.keys(filesfotos).length == 1) {
-                    showAlert("Você precisa pelo menos uma foto para o produto!", "error");
-                    return false;
-                }
                 try {
                     showLoader();
                     let req = await api.post('produtos/delete-foto-db', { id: id, idproduct: idproduct });

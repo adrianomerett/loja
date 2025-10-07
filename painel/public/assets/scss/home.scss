@@ -9,6 +9,7 @@
     border: 1px solid color.$border-gray;
     padding: 4px;
     margin-top: 4px;
+    overflow-y: auto;
 }
 
 .title-resumo-cadastros {
@@ -23,6 +24,11 @@
     color: color.$color-font-escura;
 }
 
+.rows {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
 .ct-cards {
     width: 100%;
     display: flex;
@@ -35,6 +41,7 @@
 .title-card {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: "Roboto";
@@ -48,7 +55,8 @@
 
 .title-card i {
     margin-right: 4px;
-    font-size: 18px;
+    font-size: 22px;
+    margin-bottom: 4px;
 }
 
 .bory-card {
@@ -59,14 +67,14 @@
     font-family: "Roboto";
     font-weight: 900;
     font-size: 18px;
-    padding: 20px 4px;
+    padding: 24px 4px;
     background: #EDEAEA;
     background: linear-gradient(90deg, rgba(237, 234, 234, 1) 0%, rgba(252, 252, 252, 1) 50%, rgba(237, 234, 234, 1) 100%);
 }
 
 .bg-card-green {
     background: #25b06d;
-    background: linear-gradient(90deg, rgba(37, 176, 109, 1) 0%, rgba(6, 196, 120, 1) 50%, rgba(0, 230, 138, 1) 100%);
+    background: linear-gradient(90deg, rgba(37, 176, 109, 1) 0%, rgba(6, 196, 120, 1) 50%, rgb(116, 230, 184) 100%);
     box-shadow: 0px 0px 5px #25b06d;
 }
 
@@ -76,11 +84,44 @@
 }
 
 .bg-card-goia {
-    background: #b01717;
-    background: linear-gradient(90deg, rgba(176, 23, 23, 1) 0%, rgba(199, 56, 56, 1) 50%, rgba(235, 66, 66, 1) 100%);
+    background: #b91f1f;
+    background: linear-gradient(90deg, rgba(176, 23, 23, 1) 0%, rgba(199, 56, 56, 1) 50%, rgb(245, 106, 106) 100%);
 }
 
-.bg-color-goia{
-    color: #b01717;
+.bg-color-goia {
+    color: #b91f1f;
     text-shadow: 0px 0px 1px #b01717;
+}
+
+.bg-card-purple {
+    background: #8a0872;
+    background: linear-gradient(90deg, rgba(138, 8, 114, 1) 0%, rgba(181, 11, 150, 1) 50%, rgba(237, 40, 201, 1) 100%);
+    box-shadow: 0px 0px 5px #8a0872;
+}
+
+.bg-color-purple {
+    color: #8a0872;
+    text-shadow: 0px 0px 1px #8a0872;
+}
+
+.bg-card-blue {
+    background: #0b74b5;
+    background: linear-gradient(90deg, rgba(11, 116, 181, 1) 0%, rgba(25, 140, 212, 1) 50%, rgba(72, 201, 240, 1) 100%);
+    box-shadow: 0px 0px 5px #0b74b5;
+}
+
+.bg-color-blue {
+    color: #0b74b5;
+    text-shadow: 0px 0px 1px #0b74b5;
+}
+
+.bg-card-orange {
+    background: #f2a500;
+    background: linear-gradient(90deg, rgba(242, 165, 0, 1) 0%, rgba(247, 186, 54, 1) 50%, rgba(255, 211, 115, 1) 100%);
+    box-shadow: 0px 0px 5px #f2a500;
+}
+
+.bg-color-orange {
+    color: #f2a500;
+    text-shadow: 0px 0px 1px #f2a500;
 }
