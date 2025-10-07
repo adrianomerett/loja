@@ -126,4 +126,9 @@
   font-size: 13px;
 }
 
+.inactiveiten td {
+  color: red !important;
+  text-decoration: line-through;
+}
+
 /*# sourceMappingURL=listarprodutos.css.map */

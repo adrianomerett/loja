@@ -41,8 +41,13 @@ if ($acao == 'delete-foto-db') {
     $retorno = array("status" => false, "msg" => "");
     try {
         $id = intval(App::getPost('id'));
-        // Busca os dados da foto
+        $idproduct = intval(App::getPost('idproduct'));
+        // Verifica no banco de dados se esta é a última foto
         $mimg = new Mimg();
+        $imgs = $mimg->getImages($idproduct);
+        if (count($imgs) == 1) {
+            throw new Exception("O produto deve ter pelo menos uma foto!");
+        }
         $img = $mimg->getImageById($id);
         if (!is_object($img)) {
             throw new Exception("Foto não encontrada!");
@@ -263,6 +268,11 @@ if ($acao == 'update-products') {
         // Instacia a class de produtos
         $mp = new Mprodutos();
         $id = intval($dados['id']);
+        // Atualiza o produto
+        $update = $mp->updateProduct($dadossave, $id);
+        if (!is_int($update)) {
+            throw new Exception($update);
+        }
         // Instacia o moedel de imagens
         $mimg = new Mimg();
         // Instacia a classe de imagem
@@ -322,6 +332,40 @@ if ($acao == 'listar-products') {
         $retorno['paginacao'] = array('pagina_atual' => $pagina_atal, 'total_paginas' => $total_paginas);
         $retorno['dados'] = $dados;
         $retorno['status'] = true;
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
+
+// Excluir produto
+if ($acao == 'delete-product') {
+    $retorno = array("status" => false, "msg" => "", "campo" => "");
+    try {
+        $id = intval(App::getPost('id'));
+        $mp = new Mprodutos();
+        $deleteproduct = $mp->deleteProduct($id);
+        if (!is_integer($deleteproduct)) {
+            throw new Exception($deleteproduct);
+        }
+        // Busca os dados da foto
+        $mimg = new Mimg();
+        $img = $mimg->getImages($id);
+        // loop para deletar as imagens
+        foreach ($img as $key => $value) {
+            $etxra = ROOT_PROCUCTS . "extra" . DS . $value->img;
+            $thamb = ROOT_PROCUCTS . "thamb" . DS . $value->img;
+            if (file_exists($etxra)) {
+                unlink($etxra);
+            }
+            if (file_exists($thamb)) {
+                unlink($thamb);
+            }
+            $deleteimg = $mimg->deleteImage($value->imgid);
+        }
+        $retorno['status'] = true;
+        $retorno['msg'] = "O produto excluído com sucesso!";
         return App::setJson($retorno);
     } catch (Exception $e) {
         $retorno['msg'] = $e->getMessage();

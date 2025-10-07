@@ -2,6 +2,7 @@
 var height = null;
 var heightmenu = null;
 var heightcad = null;
+var heighthome = null;
 const heighttopo = null;
 const sizemobile = 992;
 const titlepages = 40;
@@ -110,9 +111,11 @@ function resizeLayout() {
         heightmenu = (height - heighttopo);
         heightcad = (height - (heighttopo + titlepages + heightbtns + heightfooter + difcad));
         heightlist = (height - (heighttopo + titlepages + heightbtns + heightfooter + diflist + heightpagination));
+        heighthome = (height - (heighttopo + heightfooter + titlepages + 76));
         document.documentElement.style.setProperty("--heightmenu", `${heightmenu}px`);
         document.documentElement.style.setProperty("--heightcad", `${heightcad}px`);
         document.documentElement.style.setProperty("--heightlist", `${heightlist}px`);
+        document.documentElement.style.setProperty("--heighthome", `${heighthome}px`);
     } catch (e) {
         console.log(e);
     }

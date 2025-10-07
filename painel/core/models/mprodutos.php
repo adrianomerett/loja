@@ -60,7 +60,7 @@ class Mprodutos
             i.imgid, i.idproduto, i.img FROM produtos AS p 
             LEFT JOIN categorias AS c ON(C.categoriaid = p.idcategoria) 
             LEFT JOIN subcategorias AS s ON(S.subcategoriaid = p.idsubcategoria)
-            JOIN img AS i ON (i.idproduto = p.produtoid) 
+            INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
             WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid){$where} LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($query);
             if (!empty($search)) {
@@ -105,6 +105,51 @@ class Mprodutos
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_OBJ);
             return $row;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Upade de produto
+    public function updateProduct($dados, $id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "UPDATE {$this->table} SET nome = :nome, descricao = :descricao, informacoes = :informacoes, idcategoria = :idcategoria, 
+            idsubcategoria = :idsubcategoria, estoque = :estoque, valorcusto = :valorcusto, valoroferta = :valoroferta, valorvenda = :valorvenda, 
+            exibirpreco = :exibirpreco, status = :status WHERE produtoid = :produtoid";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':nome', $dados['nome']);
+            $stmt->bindParam(':descricao', $dados['descricao']);
+            $stmt->bindParam(':informacoes', $dados['informacoes']);
+            $stmt->bindParam(':idcategoria', $dados['idcategoria']);
+            $stmt->bindParam(':idsubcategoria', $dados['idsubcategoria']);
+            $stmt->bindParam(':estoque', $dados['estoque']);
+            $stmt->bindParam(':valorcusto', $dados['valorcusto']);
+            $stmt->bindParam(':valoroferta', $dados['valoroferta']);
+            $stmt->bindParam(':valorvenda', $dados['valorvenda']);
+            $stmt->bindParam(':exibirpreco', $dados['exibirpreco']);
+            $stmt->bindParam(':status', $dados['status']);
+            $stmt->bindParam(':produtoid', $id);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Delete produto
+    public function deleteProduct($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "DELETE FROM {$this->table} WHERE produtoid = :produtoid";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':produtoid', $id);
+            $stmt->execute();
+            return $stmt->rowCount();
         } catch (Exception $e) {
             return $e->getMessage();
         }

@@ -1,0 +1,85 @@
+.home-conteudos {
+  width: 100%;
+  height: var(--heighthome);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d1cfcf;
+  padding: 4px;
+  margin-top: 4px;
+}
+
+.title-resumo-cadastros {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto";
+  font-weight: 600;
+  background-color: #e6e2e2;
+  padding: 9px 4px;
+  font-size: 15px;
+  color: #1f1e1e;
+}
+
+.ct-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #edeaea;
+  border: 1px solid #d1cfcf;
+  border-radius: 4px;
+}
+
+.title-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 4px;
+  color: #FFFFFF;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.title-card i {
+  margin-right: 4px;
+  font-size: 18px;
+}
+
+.bory-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  font-weight: 900;
+  font-size: 18px;
+  padding: 20px 4px;
+  background: #EDEAEA;
+  background: linear-gradient(90deg, rgb(237, 234, 234) 0%, rgb(252, 252, 252) 50%, rgb(237, 234, 234) 100%);
+}
+
+.bg-card-green {
+  background: #25b06d;
+  background: linear-gradient(90deg, rgb(37, 176, 109) 0%, rgb(6, 196, 120) 50%, rgb(0, 230, 138) 100%);
+  box-shadow: 0px 0px 5px #25b06d;
+}
+
+.bg-color-green {
+  color: #25b06d;
+  text-shadow: 0px 0px 1px #25b06d;
+}
+
+.bg-card-goia {
+  background: #b01717;
+  background: linear-gradient(90deg, rgb(176, 23, 23) 0%, rgb(199, 56, 56) 50%, rgb(235, 66, 66) 100%);
+}
+
+.bg-color-goia {
+  color: #b01717;
+  text-shadow: 0px 0px 1px #b01717;
+}
+
+/*# sourceMappingURL=home.css.map */

@@ -15,7 +15,7 @@
                 <a href="#salvar" class="lnk-btns" id="editi-product"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
             </li>
             <li>
-                <a href="#salvar" class="lnk-btns"><i class="fa-solid fa-trash"></i> Excluir</a>
+                <a href="#salvar" class="lnk-btns" onclick="deleteProduct()"><i class="fa-solid fa-trash"></i> Excluir</a>
             </li>
             <li>
                 <a href="#salvar" class="lnk-btns" id="filter-product"><i class="fa-solid fa-filter"></i> Filtrar</a>

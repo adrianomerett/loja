@@ -108,21 +108,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Remove as fotos no banco de dados
     document.getElementById('rowsfotos').addEventListener('click', async function (e) {
-        console.log(e.target);
         let a = e.target.classList.contains('remove-foto-db')
         if (!a) return;
         e.preventDefault();
         let id = e.target.id.replace('span-', '');
+        let idproduct = document.getElementById('id').value;
         if (filesfotos.hasOwnProperty(`${id}`)) {
             if (filesfotos[`${id}`].db == 'yes') {
+                if (Object.keys(filesfotos).length == 1) {
+                    showAlert("Você precisa pelo menos uma foto para o produto!", "error");
+                    return false;
+                }
                 try {
                     showLoader();
-                    let req = await api.post('produtos/delete-foto-db', { id: id });
+                    let req = await api.post('produtos/delete-foto-db', { id: id, idproduct: idproduct });
                     showLoader();
-                    console.log(req.data);
                     let { status, msg } = req.data;
                     if (!status) {
-                        console.log(msg);
+                        showAlert(msg, "error");
                         return false;
                     }
                     delete filesfotos[`${id}`];

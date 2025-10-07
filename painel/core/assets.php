@@ -13,6 +13,11 @@ $assets = array(
                 'quill',
                 'cadastrarprodutos'
             )
+        ),
+        'home' => array(
+            'index' => array(
+                "home"
+            )
         )
     ),
     'js' => array(
@@ -35,6 +40,11 @@ $assets = array(
             'editar' => array(
                 'quill',
                 'editarprodutos'
+            )
+        ),
+        'home' => array(
+            'index' => array(
+                "home"
             )
         )
     ),

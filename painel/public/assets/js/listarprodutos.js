@@ -1,6 +1,6 @@
 // paginação
 var PAGINA_ATUAL = 1;
-var POR_PAGINA = 2;
+var POR_PAGINA = 6;
 var TOTAL_PAGINA = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -33,13 +33,48 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Editar
     document.getElementById('editi-product').addEventListener('click', function () {
         let id = getId();
-        if(id == false || id == undefined){
+        if (id == false || id == undefined) {
             showAlert('Selecione um produto para editar...', 'error');
             return false;
         }
         window.location.href = `${BASE_URL}/produtos/editar/id/${id}`;
     });
+
 });
+
+// Delete product
+
+const deleteProduct = function () {
+    try {
+        let productid = getId();
+        if (productid == false) {
+            showAlert("Selecione um produto para excluir.", "error");
+            return false;
+        }
+        let deleteProdutos = async () => {
+            try {
+                showLoader();
+                let req = await api.post('/produtos/delete-product', { id: productid });
+                showLoader();
+                let { status, msg } = req.data;
+                if (status === false) {
+                    showAlert(msg, "error");
+                    return false;
+                }
+                if (status === true) {
+                    showAlert("Produto excluído com sucesso.", "success");
+                    document.getElementById(`tr-${productid}`).remove();
+                }
+            } catch (e) {
+                showLoader();
+                console.log(e);
+            }
+        }
+        showConfirm("Deseja realmente excluir o produto selecionado?", deleteProdutos);
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 async function listarProdutos() {
     try {
@@ -75,9 +110,10 @@ async function listarProdutos() {
                 'A': 'Ativo',
                 'I': 'Inativo'
             }
+            let classinactive = i.status == 'I' ? ' inactiveiten' : '';
             let classemptyestoque = i.estoque == '0' ? ' emptyestaque' : '';
             htmlproducts += `
-                <tr class="tr-list" id="tr-${i.produtoid}">
+                <tr class="tr-list${classinactive}" id="tr-${i.produtoid}">
                     <td class="tdcenter"><i class="fa-regular fa-circle-check" id="code-${i.produtoid}"></i></td>
                     <td class="tdcenter tdcode">${String(i.produtoid).padStart(6, '0')}</td>
                     <td class="tdcenter tdimg">
