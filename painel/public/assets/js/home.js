@@ -3,25 +3,35 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 document.addEventListener('DOMContentLoaded', async function () {
     //contarAteValorFinal(150);
 
-    animateReal("12456.65", 50, true);
+    // Valores
+    animateReal(V_CUSTO, 15, true, 'vcusto');
+    animateReal(V_VENDA, 15, true, 'vvenda');
+    // Totais de cadastros
+    animateTotal(V_TOTAL_PRODUCTS, 50, 'tpcadastrados');
+    animateTotal(V_TOTAL_SEM_ESTOQUE, 200, 'tpsemestoque');
+    animateTotal(V_TOTAL_INATIVOS, 200, 'tpinativos');
+    animateTotal(V_EXIBIR_PRECO, 200, 'tpsemexibirpreco');
+    animateTotal(V_TOTAL_CATEGORIAS, 200, 'tcategorias');
+    animateTotal(V_TOTAL_SUBCATEGORIAS, 200, 'tsubcategorias');
+    animateTotal(V_TOTAL_USERS, 200, 'tusuarios');
+    animateTotal(V_TOTAL_INACTIVE_USERS, 200, 'tusersinactives');
+    animateTotal(V_TOTAL_CONTACTS, 200, 'tcontatos');
+    animateTotal(V_TOTAL_PENDING_CONTACTS, 200, 'tcontatospending');
 });
 
-// function contarAteValorFinal(valorFinal, tempo = 50) {
-//     // Calcula 5% abaixo do valor final
-//     const inicio = valorFinal * 0.95;
-//     let atual = Math.floor(inicio);
+function animateTotal(valorFinal, tempo, elementid) {
+    const inicio = valorFinal * 0.95;
+    let atual = Math.floor(inicio);
+    const intervalo = setInterval(() => {
+        document.getElementById(`${elementid}`).innerText = `Total: ${atual}`;
+        atual++;
+        if (atual > valorFinal) {
+            clearInterval(intervalo);
+        }
+    }, tempo);
+}
 
-//     const intervalo = setInterval(() => {
-//         console.log(atual); // Aqui você pode trocar por ex: elemento.innerText = atual;
-//         atual++;
-
-//         if (atual > valorFinal) {
-//             clearInterval(intervalo);
-//         }
-//     }, tempo);
-// }
-
-async function animateReal(valorFinal, tempo = 30, mostrarSimbolo = false) {
+async function animateReal(valorFinal, tempo = 30, mostrarSimbolo = false, elementid) {
     if (isNaN(valorFinal)) {
         console.error("Valor inválido:", valorFinal);
         return;
@@ -30,35 +40,23 @@ async function animateReal(valorFinal, tempo = 30, mostrarSimbolo = false) {
     const inicio = valorFinal * 0.95;
     const passos = 50; // número de atualizações até o valor final
     const incremento = (valorFinal - inicio) / passos;
-    const elemento = document.getElementById("vcusto");
-
+    const elemento = document.getElementById(`${elementid}`);
     let atual = inicio;
-
+    // Loop para atualizar o valor
     for (let i = 0; i <= passos; i++) {
-        // Garante que o valor nunca passe do final
-        if (atual > valorFinal) {
-            let nome = valorFinal;
-            const teste = nome.toLocaleString('pt-BR', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-            console.log("Valor final atingido:", teste);
-            elemento.innerText = mostrarSimbolo ? `R$ ${teste}` : teste;
-            return false;
-        }
-        console.log("Atualizando valor:", atual);
-
-        // Formata o número no padrão brasileiro
-        const valorFormatado = atual.toLocaleString('pt-BR', {
+        if (atual > valorFinal) break;
+        var valorFormatado = atual.toLocaleString('pt-BR', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
-
         elemento.innerText = mostrarSimbolo ? `R$ ${valorFormatado}` : valorFormatado;
 
-        // Aguarda o tempo definido antes de continuar
         await sleep(tempo);
-
         atual += incremento;
     }
+    let vf = Number(valorFinal).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    elemento.innerText = mostrarSimbolo ? `R$ ${vf}` : vf;
 }

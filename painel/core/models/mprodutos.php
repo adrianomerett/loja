@@ -154,4 +154,112 @@ class Mprodutos
             return $e->getMessage();
         }
     }
+
+    // Pegar a soma do valor de custo de todos os produtos
+    public function getSumValorCusto()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT SUM(valorcusto) AS valor FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            return $row->valor;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar o valor de venda de todos os produtos
+    public function getSumValorVenda()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT SUM(valorvenda) AS valor FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            return $row->valor;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Conta os produtos que estão cadastrados 
+    public function countProductsCadastrados()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar produtos sem estoque
+    public function getProductsSemEstoque()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE estoque = 0";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar total de produtos inativos 
+    public function getTotalProdutosInativos()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'I'";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Produtos sem exibir preço
+    public function getProdutosSemExibirPreco()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE exibirpreco = 'N'";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pega prdutos pela categoria selecionado
+    public function getProductsByCategory($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE idcategoria = :idcategoria ORDER BY nome ASC";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':idcategoria', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

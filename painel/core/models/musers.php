@@ -72,4 +72,34 @@ class Musers
             return $e->getMessage();
         }
     }
+
+    // Contar usuários cadastrados
+    public function countUsers()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Contar usuários inativos
+    public function countUsersInactive()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'I'";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

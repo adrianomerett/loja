@@ -246,3 +246,46 @@ function showLoader() {
         console.log(e);
     }
 }
+
+// cria o html da paginação
+function createPagination(pagina_atual, total_pagina) {
+    try {
+        let html = '<ul class="paginacao">';
+        if (pagina_atual > 1) {
+            html += `<li><a href="#" data-pagina="${pagina_atual - 1}">&laquo;</a></li>`;
+        } else {
+            html += `<li class="disabled" id="before"><span>&laquo;</span></li>`;
+        }
+        if (pagina_atual > 3) {
+            html += `<li><a href="#" data-pagina="1">1</a></li>`;
+            if (pagina_atual > 2) {
+                html += `<li class="disabled"><span>...</span></li>`;
+            }
+        }
+        let inicio = Math.max(1, pagina_atual - 2);
+        let fim = Math.min(total_pagina, pagina_atual + 2);
+
+        for (let i = inicio; i <= fim; i++) {
+            if (i === pagina_atual) {
+                html += `<li class="ativo"><span>${i}</span></li>`;
+            } else {
+                html += `<li><a href="#" data-pagina="${i}">${i}</a></li>`;
+            }
+        }
+        if (pagina_atual < total_pagina - 2) {
+            if (pagina_atual < total_pagina - 3) {
+                html += `<li class="disabled"><span>...</span></li>`;
+            }
+            html += `<li><a href="#" data-pagina="${total_pagina}">${total_pagina}</a></li>`;
+        }
+        if (pagina_atual < total_pagina) {
+            html += `<li><a href="#" data-pagina="${pagina_atual + 1}" id="proximo">&raquo;</a></li>`;
+        } else {
+            html += `<li class="disabled"><span>&raquo;</span></li>`;
+        }
+        html += '</ul>';
+        return html;
+    } catch (e) {
+        console.log(e);
+    }
+}

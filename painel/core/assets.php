@@ -18,6 +18,11 @@ $assets = array(
             'index' => array(
                 "home"
             )
+        ),
+        'categorias' => array(
+            'listar' => array(
+                'listarcategorias'
+            )
         )
     ),
     'js' => array(
@@ -45,6 +50,11 @@ $assets = array(
         'home' => array(
             'index' => array(
                 "home"
+            )
+        ),
+        'categorias' => array(
+            'listar' => array(
+                'listarcategorias'
             )
         )
     ),

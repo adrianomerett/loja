@@ -56,4 +56,35 @@ class Msubcategorias
             return $e->getMessage();
         }
     }
+
+    // Contar Sub Categorias
+    public function countSubCategories()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pega uma subacategoria por id da categoria
+    public function getSubCategoryByCategoriaId($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE idcategoria = :idcategoria";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':idcategoria', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

@@ -123,7 +123,8 @@ body {
     top: 0;
     margin-top: size.$height-topo;
     width: size.$width-menu;
-    height: var(--heightmenu);
+    height: calc(100vh - size.$height-topo);
+    //height: var(--heightmenu);
     background: linear-gradient(90deg, var(--colorapp) 20%, var(--colormedia) 100%);
     box-shadow: 0px 0px 5px color.$color-app;
     z-index: 2;
@@ -467,25 +468,25 @@ body {
     color: color.$color-app !important;
 }
 
-.tdmoney{
+.tdmoney {
     white-space: nowrap;
-    font-weight: bold!important;
+    font-weight: bold !important;
 }
 
-.priceoferta{
-    color: #1eb368!important;
+.priceoferta {
+    color: #1eb368 !important;
 }
 
-.estoque{
-    font-weight: bold!important;
+.estoque {
+    font-weight: bold !important;
 }
 
-.emptyestaque{
-    color: #ff0000!important;
+.emptyestaque {
+    color: #ff0000 !important;
 }
 
-.tdcode{
-    font-weight: bold!important;
+.tdcode {
+    font-weight: bold !important;
 }
 
 // RODAPE
@@ -874,6 +875,71 @@ body {
 
 .show-confirm {
     visibility: visible;
+}
+
+// Paginação
+
+.paginacao {
+    display: flex;
+    padding: 0px 4px;
+    list-style: none;
+    gap: 4px;
+}
+
+.paginacao li a {
+    padding: 6px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color.$color-media;
+    border-radius: 2px;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    color: color.$color-font;
+}
+
+.paginacao li a:hover {
+    color: color.$color-white;
+    background-color: color.$color-app;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
+}
+
+.paginacao .disabled {
+    color: color.$color-font-escura;
+    background-color: color.$color-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 2px;
+    border: 1px solid color.$border-gray;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.paginacao .ativo {
+    color: color.$color-font-escura;
+    background-color: color.$color-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px;
+    border: 1px solid color.$border-gray;
+    border-radius: 2px;
+    text-decoration: underline;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.inactiveiten td {
+    color: red !important;
+    text-decoration: line-through;
 }
 
 // MOBILE

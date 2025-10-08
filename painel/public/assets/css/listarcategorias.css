@@ -1,4 +1,24 @@
-.modal-pesquisa {
+.lnk-edit-cate {
+  color: #FD7E14;
+  padding: 8px;
+}
+
+.lnk-edit-cate i {
+  color: #FD7E14;
+  font-size: 13px;
+}
+
+.lnk-trash-cate {
+  color: #DC3545;
+  padding: 8px;
+}
+
+.lnk-trash-cate i {
+  color: #DC3545;
+  font-size: 13px;
+}
+
+.modal-cates {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,14 +32,14 @@
   visibility: hidden;
 }
 
-.container-pesquisa {
+.container-cates {
   background-color: #FFFFFF;
   margin-top: 8%;
   border-radius: 4px;
   min-width: 360px;
 }
 
-.title-pesquisa {
+.title-cates {
   font-size: 14px;
   font-weight: bold;
   font-family: "Roboto";
@@ -30,11 +50,11 @@
   border-top-right-radius: 4px;
 }
 
-.bory-pesquisa {
+.body-cates {
   padding: 4px;
 }
 
-.footer-pesquisa {
+.footer-cates {
   padding: 6px 8px;
   display: flex;
   justify-content: flex-end;
@@ -43,7 +63,7 @@
   margin-bottom: 2px;
 }
 
-.btn-save-pesquisa {
+.btn-save-cates {
   padding: 6px 8px;
   color: #DDDDDD;
   text-decoration: none;
@@ -56,7 +76,7 @@
   user-select: none;
 }
 
-.btn-save-pesquisa:hover {
+.btn-save-cates:hover {
   background-color: #b20a01;
   color: #FFFFFF;
   cursor: pointer;
@@ -64,8 +84,8 @@
   text-shadow: 0px 0px 1px #FFFFFF;
 }
 
-.show-pesquisa {
+.show-cates {
   visibility: visible;
 }
 
-/*# sourceMappingURL=listarprodutos.css.map */
+/*# sourceMappingURL=listarcategorias.css.map */
