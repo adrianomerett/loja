@@ -87,4 +87,35 @@ class Msubcategorias
             return $e->getMessage();
         }
     }
+
+    // Get List Subcategorias
+    public function getListSubCategorias($por_pagina, $offset)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT s.subcategoriaid, s.idcategoria, s.namesubcategoria, c.categoriaid, c.namecategoria FROM {$this->table} AS s 
+            LEFT JOIN categorias AS c ON (s.idcategoria = c.categoriaid) ORDER BY s.namesubcategoria ASC LIMIT {$por_pagina} OFFSET {$offset}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Contar Sub Categorias
+    public function countListSubCategories()
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT COUNT(*) AS total FROM {$this->table}";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ)->total;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

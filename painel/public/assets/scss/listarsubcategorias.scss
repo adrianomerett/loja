@@ -1,0 +1,94 @@
+@use "./color.scss";
+
+.lnk-edit-cate {
+    color: color.$color-warning;
+    padding: 8px;
+}
+
+.lnk-edit-cate i {
+    color: color.$color-warning;
+    font-size: 13px;
+}
+
+.lnk-trash-cate {
+    color: color.$color-danger;
+    padding: 8px;
+}
+
+.lnk-trash-cate i {
+    color: color.$color-danger;
+    font-size: 13px;
+}
+
+
+// Modal categorias
+.modal-cates {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    visibility: hidden;
+}
+
+.container-cates {
+    background-color: color.$color-white;
+    margin-top: 8%;
+    border-radius: 4px;
+    min-width: 360px;
+}
+
+.title-cates {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Roboto";
+    color: color.$color-font;
+    padding: 8px;
+    background-color: color.$color-app;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.body-cates {
+    padding: 4px;
+}
+
+.footer-cates {
+    padding: 6px 8px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid color.$border-gray;
+    gap: 0px 8px;
+    margin-bottom: 2px;
+}
+
+.btn-save-cates {
+    padding: 6px 8px;
+    color: color.$color-font;
+    text-decoration: none;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 2px;
+    background-color: color.$color-media;
+    border: 1px solid color.$color-app;
+    user-select: none;
+}
+
+.btn-save-cates:hover {
+    background-color: color.$color-app;
+    color: color.$color-white;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px color.$color-app;
+    text-shadow: 0px 0px 1px color.$color-white;
+}
+
+
+.show-cates {
+    visibility: visible;
+}

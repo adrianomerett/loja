@@ -23,6 +23,11 @@ $assets = array(
             'listar' => array(
                 'listarcategorias'
             )
+        ),
+        'subcategorias' => array(
+            'listar' => array(
+                'listarsubcategorias'
+            )
         )
     ),
     'js' => array(
@@ -55,6 +60,11 @@ $assets = array(
         'categorias' => array(
             'listar' => array(
                 'listarcategorias'
+            )
+        ),
+        'subcategorias' => array(
+            'listar' => array(
+                'listarsubcategorias'
             )
         )
     ),

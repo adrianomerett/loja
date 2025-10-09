@@ -55,3 +55,28 @@ if ($acao == 'save-subcategoria') {
         return App::setJson($retorno);
     }
 }
+
+// Listar Subcategorias
+if ($acao == 'get-list-subcategorias') {
+    $retorno = array("status" => false, "msg" => "", "subcategorias" => array());
+    try {
+        $msca = new Msubcategorias();
+        // Paginação
+        $pagina_atal = intval(App::getGet('pagina_atual'));
+        $pagina_atal = $pagina_atal < 1 ? 1 : $pagina_atal;
+        $por_pagina = intval(App::getGet('por_pagina'));
+        $total = $msca->countListSubCategories();
+        $offset = ($pagina_atal - 1) * $por_pagina;
+        $total_paginas = ceil($total / $por_pagina);
+        // Busca os dados
+        $subcategorias = $msca->getListSubCategorias($por_pagina, $offset);
+        $retorno['subcategorias'] = $subcategorias;
+        $retorno['paginacao'] = array('pagina_atual' => $pagina_atal, 'total_paginas' => $total_paginas);
+        $retorno['status'] = true;
+        $retorno['msg'] = "Subcategorias obtidas com sucesso!";
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}

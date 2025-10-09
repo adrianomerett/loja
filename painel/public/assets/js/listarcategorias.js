@@ -171,10 +171,6 @@ async function listarCategorias() {
     }
 }
 
-// Mostar o modal de adicionar categoria
-function showAddCates(idmodal) {
-    document.getElementById(`${idmodal}`).classList.toggle('show-cates');
-}
 
 // Delete Categorias
 const deleteCategorias = function (id) {
