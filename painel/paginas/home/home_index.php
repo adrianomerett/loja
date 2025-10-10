@@ -32,8 +32,8 @@ $mco = new Mcontatos();
             </div>
             <div class="col col-sm-6 col-lg-3">
                 <div class="ct-cards">
-                    <div class="title-card bg-card-green"><i class="fa-brands fa-shopify"></i> Produtos cadastrados</div>
-                    <div class="bory-card bg-color-green"><span id="tpcadastrados">Total: 0</span></div>
+                    <div class="title-card bg-card-goia"><i class="fa-brands fa-shopify"></i> Produtos cadastrados</div>
+                    <div class="bory-card bg-color-goia"><span id="tpcadastrados">Total: 0</span></div>
                 </div>
             </div>
             <div class="col col-sm-6 col-lg-3">

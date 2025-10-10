@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         let id = a.id.split('-').pop();
         // Seta o tipo de operação
         document.getElementById('id-operation').value = 'update';
-        // Seta o id da subcategoria 
-        document.getElementById('id-sub-cate').value = id;
         let namecate = document.getElementById(`name-cate-${id}`).textContent;
         let namesubcate = document.getElementById(`name-subcate-${id}`).textContent;
         let elementselect = document.getElementById('nscategoria');

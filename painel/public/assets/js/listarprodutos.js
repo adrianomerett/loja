@@ -1,6 +1,6 @@
 // paginação
 var PAGINA_ATUAL = 1;
-var POR_PAGINA = 1;
+var POR_PAGINA = 6;
 var TOTAL_PAGINA = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
