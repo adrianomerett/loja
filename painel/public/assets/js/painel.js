@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         i.classList.add('active-father');
                     }
+                }else{
+                    i.classList.remove('active-father');
                 }
             }
         }

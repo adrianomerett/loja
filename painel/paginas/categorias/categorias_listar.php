@@ -43,6 +43,7 @@
         <div class="body-cates">
             <div class="rows">
                 <div class="col col-sm-12 forms">
+                    <input type="hidden" value="" id="id-operation">
                     <input type="hidden" value="" id="id-cate-editar">
                     <label for="ncategoria" class="label-cadastros">Nome da categoria: <span class="required">(*)</span></label>
                     <input type="text" name="ncategoria" id="ncategoria" placeholder="Informe o nome da categoria">

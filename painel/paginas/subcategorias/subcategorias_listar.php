@@ -49,6 +49,7 @@ require ROOT_HELPERS . 'hloja.php';
                 <div class="col col-sm-12 forms">
                     <label for="nscategoria" class="label-cadastros">Categoria: <span class="required">(*)</span></label>
                     <input type="hidden" value="" id="id-operation" name="id-operation">
+                    <input type="hidden" value="" id="id-cate-editar" name="id-cate-editar" />
                     <select name="nscategoria" id="nscategoria">
 
                     </select>

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         e.preventDefault();
         let id = a.id.split('-').pop();
         document.getElementById('id-cate-editar').value = id;
+        document.getElementById('id-operation').value = 'update';
         let name = document.getElementById(`name-cate-${id}`).innerHTML;
         document.getElementById('ncategoria').value = name;
         document.getElementById('name-operation').innerHTML = `Editar Categoria`;
@@ -41,9 +42,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     // Editar a categoria
-    document.getElementById('save-cates').addEventListener('click', async function () {
-        let id = document.getElementById('id-cate-editar').value;
-        if (id != 'cadastrar') {
+    document.getElementById('save-cates').addEventListener('click', async function (e) {
+        let idoperacao = document.getElementById('id-operation').value;
+        if (idoperacao == 'update') {
+            let id = document.getElementById('id-cate-editar').value;
             let elementname = document.getElementById('ncategoria');
             let name = elementname.value;
             if (name == '') {
@@ -54,10 +56,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             try {
                 // Atualizar
                 showLoader();
-                let req = await api.post('/categorias/update-categoria', { idcategoria: id, namecategoria: name });
+                let req = await api.post('/categorias/update-categoria/', { idcategoria: id, namecategoria: name });
                 showLoader();
                 let { status, msg, campo } = req.data;
-                console.log(req.data);
                 if (status == false) {
                     showAlert(msg, 'error');
                     if (campo != '') {
@@ -76,11 +77,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.log(e);
             }
         }
+        return false;
     });
 
     // Show Adicionar categoria
     document.getElementById('lnk-add-cate').addEventListener('click', function () {
-        document.getElementById('id-cate-editar').value = 'cadastrar';
+        document.getElementById('id-operation').value = 'cadastrar';
         let elementname = document.getElementById('ncategoria');
         elementname.value = '';
         document.getElementById('name-operation').innerHTML = `Cadastrar Categoria`;
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Cadastrar categoria
     document.getElementById('save-cates').addEventListener('click', async function () {
         try {
-            let operacaco = document.getElementById('id-cate-editar').value = 'cadastrar';
+            let operacaco = document.getElementById('id-operation').value;
             let elementname = document.getElementById('ncategoria');
             let namecategoria = elementname.value;
             if (operacaco == 'cadastrar') {
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     listarCategorias();
                 }
             }
+            return false;
         } catch (e) {
             console.log(e);
         }
@@ -200,3 +203,10 @@ const deleteCategorias = function (id) {
         console.log(e);
     }
 }
+
+// Mostar o modal de adicionar categoria
+function showAddCates(idmodal) {
+    document.getElementById(`${idmodal}`).classList.toggle('show-cates');
+}
+
+

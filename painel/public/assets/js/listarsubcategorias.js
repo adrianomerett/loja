@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!a.classList.contains('lnk-edit-cate')) return;
         e.preventDefault();
         let id = a.id.split('-').pop();
+        document.getElementById('id-cate-editar').value = id;
         // Seta o tipo de operação
         document.getElementById('id-operation').value = 'update';
         let namecate = document.getElementById(`name-cate-${id}`).textContent;
@@ -38,13 +39,112 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Update subcategoria
     document.getElementById('save-subcategoria').addEventListener('click', async function () {
-        if(document.getElementById('id-operation').value == 'update') {
-            
+        if (document.getElementById('id-operation').value == 'update') {
+            let idsubcate = document.getElementById('id-cate-editar').value;
+            let elementsubcate = document.getElementById('ncsubcategoria');
+            let namesubcate = elementsubcate.value;
+            // Validar
+            showLoader();
+            let req = await api.post('/subcategorias/update-subcategoria', { id: idsubcate, name: namesubcate });
+            showLoader();
+            let { status, msg, campo } = req.data;
+            if (!status) {
+                showAlert(msg, 'error');
+                if (campo != '') {
+                    setValidation(campo, 'is-invalid');
+                }
+                return false;
+            }
+            if (status) {
+                showAddSubCates('modal-subcategorias');
+                showAlert(msg, 'success');
+                document.getElementById(`name-subcate-${idsubcate}`).innerText = namesubcate;
+                document.getElementById(`ncsubcategoria`).classList.remove('is-invalid', 'is-valid');
+            }
+            return true;
         }
+    });
+
+    // Mostrar modal de adicionar subcategoria
+    document.getElementById('lnk-add-cate').addEventListener('click', function () {
+        document.getElementById('id-operation').value = 'cadastrar';
+        let elementname = document.getElementById('ncsubcategoria');
+        let elementselect = document.getElementById('nscategoria');
+        elementselect.innerHTML = `
+        <option value="0" selected="selected">Selecione uma categoria...</option>
+        ${CATEGORIAS_EXISTENTES}
+        `;
+        elementname.value = '';
+        document.getElementById('name-operation').innerHTML = `Cadastrar Subcategoria`;
+        showAddSubCates('modal-subcategorias');
+    });
+
+    // Salvar subcategoria
+    document.getElementById('save-subcategoria').addEventListener('click', async function () {
+        try {
+            if (document.getElementById('id-operation').value == 'cadastrar') {
+                let elementcate = document.getElementById('nscategoria');
+                let elementsubcate = document.getElementById('ncsubcategoria');
+                // Validar
+                let categoria = elementcate.value;
+                let subcategoria = elementsubcate.value;
+                if (categoria == 0) {
+                    setValidation('nscategoria', 'is-invalid');
+                    showAlert('Informe a categoria!', 'error');
+                    return false;
+                } else {
+                    setValidation('nscategoria', 'is-valid');
+                }
+                if (subcategoria == '') {
+                    setValidation('ncsubcategoria', 'is-invalid');
+                    showAlert('Informe o nomde da subcategoria!', 'error');
+                    return false;
+                } else {
+                    setValidation('ncsubcategoria', 'is-valid');
+                }
+                // Salvar
+                showLoader();
+                let req = await api.post('subcategorias/save-subcategoria', { idcategoria: categoria, ncsubcategoria: subcategoria });
+                showLoader();
+                let { status, msg, campo } = req.data;
+                if (status == false) {
+                    showAlert(msg, 'error');
+                    setValidation(campo, 'is-invalid');
+                }
+                if (status == true) {
+                    showAddSubCates('modal-subcategorias');
+                    showAlert(msg, 'success');
+                    elementcate.value = '0';
+                    elementsubcate.value = '';
+                    elementcate.classList.remove('is-invalid', 'is-valid');
+                    elementsubcate.classList.remove('is-invalid', 'is-valid');
+                    PAGINA_ATUAL = 1;
+                    listarSubCategorias();
+                }
+                return true;
+            }
+        } catch (e) {
+            showLoader();
+            console.log(e);
+        }
+    });
+
+    // Excluir subcategoria
+    document.getElementById('tbody-list-subcategorias').addEventListener('click', function (e) {
+        let a = e.target;
+        if (!a.classList.contains('lnk-trash-cate')) return;
+        let id = a.id.split('-').pop();
+        deleteSubCategorias(id);
+    });
+
+    // Atualiza os resultados da página
+    document.getElementById('refresh-result').addEventListener('click', async function () {
+        PAGINA_ATUAL = 1;
+        await listarSubCategorias();
     });
 });
 
-// Mostar o modal de adicionar categoria
+// Mostar o modal de adicionar subcategoria
 function showAddSubCates(idmodal) {
     document.getElementById(`${idmodal}`).classList.toggle('show-cates');
 }
@@ -61,7 +161,6 @@ async function listarSubCategorias() {
             }
         });
         showLoaderList();
-        console.log(req.data);
         let { status, msg, subcategorias, paginacao } = req.data;
         if (!status) {
             showAlert(msg, 'error');
@@ -89,6 +188,35 @@ async function listarSubCategorias() {
         document.getElementById('pagination').innerHTML = htmlpagination;
     } catch (e) {
         showLoaderList();
+        console.log(e);
+    }
+}
+
+// Delete Categorias
+const deleteSubCategorias = function (id) {
+    try {
+        let deleteSubCate = async () => {
+            try {
+                showLoader();
+                let req = await api.post('/subcategorias/delete-subcategorias/', { id: id });
+                showLoader();
+                let { status, msg } = req.data;
+                if (status === false) {
+                    showAlert(msg, "error");
+                    return false;
+                }
+                if (status === true) {
+                    showAlert("Subcategoria excluída com sucesso.", "success");
+                    PAGINA_ATUAL = 1;
+                    listarSubCategorias();
+                }
+            } catch (e) {
+                showLoader();
+                console.log(e);
+            }
+        }
+        showConfirm("Deseja realmente excluir esta subcategoria?", deleteSubCate);
+    } catch (e) {
         console.log(e);
     }
 }

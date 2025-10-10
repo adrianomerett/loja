@@ -56,7 +56,7 @@ class Mcategorias
     }
 
     // Edita uma categoria
-    public function updateCategory($id, $dados)
+    public function updateCategoria($id, $dados)
     {
         try {
             $db = new Database();

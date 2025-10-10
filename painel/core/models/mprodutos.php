@@ -262,4 +262,20 @@ class Mprodutos
             return $e->getMessage();
         }
     }
+
+    // Buscar produtos pela subcategoria
+    public function getProductsBySubcategoryId($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE idsubcategoria = :idsubcategoria ORDER BY nome ASC";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':idsubcategoria', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

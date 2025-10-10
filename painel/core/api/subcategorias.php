@@ -1,6 +1,7 @@
 <?php
 require_once ROOT_CORE . "models/mcategorias.php";
 require_once ROOT_CORE . "models/msubcategorias.php";
+require_once ROOT_CORE . "models/mprodutos.php";
 require_once ROOT_HELPERS . "hloja.php";
 
 // Buscar Subcategorias
@@ -74,6 +75,63 @@ if ($acao == 'get-list-subcategorias') {
         $retorno['paginacao'] = array('pagina_atual' => $pagina_atal, 'total_paginas' => $total_paginas);
         $retorno['status'] = true;
         $retorno['msg'] = "Subcategorias obtidas com sucesso!";
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
+
+// Update Subcategorias 
+if ($acao == 'update-subcategoria') {
+    $retorno = array("status" => false, "msg" => "", "campo" => "");
+    try {
+        $msca = new Msubcategorias();
+        $id = intval(App::getPost('id'));
+        $name = App::getPost('name');
+        // Verifica se já não está cadastrada
+        $mscb = new Msubcategorias();
+        $subcategoriadb = $mscb->getSubCategoryByName($name);
+        if (count($subcategoriadb) > 0) {
+            $retorno['campo'] = 'ncsubcategoria';
+            throw new Exception("Já existe uma subcategoria com o nome {$name}!");
+        }
+        // Validação
+        if (empty($name)) {
+            $retorno['campo'] = 'ncsubcategoria';
+            throw new Exception("Informe o nome da subcategoria!");
+        }
+        $update = $msca->updateSubCategory($id, array('namesubcategoria' => $name));
+        if (!is_int($update)) {
+            throw new Exception($update);
+        }
+        $retorno['status'] = true;
+        $retorno['msg'] = "Subcategoria atualizada com sucesso!";
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
+
+// Excluir subcategoria
+if ($acao == 'delete-subcategorias') {
+    $retorno = array("status" => false, "msg" => "");
+    try {
+        $id = intval(App::getPost('id'));
+        // Verifica se tem produtos vinculados
+        $mp = new Mprodutos();
+        $produtos = $mp->getProductsBySubcategoryId($id);
+        if (count($produtos) > 0) {
+            throw new Exception("Você não pode exlcuir esta subcategoria, pois a mesma tem produtos cadastrados vinculados à ela!");
+        }
+        $msca = new Msubcategorias();
+        $delete = $msca->deleteSubCategory($id);
+        if (!is_int($delete)) {
+            throw new Exception($delete);
+        }
+        $retorno['status'] = true;
+        $retorno['msg'] = "Subcategoria excluída com sucesso!";
         return App::setJson($retorno);
     } catch (Exception $e) {
         $retorno['msg'] = $e->getMessage();

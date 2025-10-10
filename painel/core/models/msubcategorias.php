@@ -118,4 +118,53 @@ class Msubcategorias
             return $e->getMessage();
         }
     }
+
+    // Atualiza a subcategoria
+    public function updateSubCategory($id, $dados)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "UPDATE {$this->table} SET namesubcategoria = :namesubcategoria WHERE subcategoriaid = :subcategoriaid";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':subcategoriaid', $id);
+            $stmt->bindParam(':namesubcategoria', $dados['namesubcategoria']);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Delete subcategoria
+    public function deleteSubCategory($id)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "DELETE FROM {$this->table} WHERE subcategoriaid = :subcategoriaid";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':subcategoriaid', $id);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Get subcategoria por nome
+    public function getSubCategoryByName($name)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $query = "SELECT * FROM {$this->table} WHERE namesubcategoria = :namesubcategoria";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':namesubcategoria', $name);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

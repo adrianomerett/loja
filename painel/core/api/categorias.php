@@ -51,7 +51,7 @@ if ($acao == 'update-categoria') {
             $retorno['campo'] = 'ncategoria';
             throw new Exception("Já existe uma categoria com o nome {$name}!");
         }
-        $update = $mca->updateCategory($id, array('namecategoria' => $name));
+        $update = $mca->updateCategoria($id, array('namecategoria' => $name));
         if (!is_int($update)) {
             throw new Exception($update);
         }
