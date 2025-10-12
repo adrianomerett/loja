@@ -365,15 +365,24 @@ body {
     font-weight: 600;
     color: colors.$color-font-escura;
     border-bottom: 1px solid colors.$border-gray;
-    padding-bottom: 2px;
+    padding: 4px
 }
 
-// PRODUCTS 
+// PRODUCTS
+.ct-box-product {
+    position: relative;
+    padding: 4px;
+}
+
 .link-product {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: colors.$color-font-escura;
+    padding: 4px;
 }
 
 .img-produto {
@@ -386,6 +395,64 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 4px;
+}
+
+.name-product {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ct-price{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.valor-venda {
+    font-size: 12px;
+    font-weight: 600;
+    color: colors.$color-valor-on;
+    text-decoration: line-through;
+}
+
+.valor-oferta {
+    font-size: 12px;
+    font-weight: 600;
+    color: colors.$color-valor-off;
+}
+
+.price-off {
+    font-size: 18px;
+}
+
+.ct-off {
+    position: absolute;
+    float: left;
+    top: 0;
+    left: 0;
+    margin-top: 8px;
+    margin-left: 8px;
+    background-color: colors.$color-app;
+    font-size: 12px;
+    font-weight: 600;
+    color: colors.$color-font;
+    border-radius: 2px;
+    padding: 4px 8px;
+    box-shadow: 0px 0px 3px colors.$color-app;
+    opacity: 0.8;
+}
+
+.link-product:hover {
+    color: colors.$color-hover-fonte-escura;
+    text-shadow: 0px 0px 1px colors.$color-hover-fonte-escura;
+    box-shadow: 0px 0px 2px colors.$color-cinza, inset 0px 0px 2px colors.$color-cinza;
+}
+
+.link-product:hover ~ .ct-off {
+    box-shadow: 0px 0px 3px colors.$color-app;
+    opacity: 1;
+    text-shadow: 0px 0px 2px colors.$color-white;
 }
 
 // FOOTER

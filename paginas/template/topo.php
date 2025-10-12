@@ -22,7 +22,7 @@
     <div class="container-access-painel">
         <a href="<?php echo URL_PAINEL; ?>" target="new" class="accsses-panel">
             <div class="iconpainel"><i class="fa-solid fa-desktop"></i></div>
-            <div class="txtpainel">Acessar Painel</div>
+            <div class="txtpainel">Painel</div>
         </a>
     </div>
 </header>
