@@ -150,8 +150,8 @@ body {
     display: block;
     width: 100%;
     cursor: pointer;
-    padding: 12px 4px;
-    font-size: 16px;
+    padding: 16px 4px;
+    font-size: 14px;
     text-decoration: none;
     color: color.$color-gray;
     font-weight: bold;
@@ -262,7 +262,6 @@ body {
     top: 0;
     left: 0;
     z-index: 1;
-    background-color: aqua;
     background-color: rgb(0, 0, 0, 0.5);
 }
 
