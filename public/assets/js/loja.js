@@ -1,7 +1,7 @@
 var heigh = null;
 const heighttopo = 68;
 const heightmenuh = 40;
-const heightfooter = 40;
+const heightfooter = 164;
 const sizemobile = 992;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -29,9 +29,16 @@ function resizeLayout() {
         // Seta as variáveis de tamanhos
         heigh = window.innerHeight;
         let heigthcontainer = (heigh - (heightfooter + heighttopo + heightmenuh));
-        console.log(heigthcontainer);
         document.documentElement.style.setProperty("--heightcontainer", `${heigthcontainer}px`);
     } catch (e) {
         console.log(e);
     }
 }
+
+// set config axios
+const api = axios.create({
+    baseURL: URL_API,
+    headers: {
+        "Content-Type": "multipart/form-data"
+    }
+});

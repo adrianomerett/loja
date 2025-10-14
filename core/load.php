@@ -22,7 +22,16 @@ try {
     }
     // api
     if (!empty($page) && $page == 'api') {
+        $pagina = $parts[2];
+        if (count($parts) >= 4) {
+            if(!empty($parts[3])){
+                $acao = $parts[3];
+            }
+        }
+        require_once(ROOT_CORE . "loadapi.php");
     } else {
+        // Inclui o array de assets
+        require_once ROOT_CORE . "assets.php";
         if ($page == '' || $page == 'home') {
             $pagina = 'home';
             $acao = 'index';

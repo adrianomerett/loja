@@ -23,4 +23,32 @@ class App
             return false;
         }
     }
+
+    // Função para setar JSON
+    public static function setJson($data)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data, JSON_PRETTY_PRINT);
+        exit;
+    }
+
+    // Pega um post
+    public static function getPost($key)
+    {
+        if (isset($_POST[$key])) {
+            return $_POST[$key];
+        } else {
+            return null;
+        }
+    }
+
+    // Pega um get
+    public static function getGet($key)
+    {
+        if (isset($_GET[$key])) {
+            return $_GET[$key];
+        } else {
+            return null;
+        }
+    }
 }

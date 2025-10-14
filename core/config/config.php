@@ -3,7 +3,7 @@ $host = $_SERVER['HTTP_HOST'];
 $dir = 'loja';
 defined('PAINEL') || define('PAINEL', 'painel');
 defined('BASE_URL') || define('BASE_URL', "http://{$host}/{$dir}");
-defined('URL_API') || define('URL_API', "http://{$host}/{$dir}/api/");
+defined('URL_API') || define('URL_API', "http://{$host}/{$dir}/api");
 defined('URL_PAINEL') || define('URL_PAINEL', "http://{$host}/{$dir}/" . PAINEL);
 defined('ASSETS') || define('ASSETS', BASE_URL . "/public/assets");
 
