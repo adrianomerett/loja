@@ -1,6 +1,12 @@
 <?php
 require_once HELPERS . 'hloja.php';
-if (nameCategory(intval($itemid)) == false) {
+$namecategoria = nameCategory(intval($idtwo));
+if ($namecategoria == false) {
+    require_once ROOT_PAGES . '404/404.php';
+    return;
+}
+$namesubcategoria = nameSubcategoria(intval($itemid));
+if ($namesubcategoria == false) {
     require_once ROOT_PAGES . '404/404.php';
     return;
 }
@@ -13,15 +19,15 @@ if (nameCategory(intval($itemid)) == false) {
                 <li class="breadcrumb-item itemraquo">&raquo;</li>
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/produtos/listar">Produtos</a></li>
                 <li class="breadcrumb-item itemraquo">&raquo;</li>
-                <li class="breadcrumb-item active"><?php echo nameCategory(intval($itemid)); ?></li>
+                <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/categorias/listar/<?php echo $idtwo; ?>"><?php echo $namecategoria; ?></a></li>
+                <li class="breadcrumb-item itemraquo">&raquo;</li>
+                <li class="breadcrumb-item active"><?php echo $namesubcategoria; ?></li>
             </ol>
         </nav>
     </div>
     <div class="container container-list-products">
         <div class="rows rows-product" id="list-products">
-            <div class="col col-sm-12 col-md-12 col-lg-12 not-products">
-                <i class="fa-regular fa-face-sad-tear"></i> Não há produtos para exibir.
-            </div>
+
         </div>
         <div class="ct-pagination" id="ct-pagination">
 

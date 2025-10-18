@@ -4,6 +4,8 @@ require_once "core" . DIRECTORY_SEPARATOR . "app.php";
 $pagina = false;
 $acao = false;
 $itemid = false;
+$idtwo = false;
+$idthree = false;
 $acaoapi = false;
 
 try {
@@ -19,6 +21,12 @@ try {
     }
     if (count($parts) >= 4) {
         $itemid = $parts[3];
+    }
+    if(count($parts) >= 5){
+        $idtwo = $parts[4];
+    }
+    if(count($parts) >= 6){
+        $idthree = $parts[5];
     }
     // api
     if (!empty($page) && $page == 'api') {
@@ -50,7 +58,16 @@ try {
                             if(!is_numeric($itemid)){
                                 $pagina = '404';
                             }
-
+                        }
+                        if(!empty($idtwo) && $pagina != 'busca'){
+                            if(!is_numeric($idtwo)){
+                                $pagina = '404';
+                            }
+                        }
+                        if(!empty($idthree) && $pagina != 'busca'){
+                            if(!is_numeric($idthree)){
+                                $pagina = '404';
+                            }
                         }
                     }
                 }

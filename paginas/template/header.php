@@ -27,5 +27,5 @@ foreach ($assets['css'][$pagina][$acao] as $key => $value) {
 ?>
     <title>Teste</title>
 </head>
-    <body>
+    <body id="my-body">
         <?php require_once ROOT_PAGES . "template/topo.php"; ?>

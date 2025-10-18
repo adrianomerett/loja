@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
     // Chama a função de listar categorias
-    await listarCategorias();
+    await listarSubCategorias();
     // Paginação
     document.getElementById('ct-pagination').addEventListener('click', async function (e) {
         var a = e.target.closest('a[data-pagina]');
@@ -14,17 +14,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.documentElement.scrollTo({
             top: 0, behavior: 'smooth'
         });
-        await listarCategorias();
+        await listarSubCategorias();
     });
 });
 
 // listar categorias
-async function listarCategorias() {
+async function listarSubCategorias() {
     try {
         showLoader();
-        let req = await api.get('/categorias/listar/', {
+        let req = await api.get('/subcategorias/listar/', {
             params: {
-                categoriaid: ITEM_ID,
+                subcategoriaid: ITEM_ID,
                 pagina_atual: PAGINA_ATUAL,
                 por_pagina: POR_PAGINA
             }
@@ -36,7 +36,7 @@ async function listarCategorias() {
             return;
         }
         if(Object.keys(dados).length <= 0){
-            document.getElementById("list-products").innerHTML = htmlNotResults('Não há produtos para exibir nesta categoria...');
+            document.getElementById("list-products").innerHTML = htmlNotResults('Não há produtos para exibir nesta subcategoria...');
             return false;
         }
         let html = '';

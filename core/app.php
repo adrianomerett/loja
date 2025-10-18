@@ -51,4 +51,25 @@ class App
             return null;
         }
     }
+
+    // Redireciona para a página
+    public static function redirect($url)
+    {
+        header("Location:" . BASE_URL . "/" . $url . "");
+        die();
+    }
+
+    // Gerar slug
+    public static function slugurl($texto)
+    {
+        if (empty($texto)) {
+            return '';
+        }
+        $slug = mb_strtolower($texto, 'UTF-8');
+        $slug = iconv('UTF-8', 'ASCII//TRANSLIT', $slug);
+        $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
+        $slug = preg_replace('/-+/', '-', $slug);
+        $slug = trim($slug, '-');
+        return $slug;
+    }
 }

@@ -1,0 +1,212 @@
+@use "./colors.scss";
+@use "./size.scss";
+
+.rows-detalhes{
+    border-bottom: 1px solid colors.$border-cinza;
+}
+.col-ct-img-detalhes{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid colors.$border-cinza;
+}
+.ct-img-detalhes{
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ct-img-detalhes img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ct-thambs{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 6px;
+    padding-right: 8px;
+}
+
+.thamb{
+    max-width: 80px;
+    max-height: 80px;
+    padding: 8px;
+    border: 1px solid colors.$border-cinza;
+    border-radius: 4px;
+}
+
+.thamb:hover{
+    box-shadow: 0px 0px 4px colors.$border-cinza, inset 0px 0px 4px colors.$border-cinza;
+    cursor: pointer;
+}
+
+.thamb img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.ct-percent-desconto{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    margin-right: 4px;
+    margin-top: 4px;
+    border-radius: 2px;
+    background-color: colors.$color-app;
+    font-size: 11px;
+    font-weight: 600;
+    color: colors.$color-font;
+    box-shadow: 0px 0px 2px colors.$color-app;
+}
+
+.col-ct-pre-info{
+    padding: 0px 8px;
+    position: sticky;
+}
+
+.title-product-detalhes{
+    font-size: 20px;
+    font-weight: 600;
+    color: colors.$color-font-escura;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.ct-price-detallhes{
+    display: flex;
+    flex-direction: column;
+}
+
+.valor-venda-detalhes{
+    font-size: 14px;
+    font-weight: 600;
+    color: colors.$color-valor-on;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.valor-off-detalhes{
+    font-size: 28px;
+    font-weight: 700;
+    color: colors.$color-valor-off;
+    text-shadow: 0px 0px 2px colors.$color-valor-off;
+}
+
+.txt-valor-off{
+    font-size: 13px;
+    font-weight: 600;
+    color: colors.$color-font-escura;
+    text-shadow: 0px 0px 1px colors.$color-font-escura;
+}
+
+.qtd-disponivel{
+    font-size: 13px;
+    font-weight: 600;
+    color: colors.$color-font-cinza;
+    padding: 4px 0px;
+    margin-bottom: 4px;
+}
+
+.btn-add-to-cart{
+    width: 300px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: colors.$color-media;
+    border-radius: 4px;
+    color: colors.$color-font;
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.btn-add-to-cart:hover{
+    opacity: 1;
+    color: colors.$color-white;
+    background-color: colors.$color-app;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px colors.$color-app;
+    text-shadow: 0px 0px 1px colors.$color-white;
+}
+
+.view-to-details{
+    font-size: 13px;
+    font-weight: 600;
+    color: colors.$color-clara;
+    padding: 8px 0px;
+    opacity: 0.8;
+}
+
+.view-to-details:hover{
+    opacity: 1;
+    cursor: pointer;
+    color: colors.$color-app;
+    text-shadow: 0px 0px 1px colors.$color-app;
+
+}
+
+.ct-pre-info{
+    padding: 4px;
+}
+
+.title-pre-info{
+    font-size: 14px;
+    font-weight: 600;
+    color: colors.$color-font-escura;
+    padding: 4px 0px;
+}
+.title-intens{
+    font-size: 20px;
+    font-weight: 600;
+    color: colors.$color-font-escura;
+}
+
+.txt-info-tec{
+    padding: 4px;
+}
+
+// Produtos relacionados
+.container-rell{
+    padding: 8px;
+    background-color: colors.$color-white;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.title-products-rell{
+    font-size: 20px;
+    font-weight: 600;
+    color: colors.$color-font-escura;
+    padding: 4px 0px;
+    border-bottom: 1px solid colors.$border-gray;
+}
+
+// MOBILE
+@media (max-width: (size.$sizemobile)) {
+    .ct-img-detalhes{
+        width: 80%;
+        height: auto;
+    }
+    .rows-detalhes{
+        border-bottom: 0px;
+    }
+    .col-ct-img-detalhes{
+        border-right: 0px;
+    }
+    .btn-add-to-cart{
+        width: 100%;
+    }
+}

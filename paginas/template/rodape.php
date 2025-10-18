@@ -48,6 +48,11 @@
     const BASE_URL = "<?php echo BASE_URL; ?>";
     const URL_API = "<?php echo URL_API; ?>";
     const ITEM_ID = "<?php echo $itemid; ?>";
+    const URL_PAINEL = "<?php echo URL_PAINEL; ?>";
+    // paginação
+    var PAGINA_ATUAL = 1;
+    var POR_PAGINA = 5;
+    var TOTAL_PAGINA = 0;
  </script>
 <script src="<?php echo URL_PAINEL?>/public/assets/js/axios.min.js"></script>
 <script src="<?php echo ASSETS . "/js/loja.js?version=" . VERSION . ""; ?>" type="text/javascript"></script>

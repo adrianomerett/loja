@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
     // Chama a função de listar categorias
-    await listarCategorias();
+    await listarProdutos();
     // Paginação
     document.getElementById('ct-pagination').addEventListener('click', async function (e) {
         var a = e.target.closest('a[data-pagina]');
@@ -14,17 +14,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.documentElement.scrollTo({
             top: 0, behavior: 'smooth'
         });
-        await listarCategorias();
+        await listarProdutos();
     });
 });
 
 // listar categorias
-async function listarCategorias() {
+async function listarProdutos() {
     try {
         showLoader();
-        let req = await api.get('/categorias/listar/', {
+        let req = await api.get('/produtos/listar/', {
             params: {
-                categoriaid: ITEM_ID,
                 pagina_atual: PAGINA_ATUAL,
                 por_pagina: POR_PAGINA
             }
@@ -35,8 +34,8 @@ async function listarCategorias() {
             console.log(req.data);
             return;
         }
-        if(Object.keys(dados).length <= 0){
-            document.getElementById("list-products").innerHTML = htmlNotResults('Não há produtos para exibir nesta categoria...');
+        if (Object.keys(dados).length <= 0) {
+            document.getElementById("list-products").innerHTML = htmlNotResults('Não há produtos cadastrados...');
             return false;
         }
         let html = '';

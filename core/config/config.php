@@ -14,6 +14,7 @@ defined('ROOT_PAGES') || define('ROOT_PAGES', ROOT_APP . "paginas" . DS);
 defined('ROOT_CORE') || define('ROOT_CORE', ROOT_APP . "core" . DS);
 defined('DATABASE') || define('DATABASE', ROOT_APP . PAINEL . DS . 'core' . DS . 'database' . DS . 'Database.php');
 defined('MODELS') || define('MODELS', ROOT_CORE . "models" . DS);
+defined('HELPERS') || define('HELPERS', ROOT_CORE . "helpers" . DS);
 
 // Carrega  a classe de configuração
 require_once MODELS . 'mconfig.php';
