@@ -45,7 +45,7 @@
   font-family: "Roboto";
   color: #DDDDDD;
   padding: 8px;
-  background-color: #b20a01;
+  background-color: #192641;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
@@ -71,16 +71,16 @@
   font-weight: 600;
   font-size: 13px;
   border-radius: 2px;
-  background-color: #c91f16;
-  border: 1px solid #b20a01;
+  background-color: #212d49;
+  border: 1px solid #192641;
   user-select: none;
 }
 
 .btn-save-cates:hover {
-  background-color: #b20a01;
+  background-color: #192641;
   color: #FFFFFF;
   cursor: pointer;
-  box-shadow: 0px 0px 3px #b20a01;
+  box-shadow: 0px 0px 3px #192641;
   text-shadow: 0px 0px 1px #FFFFFF;
 }
 

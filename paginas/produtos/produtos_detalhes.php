@@ -26,7 +26,15 @@ $img = getImgByIdProduct($da->produtoid);
     <!-- Container Detalhes -->
     <div class="container">
         <div class="rows rows-detalhes">
-            <div class="col col-md-12 col-lg-6 col-ct-img-detalhes">
+            <?php
+            $classesgotado = '';
+            $txtestoque = '<div class="qtd-disponivel">Quantidade disponível: ' . $da->estoque . ' unidades.</div>';
+            if ($da->estoque <= 0) {
+                $classesgotado = ' esgotado';
+                $txtestoque = '<div class="txt-esgotado-detalhes">Produto sem estoque.</div>';
+            }
+            ?>
+            <div class="col col-md-12 col-lg-6 col-ct-img-detalhes<?php echo $classesgotado; ?>">
                 <div class="ct-thambs" id="ct-thambs">
                     <?php
                     foreach ($img as $i) {
@@ -51,14 +59,26 @@ $img = getImgByIdProduct($da->produtoid);
                 <div class="title-product-detalhes">
                     <?php echo $da->nome; ?>
                 </div>
-                <div class="ct-price-detallhes">
-                    <div class="valor-venda-detalhes">De R$ <?php echo number_format($da->valorvenda, 2, ',', '.'); ?></div>
-                    <div class="valor-off-detalhes"><span class="txt-valor-off">Por:</span> R$ <?php echo number_format($da->valoroferta, 2, ',', '.'); ?></div>
-                    <div class="qtd-disponivel">Quantidade disponível: <?php echo $da->estoque; ?> unidades.</div>
-                </div>
-                <div class="btn-add-to-cart">
-                    <i class="fa-solid fa-cart-shopping"></i> Quero comprar
-                </div>
+                <?php
+                if ($da->exibirpreco == 'S') {
+                ?>
+                    <div class="ct-price-detallhes">
+                        <div class="valor-venda-detalhes">De R$ <?php echo number_format($da->valorvenda, 2, ',', '.'); ?></div>
+                        <div class="valor-off-detalhes"><span class="txt-valor-off">Por:</span> R$ <?php echo number_format($da->valoroferta, 2, ',', '.'); ?></div>
+                    </div>
+                <?php
+                }
+                ?>
+                <?php echo $txtestoque; ?>
+                <?php
+                if ($da->estoque > 0) {
+                ?>
+                    <div class="btn-add-to-cart" id="btn-add-to-cart">
+                        <i class="fa-solid fa-cart-shopping"></i> Quero comprar
+                    </div>
+                <?php
+                }
+                ?>
                 <div class="ct-pre-info">
                     <div class="title-pre-info">Sobre este produto:</div>
                     <div class="txt-pre-info">
@@ -92,4 +112,29 @@ $img = getImgByIdProduct($da->produtoid);
 <!-- Loader de produtos -->
 <div class="ct-loader" id="show-loader">
     <span class="loader"></span>
+</div>
+
+<!-- Modal de informações de compra -->
+<div class="ct-modal-compra" id="modal-compra">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title"><?php echo $cfg->nameloja; ?> - Informações de compra</div>
+            <div class="close-modal" onclick="showModalInfoCompra()"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="modal-bory">
+            <div class="txt-info-location">Você pode comprar este produto em nossa loja fisíca, localizada no endereço descrito abaixo.</div>
+            <div class="ct-box-modal-info">
+                <div class="titles-infos">Informações de endereço.</div>
+                <div class="lines-infos"><i class="fa-solid fa-city"></i> Cidade: <?php echo $cfg->cidade; ?></div>
+                <div class="lines-infos"><i class="fa-solid fa-map-location"></i> Bairro: <?php echo $cfg->bairro; ?></div>
+                <div class="lines-infos"><i class="fa-solid fa-location-dot"></i> Rua: <?php echo $cfg->rua; ?> Nº <?php echo $cfg->numero; ?></div>
+            </div>
+            <div class="ct-box-modal-info">
+                <div class="titles-infos">Informações de contato.</div>
+                <div class="lines-infos"><i class="fa-solid fa-phone-volume"></i> Fone: <?php echo $cfg->fone; ?></div>
+                <div class="lines-infos"><i class="fa-brands fa-whatsapp"></i> WhatsApp: <?php echo $cfg->celular; ?></div>
+                <div class="lines-infos"><i class="fa-regular fa-envelope"></i> E-mail: <?php echo $cfg->email; ?></div>
+            </div>
+        </div>
+    </div>
 </div>

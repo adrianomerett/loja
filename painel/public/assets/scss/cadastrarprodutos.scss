@@ -266,3 +266,16 @@
     background-color: rgb(48, 167, 111);
     border-radius: 2px;
 }
+
+// Mobile
+@media (max-width: 560px) {
+    .modal-cates{
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .container-cates{
+        width: 100%;
+        min-width: 0px;
+    }
+}

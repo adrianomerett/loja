@@ -255,7 +255,6 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: aqua;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -953,6 +952,24 @@ body {
   }
   .container-rodape {
     padding-left: 0px;
+  }
+}
+@media (max-width: 560px) {
+  .alert-modal {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .alert-modal-content {
+    width: 100%;
+    min-width: 0px;
+  }
+  .modal-confirm {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .container-confirm {
+    width: 100%;
+    min-width: 0px;
   }
 }
 @media (min-width: 576px) {

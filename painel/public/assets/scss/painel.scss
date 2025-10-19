@@ -990,6 +990,30 @@ body {
     }
 }
 
+@media (max-width: 560px) {
+
+    // MODAL ALERT
+    .alert-modal {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .alert-modal-content {
+        width: 100%;
+        min-width: 0px;
+    }
+
+    .modal-confirm {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .container-confirm {
+        width: 100%;
+        min-width: 0px;
+    }
+}
+
 // ROWS COLUMNS
 @media(min-width: 576px) {
     .rows {

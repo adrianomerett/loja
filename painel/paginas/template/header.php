@@ -24,7 +24,7 @@ foreach ($assets['css'][$pagina][$acao] as $key => $value) {
 }
 }
 ?>
-    <title>Teste</title>
+    <title>Painel Administrativo - <?php echo $cfg->nameloja; ?></title>
 </head>
 
 <body>

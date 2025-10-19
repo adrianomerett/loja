@@ -21,5 +21,5 @@ defined('DATABASE') || define('DATABASE', ROOT_CORE . 'database' . DS . 'databas
 require_once MODELS . 'config.php';
 $cfg = Config::getConfig();
 defined('VERSION') || define('VERSION', md5(uniqid(rand(), true)));
-defined('TIME_SESSION') || define('TIME_SESSION', 1800);
+defined('TIME_SESSION') || define('TIME_SESSION', 11800);
 defined('KEY_SESSION') || define('KEY_SESSION', 'A9dE3xLmT2pQ0VwZb4rY7uJk5sC1gHnF8mR2tQ9lB3dN6xP0');

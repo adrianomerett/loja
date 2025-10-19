@@ -34,7 +34,7 @@ body {
   font-family: "Roboto";
   font-weight: bold;
   padding: 12px 8px;
-  background-color: #b20a01;
+  background-color: #192641;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   color: #DDDDDD;
@@ -209,7 +209,7 @@ body {
   align-items: center;
   width: 100%;
   padding: 16px 8px;
-  background-color: #b20a01;
+  background-color: #192641;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
@@ -269,7 +269,7 @@ body {
   height: 40px;
   border-radius: 50%;
   border: 3px solid;
-  border-color: #b20a01 transparent;
+  border-color: #192641 transparent;
   background-color: #FFFFFF;
 }
 

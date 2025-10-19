@@ -259,4 +259,15 @@
   border-radius: 2px;
 }
 
+@media (max-width: 560px) {
+  .modal-cates {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .container-cates {
+    width: 100%;
+    min-width: 0px;
+  }
+}
+
 /*# sourceMappingURL=cadastrarprodutos.css.map */

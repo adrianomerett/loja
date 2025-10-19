@@ -25,7 +25,7 @@ foreach ($assets['css'][$pagina][$acao] as $key => $value) {
 }
 }
 ?>
-    <title>Teste</title>
+    <title><?php echo $cfg->nameloja; ?> - <?php echo ucfirst($pagina); ?></title>
 </head>
     <body id="my-body">
         <?php require_once ROOT_PAGES . "template/topo.php"; ?>

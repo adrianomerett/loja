@@ -8,4 +8,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         let id = a.id;
         document.getElementById('img-extra').src = URL_PAINEL + '/public/upload/produtos/extra/' + id;;
     });
+
+    // Mostrar modal de compra
+    document.getElementById('btn-add-to-cart').addEventListener('click', async function (e) {
+        e.preventDefault();
+        showModalInfoCompra();
+    });
 });
+
+// Show Modal Info Compra
+function showModalInfoCompra() {
+    document.getElementById('modal-compra').classList.toggle('show-modal-compra');
+}
