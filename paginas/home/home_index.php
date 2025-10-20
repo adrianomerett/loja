@@ -6,7 +6,7 @@ $mp = new Produtos();
 <div class="container-main">
     <!-- Produtos Recentes -->
     <div class="container-recentes">
-        <div class="title-recentes">Produtos recém chegados</div>
+        <div class="title-recentes">Produtos recém-chegados</div>
         <div class="bory-recents">
             <div class="rows rows-product">
                 <?php
