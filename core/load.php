@@ -16,23 +16,23 @@ try {
     $server_url = str_replace(BASE_URL, '', $url_completa);
     $parts = explode("/", $server_url);
     $page = $parts[1];
-    if(count($parts) >= 3){
+    if (count($parts) >= 3) {
         $acao = $parts[2];
     }
     if (count($parts) >= 4) {
         $itemid = $parts[3];
     }
-    if(count($parts) >= 5){
+    if (count($parts) >= 5) {
         $idtwo = $parts[4];
     }
-    if(count($parts) >= 6){
+    if (count($parts) >= 6) {
         $idthree = $parts[5];
     }
     // api
     if (!empty($page) && $page == 'api') {
         $pagina = $parts[2];
         if (count($parts) >= 4) {
-            if(!empty($parts[3])){
+            if (!empty($parts[3])) {
                 $acao = $parts[3];
             }
         }
@@ -44,29 +44,34 @@ try {
             $pagina = 'home';
             $acao = 'index';
         } else {
-            if(!App::checkDirectoryPage($page)){
-                $pagina = '404';;
-            }else{
+            if (!App::checkDirectoryPage($page)) {
+                $pagina = '404';
+            } else {
                 $pagina = $page;
-                if(empty($acao)){
+                if (empty($acao)) {
                     $pagina = '404';
-                }else{
-                    if(!App::checkFilePage($page, $acao)){
+                } else {
+                    if($pagina == 'buscar'){
+                        $acao = 'produtos';
+                    }
+                    if (!App::checkFilePage($page, $acao)) {
                         $pagina = '404';
-                    }else{
-                        if($itemid){
-                            if(!is_numeric($itemid)){
-                                $pagina = '404';
+                    } else {
+                        if ($pagina != 'buscar') {
+                            if ($itemid) {
+                                if (!is_numeric($itemid)) {
+                                    $pagina = '404';
+                                }
                             }
-                        }
-                        if(!empty($idtwo) && $pagina != 'busca'){
-                            if(!is_numeric($idtwo)){
-                                $pagina = '404';
+                            if (!empty($idtwo) && $pagina != 'buscar') {
+                                if (!is_numeric($idtwo)) {
+                                    $pagina = '404';
+                                }
                             }
-                        }
-                        if(!empty($idthree) && $pagina != 'busca'){
-                            if(!is_numeric($idthree)){
-                                $pagina = '404';
+                            if (!empty($idthree) && $pagina != 'buscar') {
+                                if (!is_numeric($idthree)) {
+                                    $pagina = '404';
+                                }
                             }
                         }
                     }

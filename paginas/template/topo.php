@@ -12,10 +12,13 @@
         <div class="logo-mobile"><a href="<?php echo BASE_URL; ?>"><?php echo $cfg->nameloja; ?></a></div>
         <div class="buscas">
             <div class="container-cpbusca">
-                <input type="text" class="cpbusca" placeholder="Pesquisar produtos...">
+                <?php
+                $busca = empty($_GET['busca']) ? '' : $_GET['busca'];
+                ?>
+                <input type="text" class="cpbusca" id="cpbusca" value="<?php echo $busca; ?>" placeholder="Pesquisar produtos...">
             </div>
             <div class="container-btn-search">
-                <span class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</span>
+                <span class="btn-search" id="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</span>
             </div>
         </div>
     </div>

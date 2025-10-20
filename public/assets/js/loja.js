@@ -21,6 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("menuv").classList.toggle("show-menu");
         document.getElementById("close-menuv").classList.toggle("show-close-menuv");
     });
+
+    // Vai para a página de buscas com enter
+    document.getElementById("cpbusca").addEventListener("keyup", function (e) {
+        if (e.keyCode === 13) {
+            window.location.href = BASE_URL + "/buscar/produtos?busca=" + this.value;
+        }
+    });
+    
+    // Vai para a página de busca clicando no botão
+    document.getElementById("btn-search").addEventListener("click", function () {
+        window.location.href = BASE_URL + "/buscar/produtos?busca=" + document.getElementById("cpbusca").value;
+    });
 });
 
 // Resize Layout

@@ -26,5 +26,10 @@ $assets = array(
                 'detalhesprodutos'
             )
         ),
+        'buscar' => array(
+            'produtos' => array(
+                'buscarprodutos'
+            )
+        )
     ),
 );
