@@ -18,8 +18,6 @@ $img = getImgByIdProduct($da->produtoid);
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/categorias/listar/<?php echo $idtwo; ?>"><?php echo $da->namecategoria; ?></a></li>
                 <li class="breadcrumb-item itemraquo">&raquo;</li>
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/subcategorias/listar/<?php echo $idthree; ?>/<?php echo $idtwo; ?>"><?php echo $da->namesubcategoria; ?></a></li>
-                <li class="breadcrumb-item itemraquo">&raquo;</li>
-                <li class="breadcrumb-item active">Produto Detalhes</li>
             </ol>
         </nav>
     </div>
@@ -34,7 +32,7 @@ $img = getImgByIdProduct($da->produtoid);
                 $txtestoque = '<div class="txt-esgotado-detalhes">Produto sem estoque.</div>';
             }
             ?>
-            <div class="col col-md-12 col-lg-6 col-ct-img-detalhes<?php echo $classesgotado; ?>">
+            <div class="col col-sm-12 col-md-12 col-lg-6 col-ct-img-detalhes<?php echo $classesgotado; ?>">
                 <div class="ct-thambs" id="ct-thambs">
                     <?php
                     foreach ($img as $i) {
@@ -55,7 +53,7 @@ $img = getImgByIdProduct($da->produtoid);
                 ?>
                 <div class="ct-percent-desconto">-<?php echo $vpercent; ?>%</div>
             </div>
-            <div class="col col-lg-6 col-ct-pre-info">
+            <div class="col col-sm-12 col-md-12 col-lg-6 col-ct-pre-info">
                 <div class="title-product-detalhes">
                     <?php echo $da->nome; ?>
                 </div>

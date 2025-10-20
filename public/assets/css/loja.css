@@ -345,12 +345,13 @@ body {
   width: 100%;
   height: 40px;
   padding: 4px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: start;
   background-color: #ffffff;
   border-radius: 4px;
   margin-bottom: 8px;
+  overflow: hidden;
 }
 
 .breadcrumb {
@@ -438,9 +439,10 @@ body {
 }
 
 .img-produto img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
 }
 
@@ -771,6 +773,7 @@ body {
   }
   .container-access-painel {
     width: auto;
+    padding-left: 20px;
   }
   .cpbusca {
     width: 100%;
