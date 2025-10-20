@@ -1,7 +1,21 @@
 document.addEventListener("DOMContentLoaded", async function () {
-
     // Chama a função buscaProdutos
     await buscaProdutos();
+    // Paginação
+    document.getElementById('ct-pagination').addEventListener('click', async function (e) {
+        var a = e.target.closest('a[data-pagina]');
+        if (!a) return;
+        e.preventDefault();
+        var page = parseInt(a.dataset.pagina, 10);
+        if (isNaN(page)) return;
+        if (page === PAGINA_ATUAL) return;
+        PAGINA_ATUAL = page;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTo({
+            top: 0, behavior: 'smooth'
+        });
+        await buscaProdutos();
+    });
 });
 
 
