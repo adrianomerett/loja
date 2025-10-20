@@ -277,6 +277,7 @@ async function saveProduct() {
             infotec.innerHTML = '<p><br></p>';
             document.getElementById('informacao').classList.remove('is-valid');
             popularHtmlFotos();
+            filesfotos = {};
         }
     } catch (e) {
         showLoader();
