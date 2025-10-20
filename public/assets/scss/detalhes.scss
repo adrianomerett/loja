@@ -338,5 +338,6 @@
     .modal-content{
         width: 100%!important;
         min-width: 0px;
+        margin-top: calc(size.$height-topo + size.$height-menuh + 12px);
     }
 }
