@@ -12,9 +12,9 @@
     border-right: 1px solid colors.$border-cinza;
 }
 .ct-img-detalhes{
-    width: 500px;
-    height: 500px;
-    height: auto;
+    width: 80%;
+    max-width: 500px!important;
+    max-height: 500px!important;
     display: flex;
     align-items: center;
     justify-content: center;
