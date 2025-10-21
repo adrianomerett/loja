@@ -5,7 +5,12 @@ $assets = array(
             'detalhes' => array(
                 'detalhes'
             )
-        )
+            ),
+            'contato' => array(
+                'enviar' => array(
+                    'contato'
+                )
+            )
     ),
     'js' => array(
         'categorias' => array(

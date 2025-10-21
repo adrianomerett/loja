@@ -1,0 +1,41 @@
+.description-contato {
+  font-size: 14px;
+  font-weight: 600;
+  color: #404040;
+  padding: 0px;
+}
+
+.ct-retur-msg {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.msg {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.info {
+  background-color: #cff4fc;
+  border: 1px solid #b6effb;
+  color: #055160;
+}
+
+.forms label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #404040;
+}
+
+.forms .required {
+  color: red;
+  opacity: 0.9;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=contato.css.map */
