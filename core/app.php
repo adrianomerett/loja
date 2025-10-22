@@ -72,4 +72,14 @@ class App
         $slug = trim($slug, '-');
         return $slug;
     }
+
+    //Validar email
+    public static function validarEmail($email): bool
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

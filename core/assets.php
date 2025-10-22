@@ -35,6 +35,11 @@ $assets = array(
             'produtos' => array(
                 'buscarprodutos'
             )
-        )
+            ),
+            'contato' => array(
+                'enviar' => array(
+                    'contato'
+                )
+            )
     ),
 );

@@ -19,10 +19,28 @@
   border-radius: 2px;
 }
 
-.info {
+.alert-info {
   background-color: #cff4fc;
   border: 1px solid #b6effb;
   color: #055160;
+}
+
+.alert-send {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
 }
 
 .forms label {
@@ -42,8 +60,16 @@
   width: 100%;
   outline: none;
   border: 1px solid #b9b9b9;
-  padding: 6px 4px;
+  padding: 8px 4px;
   border-radius: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0e1627;
+}
+
+.forms input::placeholder {
+  color: #b9b9b9;
+  font-size: 13px;
 }
 
 .forms textarea {
@@ -53,6 +79,9 @@
   border: 1px solid #b9b9b9;
   padding: 6px 4px;
   display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0e1627;
 }
 
 .forms > input:focus, .forms > textarea:focus {
@@ -86,6 +115,16 @@
   color: #ffffff;
   text-shadow: 0px 0px 1px #ffffff;
   box-shadow: 0px 0px 3px #0e1627;
+}
+
+.is-invalid {
+  border: 1px solid #ff0000 !important;
+  box-shadow: 0 0 3px #ff0000 !important;
+}
+
+.is-valid {
+  border: 1px solid #349b34 !important;
+  box-shadow: 0 0 3px #349b34 !important;
 }
 
 /*# sourceMappingURL=contato.css.map */
