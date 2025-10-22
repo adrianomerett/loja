@@ -36,6 +36,56 @@
 .forms .required{
     color: red;
     opacity: 0.9;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
+}
+
+.forms input{
+    width: 100%;
+    outline: none;
+    border: 1px solid #b9b9b9;
+    padding: 6px 4px;
+    border-radius: 2px;
+}
+
+.forms textarea{
+    border-radius: 2px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #b9b9b9;
+    padding: 6px 4px;
+    display: block;
+}
+
+.forms > input:focus, .forms > textarea:focus{
+    border: 1px solid colors.$color-border-focus;
+    box-shadow: 0 0 5px colors.$color-shadow-focus;
+}
+
+.btn-send-msg{
+    float: left;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: colors.$color-media;
+    padding: 6px 12px;
+    color: colors.$color-font;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    user-select: none;
+}
+
+.btn-send-msg i{
+    margin-right: 4px;
+}
+
+.btn-send-msg:hover{
+    cursor: pointer;
+    background-color: colors.$color-app;
+    color: colors.$color-white;
+    text-shadow: 0px 0px 1px colors.$color-white;
+    box-shadow: 0px 0px 3px colors.$color-app;
 }

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     // Chama a função de listar categorias
     await listarProdutos();
-    // Paginação
+    // Paginação de resultados de produtos
     document.getElementById('ct-pagination').addEventListener('click', async function (e) {
         var a = e.target.closest('a[data-pagina]');
         if (!a) return;

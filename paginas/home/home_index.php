@@ -18,7 +18,7 @@ $mp = new Produtos();
             </div>
         </div>
     </div>
-    <!-- Veja mais -->
+    <!-- Produtos com desconto acima de 10% -->
     <div class="rows rows-veja-mais">
         <div class="col col-lg-6 col-veja-mais">
             <div class="container-veja-mais card-one">

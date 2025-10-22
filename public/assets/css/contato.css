@@ -34,8 +34,58 @@
 .forms .required {
   color: red;
   opacity: 0.9;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
+}
+
+.forms input {
+  width: 100%;
+  outline: none;
+  border: 1px solid #b9b9b9;
+  padding: 6px 4px;
+  border-radius: 2px;
+}
+
+.forms textarea {
+  border-radius: 2px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #b9b9b9;
+  padding: 6px 4px;
+  display: block;
+}
+
+.forms > input:focus, .forms > textarea:focus {
+  border: 1px solid #72a8e6;
+  box-shadow: 0 0 5px #5284bd;
+}
+
+.btn-send-msg {
+  float: left;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #172646;
+  padding: 6px 12px;
+  color: #e6eef8;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.btn-send-msg i {
+  margin-right: 4px;
+}
+
+.btn-send-msg:hover {
+  cursor: pointer;
+  background-color: #0e1627;
+  color: #ffffff;
+  text-shadow: 0px 0px 1px #ffffff;
+  box-shadow: 0px 0px 3px #0e1627;
 }
 
 /*# sourceMappingURL=contato.css.map */
