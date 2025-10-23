@@ -7,7 +7,7 @@ $categoriasmenu = $mcame->getCategorias();
 
 ?>
 <aside class="container-menuv" id="menuv">
-    <div class="title-menuv">Categorias</div>
+    <div class="title-menuv">Departamentos</div>
     <nav>
         <ul class="ul-cate">
             <?php

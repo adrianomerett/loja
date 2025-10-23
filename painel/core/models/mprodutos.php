@@ -61,7 +61,7 @@ class Mprodutos
             LEFT JOIN categorias AS c ON(C.categoriaid = p.idcategoria) 
             LEFT JOIN subcategorias AS s ON(S.subcategoriaid = p.idsubcategoria)
             INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid){$where} LIMIT {$por_pagina} OFFSET {$offset}";
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid){$where} ORDER BY p.produtoid DESC LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($query);
             if (!empty($search)) {
                 $stmt->bindValue(':nome', "%{$search}%", PDO::PARAM_STR);
@@ -161,7 +161,7 @@ class Mprodutos
         try {
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "SELECT SUM(valorcusto) AS valor FROM {$this->table}";
+            $query = "SELECT SUM(estoque * valorcusto) AS valor FROM {$this->table}";
             $stmt = $conn->prepare($query);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_OBJ);
@@ -177,7 +177,7 @@ class Mprodutos
         try {
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "SELECT SUM(valorvenda) AS valor FROM {$this->table}";
+            $query = "SELECT SUM(estoque * valoroferta) AS valor FROM {$this->table}";
             $stmt = $conn->prepare($query);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_OBJ);

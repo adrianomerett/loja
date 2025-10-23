@@ -117,7 +117,7 @@ async function listarProdutos() {
                     <td class="tdcenter"><i class="fa-regular fa-circle-check" id="code-${i.produtoid}"></i></td>
                     <td class="tdcenter tdcode">${String(i.produtoid).padStart(6, '0')}</td>
                     <td class="tdcenter tdimg">
-                        <img src="${BASE_URL}/public/upload/produtos/thamb/${i.img}" alt="Foto" class="pre-upload">
+                        <img src="${BASE_URL}/public/upload/produtos/thamb/${i.img}" alt="Foto">
                     </td>
                     <td class="tdleft">${i.nome}</td>
                     <td class="tdleft">${i.namecategoria}</td>

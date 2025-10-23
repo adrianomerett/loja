@@ -381,7 +381,7 @@ async function saveSubcategoria() {
 
 // Função para gerar id de foto
 function gerarId() {
-    const id = Math.random().toString(36).substring(2, 8);
+    const id = Math.random().toString(36).substring(2, 16);
     return id;
 }
 

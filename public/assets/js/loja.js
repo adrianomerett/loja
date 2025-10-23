@@ -158,7 +158,7 @@ function showLoader() {
 function htmlNotResults(msg) {
     return `
         <div class="col col-sm-12 col-md-12 col-lg-12 not-products">
-            <i class="fa-regular fa-face-sad-tear"></i> ${msg}
+            <p>${msg}</p>
         </div>
     `;
 }
