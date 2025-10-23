@@ -344,14 +344,16 @@ if ($acao == 'delete-product') {
     $retorno = array("status" => false, "msg" => "", "campo" => "");
     try {
         $id = intval(App::getPost('id'));
+        // Busca os dados da foto
+        $mimg = new Mimg();
+        $img = $mimg->getImages($id);
+        // Instanci a classe de produtos
         $mp = new Mprodutos();
+        // Exclui o produto
         $deleteproduct = $mp->deleteProduct($id);
         if (!is_integer($deleteproduct)) {
             throw new Exception($deleteproduct);
         }
-        // Busca os dados da foto
-        $mimg = new Mimg();
-        $img = $mimg->getImages($id);
         // loop para deletar as imagens
         foreach ($img as $key => $value) {
             $etxra = ROOT_PROCUCTS . "extra" . DS . $value->img;
@@ -362,7 +364,6 @@ if ($acao == 'delete-product') {
             if (file_exists($thamb)) {
                 unlink($thamb);
             }
-            $deleteimg = $mimg->deleteImage($value->imgid);
         }
         $retorno['status'] = true;
         $retorno['msg'] = "O produto excluído com sucesso!";
