@@ -556,6 +556,23 @@ body {
   border-radius: 4px;
 }
 
+.sobre-empresa h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #404040;
+  padding-left: 4px;
+}
+
+.sobre-empresa p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #818181;
+  padding: 8px 4px;
+  text-align: justify;
+  text-indent: 1.5em;
+}
+
 .ct-pagination {
   padding: 0px 0px 8px 0px;
   margin-top: -8px;
