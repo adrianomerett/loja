@@ -936,6 +936,29 @@ body {
     text-decoration: line-through;
 }
 
+// Contatos
+.cpending {
+    color: color.$color-warning;
+}
+
+.cpending i {
+    color: color.$color-warning;
+    font-size: 14px;
+}
+
+.cvisualizado{
+    color: color.$btn-green;
+}
+
+.cvisualizado i {
+    color: color.$btn-green;
+    font-size: 14px;
+}
+
+.elements-contato{
+    display: flex;
+}
+
 // MOBILE
 @media (max-width: size.$sizemobile) {
 

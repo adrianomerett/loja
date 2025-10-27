@@ -66,6 +66,11 @@ $assets = array(
             'listar' => array(
                 'listarsubcategorias'
             )
+        ),
+        'contatos' => array(
+            'listar' => array(
+                'contatos'
+            )
         )
     ),
 );

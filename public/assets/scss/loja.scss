@@ -710,6 +710,21 @@ body {
     animation: rotation 1.5s linear infinite;
 }
 
+// 404
+.ct-box-404{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0px;
+}
+
+.ct-box-404 p{
+    font-size: 18px;
+    font-weight: 600;
+    color: colors.$color-font-cinza;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);

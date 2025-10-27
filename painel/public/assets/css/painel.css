@@ -913,6 +913,28 @@ body {
   text-decoration: line-through;
 }
 
+.cpending {
+  color: #FD7E14;
+}
+
+.cpending i {
+  color: #FD7E14;
+  font-size: 14px;
+}
+
+.cvisualizado {
+  color: #157347;
+}
+
+.cvisualizado i {
+  color: #157347;
+  font-size: 14px;
+}
+
+.elements-contato {
+  display: flex;
+}
+
 @media (max-width: 992px) {
   .container-toto {
     padding: 4px 8px;
