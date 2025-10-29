@@ -24,3 +24,22 @@ if ($pagina == 'contatos' && $acao == 'get-contatos') {
         return App::setJson($retorno);
     }
 }
+
+// Delete contact
+if ($pagina == 'contatos' && $acao == 'delete-contact') {
+    $retorno = array('status' => false, 'msg' => '', 'dados' => array());
+    try {
+        $id = intval(App::getPost('id'));
+        $mco = new Mcontatos();
+        $delete = $mco->deleteContact($id);
+        if (!$delete) {
+            throw new Exception('Erro ao excluir o contato.');
+        }
+        $retorno['status'] = true;
+        $retorno['msg'] = 'Contato excluído com sucesso.';
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}

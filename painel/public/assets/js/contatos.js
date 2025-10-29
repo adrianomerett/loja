@@ -1,6 +1,6 @@
 // paginação
 var PAGINA_ATUAL = 1;
-var POR_PAGINA = 1;
+var POR_PAGINA = 10;
 var TOTAL_PAGINA = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -94,6 +94,40 @@ async function listarContatos() {
         document.getElementById('pagination').innerHTML = htmlpagination;
     } catch (e) {
         showLoaderList();
+        console.log(e);
+    }
+}
+
+// Delete product
+
+const deleteContact = function () {
+    try {
+        let contactid = getId();
+        if (contactid == false) {
+            showAlert("Selecione um contato para excluir.", "error");
+            return false;
+        }
+        let deletarContato = async () => {
+            try {
+                showLoader();
+                let req = await api.post('/contatos/delete-contact', { id: contactid });
+                showLoader();
+                let { status, msg } = req.data;
+                if (status === false) {
+                    showAlert(msg, "error");
+                    return false;
+                }
+                if (status === true) {
+                    showAlert("Contato excluído com sucesso.", "success");
+                    document.getElementById(`tr-${contactid}`).remove();
+                }
+            } catch (e) {
+                showLoader();
+                console.log(e);
+            }
+        }
+        showConfirm("Deseja realmente excluir o contato selecionado?", deletarContato);
+    } catch (e) {
         console.log(e);
     }
 }

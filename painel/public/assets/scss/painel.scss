@@ -957,6 +957,41 @@ body {
 
 .elements-contato{
     display: flex;
+    padding: 4px;
+}
+
+.first-element{
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Roboto";
+    color: color.$color-font-escura;
+    margin-right: 4px;
+}
+
+.last-element{
+    font-size: 13px;
+    font-family: "Roboto";
+    color: color.$color-gray-media;
+}
+
+.formlist fieldset{
+    padding: 4px 8px 8px 4px;
+    border: 1px solid color.$border-gray;
+}
+
+.formlist legend{
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Roboto";
+    color: color.$color-font-escura;
+    padding: 0px 4px;
+}
+
+.formlist p{
+    font-size: 14px;
+    font-family: "Roboto";
+    color: color.$color-font-escura;
+    padding: 0px 4px;
 }
 
 // MOBILE

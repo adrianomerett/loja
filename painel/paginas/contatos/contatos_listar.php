@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li>
-                <a href="#salvar" class="lnk-btns" onclick="deleteUser();"><i class="fa-solid fa-trash"></i> Excluir</a>
+                <a href="#salvar" class="lnk-btns" onclick="deleteContact();"><i class="fa-solid fa-trash"></i> Excluir</a>
             </li>
             <li>
                 <a href="#salvar" class="lnk-btns" id="refresh-result"><i class="fa-solid fa-arrows-rotate"></i> Atualizar</a>
