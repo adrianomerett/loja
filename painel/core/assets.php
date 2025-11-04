@@ -28,6 +28,11 @@ $assets = array(
             'listar' => array(
                 'listarsubcategorias'
             )
+        ),
+        'configuracoes' => array(
+            'editar' => array(
+                'config'
+            )
         )
     ),
     'js' => array(
