@@ -12,7 +12,7 @@ $mp = new Produtos();
                 <?php
                 $recentes = $mp->getProductsRecentes();
                 foreach ($recentes as $v) {
-                    echo getHtmlProducts($v);
+                    echo getHtmlProducts($v, $cfg->exibir_preco, $cfg->exibir_estoque);
                 }
                 ?>
             </div>
@@ -31,24 +31,28 @@ $mp = new Produtos();
                             $vdiff = $v->valorvenda - $v->valoroferta;
                             $vpercent = round(($vdiff / $v->valoroferta) * 100, 2);
                             $classesgotado = '';
-                            $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
-                            if ($v->estoque <= 0) {
-                                $classesgotado = ' esgotado';
-                                $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+                            $txtestoque = '';
+                            if ($cfg->exibir_estoque == 'S') {
+                                $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
+                                if ($v->estoque <= 0) {
+                                    $classesgotado = ' esgotado';
+                                    $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+                                }
                             }
-                            $txtprice = '
-                            <div class="ct-price">
-                                <div class="valor-venda">
-                                    <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
-                                </div>
-                                <div class="valor-oferta">
-                                    <span class="valor-off">Por:</span>
-                                    <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
-                                </div>
-                            </div>
-                    ';
-                            if ($v->exibirpreco == 'N') {
-                                $txtprice = '';
+                            $txtprice = '';
+                            if ($cfg->exibir_preco == 'S') {
+                                if ($v->exibirpreco == 'S') {
+                                    $txtprice = '
+                                    <div class="ct-price">
+                                        <div class="valor-venda">
+                                            <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
+                                        </div>
+                                        <div class="valor-oferta">
+                                            <span class="valor-off">Por:</span>
+                                            <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
+                                        </div>
+                                    </div>';
+                                }
                             }
                         ?>
                             <div class="col col-sm-6 col-md-4 col-lg-6 ct-box-product box-product-home">
@@ -83,25 +87,30 @@ $mp = new Produtos();
                             $vdiff = $v->valorvenda - $v->valoroferta;
                             $vpercent = round(($vdiff / $v->valoroferta) * 100, 2);
                             $classesgotado = '';
-                            $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
-                            if ($v->estoque <= 0) {
-                                $classesgotado = ' esgotado';
-                                $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+                            $txtestoque = '';
+                            if ($cfg->exibir_estoque == 'S') {
+                                $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
+                                if ($v->estoque <= 0) {
+                                    $classesgotado = ' esgotado';
+                                    $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+                                }
                             }
-                            $txtprice = '
-                            <div class="ct-price">
-                                <div class="valor-venda">
-                                    <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
-                                </div>
-                                <div class="valor-oferta">
-                                    <span class="valor-off">Por:</span>
-                                    <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
-                                </div>
-                            </div>
-                    ';
-                            if ($v->exibirpreco == 'N') {
-                                $txtprice = '';
+                            $txtprice = '';
+                            if ($cfg->exibir_preco == 'S') {
+                                if ($v->exibirpreco == 'S') {
+                                    $txtprice = '
+                                    <div class="ct-price">
+                                        <div class="valor-venda">
+                                            <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
+                                        </div>
+                                        <div class="valor-oferta">
+                                            <span class="valor-off">Por:</span>
+                                            <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
+                                        </div>
+                                    </div>';
+                                }
                             }
+
                         ?>
                             <div class="col col-sm-6 col-md-4 col-lg-6 ct-box-product box-product-home">
                                 <a href="<?php echo BASE_URL . "/produtos/detalhes/" . $v->produtoid . "/" . $v->idcategoria . "/" . $v->idsubcategoria . "/" . App::slugurl($v->nome); ?>" class="link-product<?php echo $classesgotado; ?>">

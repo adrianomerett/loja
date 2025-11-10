@@ -18,6 +18,7 @@ $img = getImgByIdProduct($da->produtoid);
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/categorias/listar/<?php echo $idtwo; ?>"><?php echo $da->namecategoria; ?></a></li>
                 <li class="breadcrumb-item itemraquo">&raquo;</li>
                 <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/subcategorias/listar/<?php echo $idthree; ?>/<?php echo $idtwo; ?>"><?php echo $da->namesubcategoria; ?></a></li>
+                <li class="breadcrumb-item active mobilehidden">&raquo; Detalhes de produto</li>
             </ol>
         </nav>
     </div>
@@ -25,11 +26,14 @@ $img = getImgByIdProduct($da->produtoid);
     <div class="container">
         <div class="rows rows-detalhes">
             <?php
+            $txtestoque = '';
             $classesgotado = '';
-            $txtestoque = '<div class="qtd-disponivel">Quantidade disponível: ' . $da->estoque . ' unidades.</div>';
-            if ($da->estoque <= 0) {
-                $classesgotado = ' esgotado';
-                $txtestoque = '<div class="txt-esgotado-detalhes">Produto sem estoque.</div>';
+            if ($cfg->exibir_estoque == 'S') {
+                $txtestoque = '<div class="qtd-disponivel">Quantidade disponível: ' . $da->estoque . ' unidades.</div>';
+                if ($da->estoque <= 0) {
+                    $classesgotado = ' esgotado';
+                    $txtestoque = '<div class="txt-esgotado-detalhes">Produto sem estoque.</div>';
+                }
             }
             ?>
             <div class="col col-sm-12 col-md-12 col-lg-6 col-ct-img-detalhes<?php echo $classesgotado; ?>">
@@ -58,7 +62,7 @@ $img = getImgByIdProduct($da->produtoid);
                     <?php echo $da->nome; ?>
                 </div>
                 <?php
-                if ($da->exibirpreco == 'S') {
+                if ($da->exibirpreco == 'S' && $cfg->exibir_preco == 'S') {
                 ?>
                     <div class="ct-price-detallhes">
                         <div class="valor-venda-detalhes">De R$ <?php echo number_format($da->valorvenda, 2, ',', '.'); ?></div>
@@ -101,7 +105,7 @@ $img = getImgByIdProduct($da->produtoid);
             <?php
             $produsctsrell = getProductsByCategory(intval($itemid), intval($idtwo));
             foreach ($produsctsrell as $v) {
-                echo getHtmlProducts($v);
+                echo getHtmlProducts($v, $cfg->exibir_preco, $cfg->exibir_estoque);
             }
             ?>
         </div>

@@ -304,6 +304,12 @@ body {
     text-shadow: 0px 0px 1px colors.$color-white;
 }
 
+.active-cate{
+    color: colors.$color-white!important;
+    opacity: 1!important;
+    text-shadow: 0px 0px 1px colors.$color-white!important;
+}
+
 .ul-cate>li {
     border-bottom: 1px solid rgba(255, 255, 255, .06);
 }
@@ -336,6 +342,14 @@ body {
     text-shadow: 0px 0px 1px colors.$color-white;
     background-color: colors.$color-clara;
     border-radius: 2px;
+}
+
+.active-subcate{
+    color: colors.$color-white!important;
+    opacity: 1!important;
+    text-shadow: 0px 0px 1px colors.$color-white!important;
+    background-color: colors.$color-clara!important;
+    border-radius: 2px!important;
 }
 
 
@@ -392,6 +406,7 @@ body {
     opacity: 1;
     text-shadow: 0px 0px 1px colors.$color-app;
 }
+
 
 // HOME
 
@@ -888,5 +903,9 @@ body {
     .ct-loader {
         width: 100%;
         margin-left: 0px;
+    }
+
+    .mobilehidden{
+        display: none;
     }
 }

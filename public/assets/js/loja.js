@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = BASE_URL + "/buscar/produtos?busca=" + this.value;
         }
     });
-    
+
     // Vai para a página de busca clicando no botão
     document.getElementById("btn-search").addEventListener("click", function () {
         window.location.href = BASE_URL + "/buscar/produtos?busca=" + document.getElementById("cpbusca").value;
@@ -66,10 +66,27 @@ function generateHtmlListProducts(i) {
         let valoroferta = Number(i.valoroferta).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         let valorvenda = Number(i.valorvenda).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         let classesgotado = '';
-        let txtestoque = `<div class="ct-estoque disponivel">Estoque disponível ${i.estoque} unidades.</div>`;
-        if (i.estoque <= 0) {
-            classesgotado = ' esgotado';
-            txtestoque = `<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>`;
+        let txtestoque = '';
+        if (EXIBIR_ESTOQUE == 'S') {
+            txtestoque = `<div class="ct-estoque disponivel">Estoque disponível ${i.estoque} unidades.</div>`;
+            if (i.estoque <= 0) {
+                classesgotado = ' esgotado';
+                txtestoque = `<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>`;
+            }
+        }
+        let txtprice = '';
+        if (EXIBIR_PRECO == 'S') {
+            if (i.exibirpreco == 'S') {
+                txtprice = `
+                    <div class="valor-venda">
+                        <span class="valor-on">De: ${valorvenda}</span>
+                    </div>
+                    <div class="valor-oferta">
+                        <span class="valor-off">Por:</span>
+                        <span class="price-off">${valoroferta}</span>
+                    </div>
+                `;
+            }
         }
         let html = `
                     <div class="col col-sm-6 col-md-4 col-lg-3 ct-box-product box-product-home">
@@ -79,13 +96,7 @@ function generateHtmlListProducts(i) {
                             </div>
                             <div class="name-product">${i.nome}</div>
                             <div class="ct-price">
-                                <div class="valor-venda">
-                                    <span class="valor-on">De: ${valorvenda}</span>
-                                </div>
-                                <div class="valor-oferta">
-                                    <span class="valor-off">Por:</span>
-                                    <span class="price-off">${valoroferta}</span>
-                                </div>
+                                ${txtprice}
                             </div>
                             <div class="ct-off">
                                 -${valorpercent}%

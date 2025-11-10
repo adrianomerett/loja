@@ -76,6 +76,11 @@ $assets = array(
             'listar' => array(
                 'contatos'
             )
+        ),
+        'configuracoes' => array(
+            'editar' => array(
+                'editarconfig'
+            )
         )
     ),
 );

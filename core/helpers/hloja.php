@@ -40,29 +40,34 @@ if (!function_exists('getImgByIdProduct')) {
 
 // Gerar html de prdutos 
 if (!function_exists('getHtmlProducts')) {
-    function getHtmlProducts($v)
+    function getHtmlProducts($v, $ep, $ee)
     {
         $vdiff = $v->valorvenda - $v->valoroferta;
         $vpercent = round(($vdiff / $v->valoroferta) * 100, 2);
+        $txtestoque = '';
         $classesgotado = '';
-        $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
-        if ($v->estoque <= 0) {
-            $classesgotado = ' esgotado';
-            $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+        if ($ee == 'S') {
+            $txtestoque = '<div class="ct-estoque disponivel">Estoque disponível ' . $v->estoque . ' unidades.</div>';
+            if ($v->estoque <= 0) {
+                $classesgotado = ' esgotado';
+                $txtestoque = '<div class="ct-estoque txt-esgotado">Produto sem estoque.</div>';
+            }
         }
-        $txtprice = '
-        <div class="ct-price">
-            <div class="valor-venda">
-                <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
-            </div>
-            <div class="valor-oferta">
-                <span class="valor-off">Por:</span>
-                <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
-            </div>
-        </div>
-        ';
-        if ($v->exibirpreco == 'N') {
-            $txtprice = '';
+        $txtprice = '';
+        if ($ep == 'S') {
+            if ($v->exibirpreco == 'S') {
+                $txtprice = '
+                <div class="ct-price">
+                    <div class="valor-venda">
+                        <span class="valor-on">De: RS ' . number_format($v->valorvenda, 2, ',', '.') . '</span>
+                    </div>
+                    <div class="valor-oferta">
+                        <span class="valor-off">Por:</span>
+                        <span class="price-off">RS ' . number_format($v->valoroferta, 2, ',', '.') . '</span>
+                    </div>
+                </div>
+                ';
+            }
         }
         $htmlproduct  = '
         <div class="col col-sm-6 col-md-4 col-lg-3 ct-box-product box-product-home">

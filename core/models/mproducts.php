@@ -9,12 +9,16 @@ class Produtos extends Database
     public function getProductsRecentes()
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
             i.img FROM  {$this->table} AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' ORDER BY p.produtoid DESC LIMIT 12";
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' {$whereestoque} ORDER BY p.produtoid DESC LIMIT 12";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -27,12 +31,16 @@ class Produtos extends Database
     public function getProductsOffDescont()
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
             i.img FROM  {$this->table} AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' 
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' {$whereestoque} 
             AND ((p.valorvenda - p.valoroferta) / p.valorvenda) * 100 >= 9.09 ORDER BY p.produtoid DESC LIMIT 8";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -46,12 +54,16 @@ class Produtos extends Database
     public function getProductYouLike()
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
             i.img FROM  {$this->table} AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' ORDER BY p.produtoid ASC LIMIT 8";
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' {$whereestoque} ORDER BY p.produtoid ASC LIMIT 8";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -64,12 +76,16 @@ class Produtos extends Database
     public function getAllProducts($por_pagina, $offset)
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
             i.img FROM  {$this->table} AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' ORDER BY p.produtoid ASC LIMIT {$por_pagina} OFFSET {$offset}";
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' {$whereestoque} ORDER BY p.produtoid ASC LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -82,9 +98,13 @@ class Produtos extends Database
     public function countProductsAll()
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND estoque > 0';
+            }
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'A'";
+            $query = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'A' {$whereestoque}";
             $stmt = $conn->prepare($query);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ)->total;
@@ -117,9 +137,13 @@ class Produtos extends Database
     }
 
     // Pega os produtos relacionados a uma categoria
-    public function getProductsRellByCategory($idproduct,$idcategoria, $por_pagina, $offset)
+    public function getProductsRellByCategory($idproduct, $idcategoria, $por_pagina, $offset)
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
@@ -127,7 +151,7 @@ class Produtos extends Database
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
             WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) 
             AND p.idcategoria = :idcategoria AND p.produtoid != :produtoid 
-            AND p.status = 'A' ORDER BY p.produtoid DESC LIMIT {$por_pagina} OFFSET {$offset}";
+            AND p.status = 'A' {$whereestoque} ORDER BY p.produtoid DESC LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':produtoid', $idproduct);
             $stmt->bindParam(':idcategoria', $idcategoria);
@@ -139,31 +163,40 @@ class Produtos extends Database
     }
 
     // Contar produtos pela busca 
-    public function countProductsSearch($busca){
+    public function countProductsSearch($busca)
+    {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND estoque > 0';
+            }
             $like = '%' . $busca . '%';
             $conn = $this->getConnection();
-            $sql = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'A' AND nome LIKE :nome";
+            $sql = "SELECT COUNT(*) AS total FROM {$this->table} WHERE status = 'A' {$whereestoque} AND nome LIKE :nome";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':nome', $like);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ)->total;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
 
     // Pega os produtos pela busca 
-     public function getProductsBySearch($busca, $por_pagina, $offset)
+    public function getProductsBySearch($busca, $por_pagina, $offset)
     {
         try {
+            $whereestoque = '';
+            if ($this->epse == 'N') {
+                $whereestoque = ' AND p.estoque > 0';
+            }
             $like = '%' . $busca . '%';
             $conn = $this->getConnection();
             $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
             p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
             i.img FROM  {$this->table} AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
             ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
-            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' 
+            WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid) AND p.status = 'A' {$whereestoque} 
             AND p.nome LIKE :nome ORDER BY p.produtoid ASC LIMIT {$por_pagina} OFFSET {$offset}";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':nome', $like);

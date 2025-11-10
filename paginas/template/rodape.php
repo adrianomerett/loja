@@ -49,6 +49,8 @@
     const URL_API = "<?php echo URL_API; ?>";
     const ITEM_ID = "<?php echo $itemid; ?>";
     const URL_PAINEL = "<?php echo URL_PAINEL; ?>";
+    const EXIBIR_PRECO = "<?php echo $cfg->exibir_preco; ?>";
+    const EXIBIR_ESTOQUE = "<?php echo $cfg->exibir_estoque; ?>";
     // paginação
     var PAGINA_ATUAL = 1;
     var POR_PAGINA = 12;
