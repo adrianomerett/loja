@@ -9,6 +9,9 @@ if ($pagina == 'configuracoes' && $acao == 'update-config') {
         $dados['id'] = 1;
         $mco = new Config();
         $update = $mco->updateConfig($dados);
+        if(!is_bool($update)){
+            throw new Exception($update);
+        }
         if (!$update) {
             throw new Exception('Erro ao salvar as configurações.');
         }

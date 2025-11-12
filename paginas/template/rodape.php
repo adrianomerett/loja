@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="rows">
-        <div class="col col-sm-12 col-md-12 col-lg-12 byversion"><span>&copy; <?php echo $cfg->nameloja; ?> -  V 1.0.0</span></div>
+        <div class="col col-sm-12 col-md-12 col-lg-12 byversion"><span>&copy; <?php echo $cfg->nameloja; ?> -  V <?php echo VERSION; ?></span></div>
     </div>
 </footer>
 <!-- Close Menu Vertical -->

@@ -10,10 +10,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     // Mostrar modal de compra
-    document.getElementById('btn-add-to-cart').addEventListener('click', async function (e) {
-        e.preventDefault();
-        showModalInfoCompra();
-    });
+    let elementbuttoaddcart = document.getElementById('btn-add-to-cart');
+    if (elementbuttoaddcart) {
+        document.getElementById('btn-add-to-cart').addEventListener('click', async function (e) {
+            e.preventDefault();
+            showModalInfoCompra();
+        });
+    }
 });
 
 // Show Modal Info Compra

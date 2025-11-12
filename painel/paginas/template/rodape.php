@@ -1,5 +1,5 @@
     <div class="container-rodape">
-        <span class="copyright"> &copy; <?php echo $cfg->nameloja; ?> - Versão 1.0.0</span>
+        <span class="copyright"> &copy; <?php echo $cfg->nameloja; ?> - Versão <?php echo VERSION; ?></span>
     </div>
     <!-- Modal fechar menu -->
     <div class="" id="active-close-menu"></div>
@@ -36,6 +36,7 @@
     <script type="text/javascript">
         const BASE_URL = "<?php echo BASE_URL; ?>";
         const URL_API = "<?php echo URL_API; ?>";
+        const NAME_USER = "<?php echo $_SESSION['name']; ?>";
     </script>
     <script src="<?php echo BASE_URL . "/public/assets/js/axios.min.js" ?>"></script>
     <script src="<?php echo BASE_URL . "/public/assets/js/painel.js?version=" . VERSION; ?>"></script>

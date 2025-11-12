@@ -19,4 +19,4 @@ defined('HELPERS') || define('HELPERS', ROOT_CORE . "helpers" . DS);
 // Carrega  a classe de configuração
 require_once MODELS . 'mconfig.php';
 $cfg = Config::getConfig();
-defined('VERSION') || define('VERSION', md5(uniqid(rand(), true)));
+defined('VERSION') || define('VERSION', $cfg->version);

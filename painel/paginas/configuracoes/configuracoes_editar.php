@@ -92,7 +92,7 @@
             <fieldset>
                 <legend>Configurações de exibições de produtos</legend>
                 <div class="rows">
-                    <div class="col col-sm-12 col-md-6 col-lg-3 forms">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 forms">
                         <label for="exibir_preco" class="label-cadastros">Exibir preços de produtos:</label>
                         <select name="exibir_preco" id="exibir_preco">
                             <?php
@@ -106,7 +106,7 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col col-sm-12 col-md-6 col-lg-3 forms">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 forms">
                         <label for="exibir_estoque" class="label-cadastros">Exibir quantidade em estoque:</label>
                         <select name="exibir_estoque" id="exibir_estoque">
                             <?php
@@ -120,25 +120,11 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col col-sm-12 col-md-6 col-lg-3 forms">
+                    <div class="col col-sm-12 col-md-6 col-lg-4 forms">
                         <label for="exibir_produto_sem_estoque" class="label-cadastros">Exibir produto sem estoque:</label>
                         <select name="exibir_produto_sem_estoque" id="exibir_produto_sem_estoque">
                             <?php
                             if ($cfg->exibir_produto_sem_estoque == 'S') {
-                                echo '<option value="S" selected>Sim</option>';
-                                echo '<option value="N">Não</option>';
-                            } else {
-                                echo '<option value="N" selected>Não</option>';
-                                echo '<option value="S">Sim</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col col-sm-12 col-md-6 col-lg-3 forms">
-                        <label for="exibir_compartilhar" class="label-cadastros">Permitir compartilhar produtos:</label>
-                        <select name="exibir_compartilhar" id="exibir_compartilhar">
-                            <?php
-                            if ($cfg->exibir_compartilhar == 'S') {
                                 echo '<option value="S" selected>Sim</option>';
                                 echo '<option value="N">Não</option>';
                             } else {

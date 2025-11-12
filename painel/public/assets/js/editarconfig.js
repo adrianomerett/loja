@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let elexibir_preco = document.getElementById('exibir_preco');
         let elexibir_estoque = document.getElementById('exibir_estoque');
         let elexibir_produto_sem_estoque = document.getElementById('exibir_produto_sem_estoque');
-        let elexibir_compartilhar = document.getElementById('exibir_compartilhar');
 
         // FAZ A VALIDAÇÃO
         // Nome da loja
@@ -140,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
             exibir_estoque: elexibir_estoque.value,
             exibir_preco: elexibir_preco.value,
             exibir_produto_sem_estoque: elexibir_produto_sem_estoque.value,
-            exibir_compartilhar: elexibir_compartilhar.value
         }
         try {
             showLoader();

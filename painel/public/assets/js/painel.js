@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         i.classList.add('active-father');
                     }
-                }else{
+                } else {
                     i.classList.remove('active-father');
                 }
             }
@@ -287,6 +287,31 @@ function createPagination(pagina_atual, total_pagina) {
         }
         html += '</ul>';
         return html;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+const logout = function () {
+    try {
+        let logouUser = async () => {
+            try {
+                showLoader();
+                let req = await api.post('/usuarios/logoutuser/');
+                showLoader();
+                let { status, msg } = req.data;
+                if (status === false) {
+                    showAlert(msg, "error");
+                    return false;
+                }
+                if (status === true) {
+                    window.location.href = `${BASE_URL}/login/`;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        showConfirm(`Olá ${NAME_USER}, deseja realmente encerrar sua sessão?`, logouUser);
     } catch (e) {
         console.log(e);
     }

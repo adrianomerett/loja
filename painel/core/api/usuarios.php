@@ -135,3 +135,18 @@ if ($acao == 'delete-user') {
         return App::setJson($retorno);
     }
 }
+
+// Logout do usuário
+if ($pagina == 'usuarios' && $acao == 'logoutuser') {
+    $retorno = array('status' => false, 'msg' => '');
+    try {
+        if (App::checkUserLogged()) {
+            session_destroy();
+        }
+        $retorno['status'] = true;
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}

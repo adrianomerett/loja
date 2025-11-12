@@ -8,7 +8,7 @@
         <div class="name-usuario-painel">Usuário: <?php echo App::getSession('name'); ?> <?php echo App::getSession('lastname'); ?></div>
     </div>
     <div class="icons-painel">
-        <div class="ct-logout">
+        <div class="ct-logout" onclick="logout();">
             <div class="iconlogout"><i class="fa-solid fa-right-from-bracket"></i></div>
             <div class="txt-logout">Sair</div>
         </div>
