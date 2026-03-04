@@ -1,10 +1,12 @@
 <?php
 require_once MODELS . 'mcategorias.php';
-$mca = new Categorias();
+require_once MODELS . 'msubcategorias.php';
 
+// Listar produtos por categorias 
 if ($pagina == 'categorias' && $acao == 'listar') {
     $retorno = array("status" => false, "msg" => "", "dados" => array());
     try {
+        $mca = new Categorias();
         $categoriaid = intval(App::getGet('categoriaid'));
         // Paginação
         $pagina_atal = intval(App::getGet('pagina_atual'));
@@ -18,6 +20,31 @@ if ($pagina == 'categorias' && $acao == 'listar') {
         $retorno['dados'] = $dados;
         $retorno['status'] = true;
         return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
+
+// Buscar as categorias e suas subcategorias para o App
+if ($pagina == 'categorias' && $acao == 'getcategorias') {
+    $retorno = array("status" => false, "msg" => "", "dados" => array());
+    try {
+        $mca = new Categorias();
+        $msca = new SubCategorias();
+        $getcate = $mca->getCategorias();
+        $categorias = array();
+        foreach ($getcate as $keyc => $valuec) {
+            $subcategorias = $msca->getSubcategoriasByIdCategoria($valuec->categoriaid);
+            $categorias[$valuec->categoriaid]['id'] = array(
+                'categoriaid' => $valuec->categoriaid,
+                'namecategoria' => $valuec->namecategoria,
+                'subcategorias' => $subcategorias
+            );
+        }
+        $retorno['status'] = true;
+        $retorno['dados'] = $categorias;
+        return  App::setJson($retorno);
     } catch (Exception $e) {
         $retorno['msg'] = $e->getMessage();
         return App::setJson($retorno);
