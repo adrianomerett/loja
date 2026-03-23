@@ -42,6 +42,17 @@ class App
         }
     }
 
+    // Pega um post json 
+    public static function getPostJson($key)
+    {
+        $dados = json_decode(file_get_contents('php://input'), true);
+        if (isset($dados[$key])) {
+            return $dados[$key];
+        } else {
+            return null;
+        }
+    }
+
     // Pega um get
     public static function getGet($key)
     {
