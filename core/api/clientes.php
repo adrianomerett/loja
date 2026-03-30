@@ -51,3 +51,22 @@ if ($pagina == 'clientes' && $acao == 'cadastrar') {
         return App::setJson($retorno);
     }
 }
+
+// Editar login 
+if ($pagina == 'clientes' && $acao == 'login') {
+    $retorno = array("status" => false, "msg" => "", "clienteid" => 0);
+    try {
+        $mcli = new Clientes();
+        $dados = App::getPostJson('dados');
+        $email = $dados['email'];
+        $senha = $dados['senha'];
+        if (!App::validarEmail($email)) {
+            throw new Exception('E-mail inválido');
+        }
+        
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
