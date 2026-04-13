@@ -54,16 +54,29 @@ if ($pagina == 'clientes' && $acao == 'cadastrar') {
 
 // Editar login 
 if ($pagina == 'clientes' && $acao == 'login') {
-    $retorno = array("status" => false, "msg" => "", "clienteid" => 0);
+    $retorno = array("status" => false, "msg" => "", "data" => array());
     try {
         $mcli = new Clientes();
         $dados = App::getPostJson('dados');
         $email = $dados['email'];
         $senha = $dados['senha'];
-        if (!App::validarEmail($email)) {
+        if (!App::validarEmail($email) || empty($email)) {
             throw new Exception('E-mail inválido');
         }
-        
+        $checkemail = $mcli->checkCliente($email);
+        $passworddb = $mcli->getPassword($email);
+        if (empty($senha)) {
+            throw new Exception('Por favor, informe sua senha!');
+        }
+        if (is_null($checkemail) || $checkemail === false || is_null($passworddb) || $passworddb === false) {
+            throw new Exception('E-mail ou senha inválidos');
+        }
+        // Verificar a senha do cliente
+        if (!password_verify($senha, $passworddb['password'])) {
+            throw new Exception('E-mail ou senha inválidos');
+        }
+        $retorno['data'] = $mcli->getDataClinet($email)[0];
+        $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
         $retorno['msg'] = $e->getMessage();

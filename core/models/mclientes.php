@@ -45,12 +45,59 @@ class Clientes extends Database
     {
         try {
             $conn = $this->getConnection();
-            $sql = "SELECT COUNT(*) AS count FROM {$this->table} WHERE email = :email";
+            $sql = "SELECT email FROM {$this->table} WHERE email = :email";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
             $result = $stmt->fetch();
-            return $result['count'];
+            return $result;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    // Pegar a senha do cliente
+    public function getPassword($email)
+    {
+        try {
+            $conn = $this->getConnection();
+            $sql = "SELECT password FROM {$this->table} WHERE email = :email";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar dados do cliente pelo email
+    public function getDataClinet($email)
+    {
+        try {
+            $conn = $this->getConnection();
+            $sql = "SELECT clienteid, nome, email, status FROM {$this->table} WHERE email = :email";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Pegar email e senha do cliente para login
+    public function getEmailSenha($email)
+    {
+        try {
+            $conn = $this->getConnection();
+            $sql = "SELECT email, password FROM {$this->table} WHERE email = :email";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
+            return $result;
         } catch (Exception $e) {
             return $e->getMessage();
         }

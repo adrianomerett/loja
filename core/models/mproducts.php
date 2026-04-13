@@ -4,6 +4,7 @@ require_once DATABASE;
 class Produtos extends Database
 {
     public $table = 'produtos';
+    public $tablefovoritos = 'favoritos';
 
     // Buscar produtos recente pagina inicial
     public function getProductsRecentes()
@@ -203,6 +204,26 @@ class Produtos extends Database
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Buscar produtos favoritos
+    public function getFavoritos($idcliente){
+        try{
+            $conn = $this->getConnection();
+            $sql = "SELECT p.produtoid, p.nome, p.idcategoria, p.idsubcategoria, p.estoque, p.valorvenda, p.valoroferta, 
+                    p.exibirpreco, p.status, c.categoriaid, c.namecategoria, s.subcategoriaid, s.namesubcategoria, i.imgid, i.idproduto, 
+                    i.img, f.clientid, f.productid FROM produtos AS p LEFT JOIN categorias AS c ON(c.categoriaid = p.idcategoria) LEFT JOIN subcategorias AS s 
+                    ON(s.subcategoriaid = p.idsubcategoria) INNER JOIN img AS i ON (i.idproduto = p.produtoid) 
+                    INNER JOIN favoritos AS f ON (f.productid = p.produtoid)
+                    WHERE i.imgid = (SELECT MIN(i2.imgid) FROM img AS i2 WHERE i2.idproduto = p.produtoid)
+                    AND f.clientid = :clientid ORDER BY p.produtoid DESC";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':clientid', $idcliente);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $e){
             return $e->getMessage();
         }
     }

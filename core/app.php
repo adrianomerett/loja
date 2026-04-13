@@ -1,4 +1,6 @@
 <?php
+require_once MODELS . 'mclientes.php';
+
 class App
 {
     // Verifica se tem a pasta da pagina
@@ -90,6 +92,33 @@ class App
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    // Verificar se usuário está logado
+    public static function checkLogin($email, $senha): bool
+    {
+        try {
+            if (empty($email) || empty($senha)) {
+                return false;
+            }
+            if (!self::validarEmail($email)) {
+                return false;
+            }
+            $mc = new Clientes();
+            $dados = $mc->getEmailSenha($email);
+            if (!$dados) {
+                return false;
+            }
+            if (trim($email) !== trim($dados->email)) {
+                return false;
+            }
+            if (!password_verify($senha, $dados->password)) {
+                return false;
+            }
+            return true;
+        } catch (Exception $e) {
             return false;
         }
     }

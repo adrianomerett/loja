@@ -1,16 +1,19 @@
 <?php
 require_once MODELS . 'mproducts.php';
 require_once MODELS . 'mimg.php';
+require_once MODELS . 'mfavoritos.php';
+
 $mp = new Produtos();
 
 // Listar todos os produtos
 if ($pagina == 'produtos' && $acao == 'listar') {
-    $retorno = array("status" => false, "msg" => "", "dados" => array());
+    $retorno = array("status" => false, "msg" => "", "dados" => array(), "favoritos" => array());
     try {
         // Paginação
         $pagina_atual = intval(App::getGet('pagina_atual'));
         $pagina_atual = $pagina_atual < 1 ? 1 : $pagina_atual;
         $por_pagina = intval(App::getGet('por_pagina'));
+        $clienteid = intval(App::getGet('clienteid'));
         $total = $mp->countProductsAll();
         $offset = ($pagina_atual - 1) * $por_pagina;
         $total_paginas = ceil($total / $por_pagina);
@@ -18,6 +21,10 @@ if ($pagina == 'produtos' && $acao == 'listar') {
         $dados = $mp->getAllProducts($por_pagina, $offset);
         $retorno['paginacao'] = array('pagina_atual' => $pagina_atual, 'total_paginas' => $total_paginas);
         $retorno['dados'] = $dados;
+        // buscar os favoritos
+        $mf = new Favoritos();
+        $favoritos = $mf->getFavoritosByClient($clienteid);
+        $retorno['favoritos'] = $favoritos;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
@@ -58,19 +65,48 @@ if ($pagina == 'produtos' && $acao == 'detalhes') {
         "msg" => "",
         "dados" => array(),
         "rel" => array(),
-        "images" => array()
+        "images" => array(),
+        "dafavoritos" => array()
     );
     try {
         $productid = intval(App::getGet('productid'));
         $categoriaid = intval(App::getGet('categoriaid'));
+        $clienteid = intval(App::getGet('clienteid'));
         $mi = new Imagens();
-        $mp = new Produtos();
         $dados = $mp->getProductById($productid);
         $images = $mi->getImgByIdProduct($productid);
         $relacionados = $mp->getProductsRellByCategory($productid, $categoriaid, 12, 0);
         $retorno['dados'] = $dados;
         $retorno['images'] = $images;
         $retorno['rel'] = $relacionados;
+        // buscar os favoritos
+        $mf = new Favoritos();
+        $favoritos = $mf->getFavoritosByClient($clienteid);
+        $retorno['dafavoritos'] = $favoritos;
+        $retorno['status'] = true;
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
+
+// Buscar produtos favoritos
+if ($pagina == 'produtos' && $acao == 'favoritos') {
+    $retorno = array("status" => false, "msg" => "", "dados" => array(), "dafavoritos" => array());
+    try {
+        $clientid = intval(App::getGet('clientid'));
+        $email = App::getGet('email');
+        $senha = App::getGet('senha');
+        if (!App::checkLogin($email, $senha)) {
+            throw new Exception('Acesso não autorizado');
+        }
+        $favoritos = $mp->getFavoritos($clientid);
+        $retorno['dados'] = $favoritos;
+        // buscar os favoritos
+        $mf = new Favoritos();
+        $dafavoritos = $mf->getFavoritosByClient($clientid);
+        $retorno['dafavoritos'] = $dafavoritos;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
