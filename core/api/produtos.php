@@ -114,3 +114,18 @@ if ($pagina == 'produtos' && $acao == 'favoritos') {
         return App::setJson($retorno);
     }
 }
+
+
+// Pegar os prdutos recem chegados
+if ($pagina == 'produtos' && $acao == 'recentes') {
+    $retorno = array("status" => false, "msg" => "", "news" => array());
+    try {
+        $dados = $mp->getProductsRecentes(12);
+        $retorno['news'] = $dados;
+        $retorno['status'] = true;
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}
