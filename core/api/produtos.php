@@ -118,10 +118,17 @@ if ($pagina == 'produtos' && $acao == 'favoritos') {
 
 // Pegar os prdutos recem chegados
 if ($pagina == 'produtos' && $acao == 'recentes') {
-    $retorno = array("status" => false, "msg" => "", "news" => array());
+    $retorno = array(
+        "status" => false,
+        "msg" => "",
+        "news" => array(),
+        "desconto" => array()
+    );
     try {
         $dados = $mp->getProductsRecentes(12);
+        $desconto = $mp->getProductsOffDescont();
         $retorno['news'] = $dados;
+        $retorno['desconto'] = $desconto;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
