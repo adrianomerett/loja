@@ -2,6 +2,7 @@
 require_once MODELS . 'mproducts.php';
 require_once MODELS . 'mimg.php';
 require_once MODELS . 'mfavoritos.php';
+require_once MODELS . 'mconfig.php';
 
 $mp = new Produtos();
 
@@ -122,13 +123,17 @@ if ($pagina == 'produtos' && $acao == 'recentes') {
         "status" => false,
         "msg" => "",
         "news" => array(),
-        "desconto" => array()
+        "desconto" => array(),
+        "config" => array()
     );
     try {
+        $mcfg = new Config();
         $dados = $mp->getProductsRecentes(12);
         $desconto = $mp->getProductsOffDescont();
         $retorno['news'] = $dados;
+        $config = $mcfg->getConfig();
         $retorno['desconto'] = $desconto;
+        $retorno['config'] = $config;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
