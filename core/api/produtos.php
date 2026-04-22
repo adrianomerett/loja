@@ -3,6 +3,7 @@ require_once MODELS . 'mproducts.php';
 require_once MODELS . 'mimg.php';
 require_once MODELS . 'mfavoritos.php';
 require_once MODELS . 'mconfig.php';
+require_once MODELS . 'mcategorias.php';
 
 $mp = new Produtos();
 
@@ -124,15 +125,22 @@ if ($pagina == 'produtos' && $acao == 'recentes') {
         "msg" => "",
         "news" => array(),
         "desconto" => array(),
-        "config" => array()
+        "config" => array(),
+        "categorias" => array(),
+        "yourlike" => array()
     );
     try {
+        $mc = new Categorias();
         $mcfg = new Config();
         $dados = $mp->getProductsRecentes(12);
         $desconto = $mp->getProductsOffDescont();
+        $categorias = $mc->getCategorias();
+        $yourlike = $mp->getProductYouLike();
         $retorno['news'] = $dados;
         $config = $mcfg->getConfig();
         $retorno['desconto'] = $desconto;
+        $retorno['categorias'] = $categorias;
+        $retorno['yourlike'] = $yourlike;
         $retorno['config'] = $config;
         $retorno['status'] = true;
         return App::setJson($retorno);

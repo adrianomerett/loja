@@ -47,16 +47,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (idoperacao == 'update') {
             let id = document.getElementById('id-cate-editar').value;
             let elementname = document.getElementById('ncategoria');
+            let elementicon = document.getElementById('iconcategoria');
             let name = elementname.value;
+            let icon = elementicon.value;
             if (name == '') {
                 showAlert('Informe o nome da categoria!', 'error');
                 setValidation('ncategoria', 'is-invalid');
                 return false;
             }
+            if (icon == '') {
+                showAlert('Informe o ícone da categoria!', 'error');
+                setValidation('iconcategoria', 'is-invalid');
+                return false;
+            }
             try {
                 // Atualizar
                 showLoader();
-                let req = await api.post('/categorias/update-categoria/', { idcategoria: id, namecategoria: name });
+                let req = await api.post('/categorias/update-categoria/', { 
+                    idcategoria: id, 
+                    namecategoria: name,
+                    iconcategoria: icon
+                });
                 showLoader();
                 let { status, msg, campo } = req.data;
                 if (status == false) {
@@ -72,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     elementname.value = '';
                     elementname.classList.remove('is-invalid', 'is-valid');
                     document.getElementById(`name-cate-${id}`).innerText = name;
+                    listarCategorias();
                 }
             } catch (e) {
                 console.log(e);
@@ -84,7 +96,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('lnk-add-cate').addEventListener('click', function () {
         document.getElementById('id-operation').value = 'cadastrar';
         let elementname = document.getElementById('ncategoria');
+        let elementicon = document.getElementById('iconcategoria');
         elementname.value = '';
+        elementicon.value = '';
         document.getElementById('name-operation').innerHTML = `Cadastrar Categoria`;
         showAddCates('modal-cates');
     });
@@ -94,15 +108,25 @@ document.addEventListener('DOMContentLoaded', async function () {
         try {
             let operacaco = document.getElementById('id-operation').value;
             let elementname = document.getElementById('ncategoria');
+            let elementicon = document.getElementById('iconcategoria');
             let namecategoria = elementname.value;
+            let iconcategoria = elementicon.value;
             if (operacaco == 'cadastrar') {
                 if (namecategoria == '') {
                     showAlert('Informe o nome da categoria!', 'error');
                     setValidation('ncategoria', 'is-invalid');
                     return false;
                 }
+                if (iconcategoria == '') {
+                    showAlert('Informe o ícone da categoria!', 'error');
+                    setValidation('iconcategoria', 'is-invalid');
+                    return false;
+                }
                 showLoader();
-                let req = await api.post('/categorias/save-categoria', { namecategoria: namecategoria });
+                let req = await api.post('/categorias/save-categoria', { 
+                    namecategoria: namecategoria,
+                    iconcategoria: iconcategoria
+                });
                 showLoader();
                 let { status, msg, campo } = req.data;
                 if (status == false) {
@@ -158,6 +182,7 @@ async function listarCategorias() {
                 <tr class="tr-list" id="tr-${i.categoriaid}">
                     <td class="tdcenter tdcode">${String(i.categoriaid).padStart(6, '0')}</td>
                     <td class="tdleft" id="name-cate-${i.categoriaid}">${i.namecategoria}</td>
+                    <td class="tdleft">${i.iconcategoria}</td>
                     <td class="tdcenter"><span class="lnk-edit-cate" id="edit-cate-${i.categoriaid}"><i class="fa-solid fa-pen-to-square"></i> Editar</span></td>
                     <td class="tdcenter"><span class="lnk-trash-cate" id="delete-cate-${i.categoriaid}"><i class="fa-solid fa-trash-can"></i> Excluir</span></td>
                 </tr>`

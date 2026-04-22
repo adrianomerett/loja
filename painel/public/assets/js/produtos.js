@@ -285,11 +285,13 @@ async function saveProduct() {
     }
 };
 
-// Salva uma nova subcategoria
+// Salva uma nova categoria
 async function saveCategoria() {
     try {
         let elemntncategoria = document.getElementById('ncategoria');
+        let elemnticoncategoria = document.getElementById('iconcategoria');
         let ncategoria = elemntncategoria.value;
+        let iconcategoria = elemnticoncategoria.value;
         if (ncategoria == 0) {
             setValidation('ncategoria', 'is-invalid');
             showAlert('Informe o nome da categoria!', 'error');
@@ -297,8 +299,15 @@ async function saveCategoria() {
         } else {
             setValidation('ncategoria', 'is-valid');
         }
+        if (iconcategoria == '') {
+            setValidation('iconcategoria', 'is-invalid');
+            showAlert('Informe o ícone da categoria!', 'error');
+            return false;
+        } else {
+            setValidation('iconcategoria', 'is-valid');
+        }
         showLoader();
-        let req = await api.post('categorias/save-categoria', { namecategoria: ncategoria });
+        let req = await api.post('categorias/save-categoria', { namecategoria: ncategoria, iconcategoria: iconcategoria });
         showLoader();
         let { status, msg, categorias } = req.data;
         if (status == false) {

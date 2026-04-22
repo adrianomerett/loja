@@ -19,6 +19,7 @@
                 <tr class="thead-list">
                     <th>Código</th>
                     <th class="tdleft">Nome da categoria</th>
+                    <th class="tdleft">ícone da categoria</th>
                     <th class="tdcenter">Editar</th>
                     <th class="tdcenter">Excluir</th>
                 </tr>
@@ -47,6 +48,12 @@
                     <input type="hidden" value="" id="id-cate-editar">
                     <label for="ncategoria" class="label-cadastros">Nome da categoria: <span class="required">(*)</span></label>
                     <input type="text" name="ncategoria" id="ncategoria" placeholder="Informe o nome da categoria">
+                </div>
+            </div>
+            <div class="rows">
+                <div class="col col-sm-12 forms">
+                    <label for="iconcategoria" class="label-cadastros">Ícone da categoria: <span class="required">(*)</span></label>
+                    <input type="text" name="iconcategoria" id="iconcategoria" placeholder="Informe o ícone da categoria">
                 </div>
             </div>
         </div>

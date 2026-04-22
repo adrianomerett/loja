@@ -45,9 +45,10 @@ class Mcategorias
         try {
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "INSERT INTO {$this->table} (namecategoria) VALUES (:namecategoria)";
+            $query = "INSERT INTO {$this->table} (namecategoria, iconcategoria) VALUES (:namecategoria, :iconcategoria)";
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':namecategoria', $dados['namecategoria']);
+            $stmt->bindParam(':iconcategoria', $dados['iconcategoria']);
             $stmt->execute();
             return $stmt->rowCount();
         } catch (Exception $e) {
@@ -61,9 +62,10 @@ class Mcategorias
         try {
             $db = new Database();
             $conn = $db->getConnection();
-            $query = "UPDATE {$this->table} SET namecategoria = :namecategoria WHERE categoriaid = :categoriaid";
+            $query = "UPDATE {$this->table} SET namecategoria = :namecategoria, iconcategoria = :iconcategoria WHERE categoriaid = :categoriaid";
             $stmt = $conn->prepare($query);
             $stmt->bindParam(':namecategoria', $dados['namecategoria']);
+            $stmt->bindParam(':iconcategoria', $dados['iconcategoria']);
             $stmt->bindParam(':categoriaid', $id);
             $stmt->execute();
             return $stmt->rowCount();

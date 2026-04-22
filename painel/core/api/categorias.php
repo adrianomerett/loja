@@ -12,13 +12,21 @@ if ($acao == 'save-categoria') {
         if (empty($name)) {
             throw new Exception("Informe o nome da categoria!");
         }
+        // Validação do ícone
+        $icon = App::getPost('iconcategoria');
+        if (empty($icon)) {
+            throw new Exception("Informe o ícone da categoria!");
+        }
         // Verifica se já não está cadastrada
         $mca = new Mcategorias();
         $catedb = $mca->getCategoryByName($name);
         if (count($catedb) > 0) {
             throw new Exception("Já existe uma categoria com o nome {$name}!");
         }
-        $dados = array('namecategoria' => $name);
+        $dados = array(
+            'namecategoria' => $name,
+            'iconcategoria' => $icon
+        );
         $insert = $mca->insertCategory($dados);
         if (!is_int($insert)) {
             throw new Exception($insert);
@@ -39,19 +47,21 @@ if ($acao == 'update-categoria') {
     try {
         $id = intval(App::getPost('idcategoria'));
         $name = App::getPost('namecategoria');
+        $icon = App::getPost('iconcategoria');
         // Validação
         if (empty($name)) {
             $retorno['campo'] = 'ncategoria';
             throw new Exception("Informe o nome da categoria!");
         }
+        // Validação do ícone
+        if (empty($icon)) {
+            $retorno['campo'] = 'iconcategoria';
+            throw new Exception("Informe o ícone da categoria!");
+        }
         // Verifica se já não está cadastrada
         $mca = new Mcategorias();
         $catedb = $mca->getCategoryByName($name);
-        if (count($catedb) > 0) {
-            $retorno['campo'] = 'ncategoria';
-            throw new Exception("Já existe uma categoria com o nome {$name}!");
-        }
-        $update = $mca->updateCategoria($id, array('namecategoria' => $name));
+        $update = $mca->updateCategoria($id, array('namecategoria' => $name, 'iconcategoria' => $icon));
         if (!is_int($update)) {
             throw new Exception($update);
         }
