@@ -44,6 +44,7 @@ if ($pagina == 'categorias' && $acao == 'getcategorias') {
             $subcategorias = $msca->getSubcategoriasByIdCategoria($valuec->categoriaid);
             $categorias[$valuec->categoriaid]['id'] = array(
                 'categoriaid' => $valuec->categoriaid,
+                'iconcategoria' => $valuec->iconcategoria,
                 'namecategoria' => $valuec->namecategoria,
                 'subcategorias' => $subcategorias
             );
