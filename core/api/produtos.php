@@ -130,18 +130,12 @@ if ($pagina == 'produtos' && $acao == 'recentes') {
         "yourlike" => array()
     );
     try {
-        $mc = new Categorias();
-        $mcfg = new Config();
         $dados = $mp->getProductsRecentes(12);
         $desconto = $mp->getProductsOffDescont();
-        $categorias = $mc->getCategorias();
         $yourlike = $mp->getProductYouLike();
         $retorno['news'] = $dados;
-        $config = $mcfg->getConfig();
         $retorno['desconto'] = $desconto;
-        $retorno['categorias'] = $categorias;
         $retorno['yourlike'] = $yourlike;
-        $retorno['config'] = $config;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
