@@ -6,7 +6,7 @@ if ($pagina == 'contato' && $acao == 'enviarmsg') {
     $mc = new Contato();
     $retorno = array("status" => false, "msg" => "", "campo" => "");
     try {
-        $dados = App::getPost('dados');
+        $dados = App::getPostJson('dados');
         $nome = $dados['nome'];
         $email = $dados['email'];
         $telefone = $dados['fone'];

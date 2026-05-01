@@ -88,7 +88,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         showMsg('Enviando mensagem...', 'alert-send');
         await sleep(1000);
-        let req = await api.post('contato/enviarmsg', { dados: dados });
+        let req = await api.post('contato/enviarmsg', 
+            { dados: dados },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
         console.log(req.data);
         let { status, msg, campo } = req.data;
         if (status == false) {
