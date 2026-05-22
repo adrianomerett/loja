@@ -37,7 +37,7 @@ if ($pagina == 'produtos' && $acao == 'listar') {
 
 // Buscar os produtos
 if ($pagina == 'produtos' && $acao == 'search') {
-    $retorno = array("status" => false, "msg" => "", "dados" => array());
+    $retorno = array("status" => false, "msg" => "", "dados" => array(), "dafavoritos" => array());
     try {
         $busca = App::getGet('busca');
         // Paginação
@@ -47,11 +47,16 @@ if ($pagina == 'produtos' && $acao == 'search') {
         $total = $mp->countProductsSearch($busca);
         $offset = ($pagina_atual - 1) * $por_pagina;
         $total_paginas = ceil($total / $por_pagina);
+        $clienteid = intval(App::getGet('clienteid'));
         // Dados
         $dados = $mp->getProductsBySearch($busca, $por_pagina, $offset);
         $retorno['dados'] = $dados;
         $retorno['paginacao'] = array('pagina_atual' => $pagina_atual, 'total_paginas' => $total_paginas);
         $retorno['dados'] = $dados;
+        // buscar os favoritos
+        $mf = new Favoritos();
+        $favoritos = $mf->getFavoritosByClient($clienteid);
+        $retorno['dafavoritos'] = $favoritos;
         $retorno['status'] = true;
         return App::setJson($retorno);
     } catch (Exception $e) {
