@@ -83,3 +83,53 @@ if ($pagina == 'clientes' && $acao == 'login') {
         return App::setJson($retorno);
     }
 }
+// Editar dados pessoais 
+if ($pagina == 'clientes' && $acao == 'editarcliente') {
+    $retorno = array("status" => false, "msg" => "");
+    try {
+        $mcli = new Clientes();
+        $dados = App::getPostJson('dados');
+        $clientid = intval($dados['clientid']);
+        $nome = $dados['nome'];
+        $email = $dados['email'];
+        $senha = $dados['senha'];
+        if (strlen($nome) < 3) {
+            $retorno['msg'] = 'Nome inválido';
+            return App::setJson($retorno);
+        }
+        if (!App::validarEmail($email)) {
+            $retorno['msg'] = 'E-mail inválido';
+            return App::setJson($retorno);
+        }
+        if (strlen($senha) < 8) {
+            $retorno['msg'] = 'A senha deve ter no mínimo 8 caracteres';
+            return App::setJson($retorno);
+        }
+        // Verifcar se o cliente já existe
+        $checkid = $mcli->checkClienteById($clientid);
+        if (is_null($checkid) || $checkid === false) {
+            $retorno['msg'] = 'Cliente não encontrado';
+            return App::setJson($retorno);
+        }
+        // Verificar a senha do cliente
+        $senhadb = $checkid['password'];
+        if (!password_verify($senha, $senhadb)) {
+            throw new Exception('A sua senha de autenticação está incorreta');
+        }
+        $dadosupdate = array(
+            'nome' => $nome,
+            'email' => $email,
+        );
+        $update = $mcli->updateCliente($dadosupdate, $clientid);
+        if (!is_bool($update)) {
+            $retorno['msg'] = $update;
+            return App::setJson($retorno);
+        }
+        $retorno['status'] = true;
+        $retorno['msg'] = "Olá {$nome}, seu cadastro foi atualizado com sucesso!";
+        return App::setJson($retorno);
+    } catch (Exception $e) {
+        $retorno['msg'] = $e->getMessage();
+        return App::setJson($retorno);
+    }
+}

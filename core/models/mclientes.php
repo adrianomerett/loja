@@ -102,4 +102,37 @@ class Clientes extends Database
             return $e->getMessage();
         }
     }
+
+    // Verifica se o cliente existe pelo id
+    public function checkClienteById($clienteid)
+    {
+        try {
+            $conn = $this->getConnection();
+            $sql = "SELECT clienteid, password FROM {$this->table} WHERE clienteid = :clienteid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':clienteid', $clienteid);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    // Atualizar dados do cliente
+    public function updateCliente($dados, $clienteid)
+    {
+        try {
+            $conn = $this->getConnection();
+            $sql = "UPDATE {$this->table} SET nome = :nome, email = :email WHERE clienteid = :clienteid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nome', $dados['nome']);
+            $stmt->bindParam(':email', $dados['email']);
+            $stmt->bindParam(':clienteid', $clienteid);
+            $stmt->execute();
+            return true;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
